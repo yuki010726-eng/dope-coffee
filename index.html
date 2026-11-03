@@ -47,12 +47,12 @@
 .mw .main01{position:fixed;top:0;left:0;right:0;z-index:0;height:100vh;background:#d9dadc}
 .mw .main01 .img_box{position:relative;height:100%;overflow:hidden}
 .mw .main01 .img_box>img{width:100%;height:100%;object-fit:cover}
-.mw .main01 .img_box::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(10,16,28,.72) 0%,rgba(10,16,28,.25) 45%,rgba(10,16,28,.1) 100%)}
-.mw .main01 .copy{position:absolute;left:0;right:0;bottom:120px;z-index:2;color:#fff}
-.mw .main01 .copy .mark{width:72px}
+.mw .main01 .img_box::after{content:"";position:absolute;inset:0;background:rgba(10,16,28,.4)}
+.mw .main01 .copy{position:absolute;left:0;right:0;top:44%;z-index:2;transform:translateY(-50%);text-align:center;color:#fff}
+.mw .main01 .copy .mark{width:72px;margin:0 auto}
 .mw .main01 .copy h1{margin-top:28px;font-family:Roboto,sans-serif;font-size:96px;font-weight:700;line-height:1;letter-spacing:-.03em}
 .mw .main01 .copy p{margin-top:20px;font-size:22px;font-weight:500;line-height:1.6;color:rgba(255,255,255,.88)}
-.mw .main01 .copy .btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:40px}
+.mw .main01 .copy .btns{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:40px}
 
 /* ---------- 띠 ---------- */
 .mw>div.main_band{background:var(--navy);padding:22px 0;overflow:hidden}
@@ -146,15 +146,6 @@
 .mw .why h3{margin-top:40px;font-size:24px;font-weight:700;line-height:1.4;letter-spacing:-.04em;word-break:keep-all}
 .mw .why p{margin-top:12px;font-size:16px;font-weight:500;line-height:1.7;color:var(--mute);word-break:keep-all}
 
-/* ---------- 05 점주 인터뷰 ---------- */
-.mw .iframe_box{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;background:#000}
-.mw .iframe_box iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-.mw .iframe_box .ph{position:absolute;inset:0}
-.mw .main05 .meta{margin-top:28px;text-align:center}
-.mw .main05 .meta h3{font-size:24px;font-weight:700;letter-spacing:-.04em}
-.mw .main05 .meta p{margin-top:6px;font-size:16px;color:var(--mute)}
-.mw .main05 .meta :empty{display:none}
-
 /* ---------- 06 매장 안내 ---------- */
 .mw .main06 .head .navs{display:flex;justify-content:flex-end;gap:8px}
 .mw .main06 .navs button{display:grid;place-items:center;width:52px;height:52px;border:1.5px solid #D6D2CA;border-radius:50%;color:var(--ink);transition:.2s}
@@ -185,7 +176,6 @@
   .mw .lead{font-size:16px}
   .mw .btn{height:52px;padding:0 24px;font-size:16px}
   .mw .btn_wrap{margin-top:36px}
-  .mw .main01 .copy{bottom:96px}
   .mw .main01 .copy .mark{width:52px}
   .mw .main01 .copy h1{margin-top:20px;font-size:48px}
   .mw .main01 .copy p{margin-top:14px;font-size:16px}
@@ -228,7 +218,6 @@
   .mw .why li{padding:28px 24px 32px}
   .mw .why h3{margin-top:28px;font-size:20px}
   .mw .why p{font-size:15px}
-  .mw .iframe_box{border-radius:12px}
   .mw .main06 .head .navs{display:none}
   .mw .stores-swiper .cap h3{font-size:17px}
   .mw .stores-swiper .cap p{font-size:13px}
@@ -478,27 +467,8 @@
     </div>
   </div>
 
-  <!-- 05 INTERVIEW (자료 없음) -->
-  <div class="main05 sec ivory" id="interview">
-    <div class="wrap">
-      <div class="head" data-aos="fade-up">
-        <div>
-          <p class="eyebrow">점주 인터뷰</p>
-          <h2 class="h2">도프커피의 점주님을<br>만나보세요</h2>
-        </div>
-      </div>
-      <div class="video_wrap" data-aos="fade-up">
-        <div class="iframe_box"><div class="ph">영상 준비 중</div></div>
-      </div>
-      <div class="meta">
-        <h3 data-interview-title></h3>
-        <p data-interview-name></p>
-      </div>
-    </div>
-  </div>
-
   <!-- 06 STORES -->
-  <div class="main06 sec" id="stores">
+  <div class="main06 sec ivory" id="stores">
     <div class="wrap">
       <div class="head" data-aos="fade-up">
         <div>
@@ -540,12 +510,10 @@
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script src="js/menu-data.js?v=menu5"></script>
 <script src="js/stores-data.js?v=brand1"></script>
-<script src="js/common.js?v=brand1"></script>
+<script src="js/common.js?v=brand2"></script>
 <script>
 /* ---------- 설정: 자료가 생기면 여기만 채우면 됩니다 ---------- */
 const CONFIG = {
-  // 인터뷰 영상 (유튜브 영상 ID)
-  interview: { youtubeId:'', title:'', name:'' },
   // 매장은 js/stores-data.js
   stores: STORES,
 };
@@ -601,14 +569,6 @@ document.querySelector('[data-stores]').innerHTML = CONFIG.stores.map(st => `
     <div class="cap"><h3>${esc(st.name)}</h3><p>${esc(st.addr)}</p></div>
   </li>`).join('');
 document.querySelector('[data-store-count]').textContent = `직영 매장 ${CONFIG.stores.length}곳`;
-
-/* ---------- 인터뷰 (CONFIG) ---------- */
-(() => {
-  const { youtubeId, title, name } = CONFIG.interview;
-  if (youtubeId) document.querySelector('.main05 .iframe_box').innerHTML = `<iframe src="https://www.youtube.com/embed/${encodeURIComponent(youtubeId)}" title="도프커피 점주 인터뷰" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>`;
-  if (title) document.querySelector('[data-interview-title]').textContent = title;
-  if (name) document.querySelector('[data-interview-name]').textContent = name;
-})();
 
 /* ---------- 마퀴: 끊김 없이 이어지도록 복제 ---------- */
 document.querySelectorAll('[data-marquee]').forEach(ul => {

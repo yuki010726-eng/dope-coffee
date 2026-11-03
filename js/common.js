@@ -21,7 +21,7 @@ const NAV = [
     ['주스·스무디', { menu:'juice' }], ['아이스크림', { menu:'icecream' }] ] },
   { label:'매장 안내', to:{ home:'stores' }, subs:[] },
   { label:'가맹스토리', to:{ fran:'ownerStory' }, subs:[
-    ['점장 이야기', { fran:'ownerStory' }], ['점주 인터뷰', { home:'interview' }] ] },
+    ['점장 이야기', { fran:'ownerStory' }] ] },
   { label:'가맹안내', page:'franchise', to:{ fran:0 }, subs:[
     ['창업 경쟁력', { fran:0 }], ['창업 모델', { fran:'part3' }], ['창업 절차', { fran:1 }], ['창업 비용', { fran:2 }], ['창업 문의', { fran:3 }] ] },
 ];
