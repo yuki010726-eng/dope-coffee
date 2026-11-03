@@ -376,64 +376,12 @@
 }
 </style>
 </head>
-<body>
+<body data-page="franchise">
 <div id="wrap">
 
 <!-- ============ HEADER ============ -->
-<header id="header">
-  <div class="inner">
-    <h2><a href="index.html" aria-label="도프커피 홈"><img src="img/logo_black.png" alt="dpc dope coffee roasters"></a></h2>
-    <ul class="pc">
-      <li><a href="index.html#story">브랜드 소개</a></li>
-      <li>
-        <a href="#franTab01" data-fran-go="0">가맹문의</a>
-        <div class="sub_cate">
-          <a href="#franTab01" data-fran-go="0">창업경쟁력</a>
-          <a href="#franTab02" data-fran-go="1">창업절차</a>
-          <a href="#franTab03" data-fran-go="2">창업비용</a>
-          <a href="#franTab04" data-fran-go="3">창업문의</a>
-        </div>
-      </li>
-      <li><a href="index.html#menu">메뉴</a></li>
-      <li><a href="index.html#stores">매장리스트</a></li>
-      <li>
-        <a href="#" data-empty>뉴스/이벤트</a>
-        <div class="sub_cate">
-          <a href="#" data-empty>뉴스</a>
-          <a href="#" data-empty>이벤트</a>
-        </div>
-      </li>
-    </ul>
-    <button class="eNavFold mobile" aria-label="메뉴 열기" aria-expanded="false"><span></span><span></span><span></span></button>
-  </div>
-</header>
-
-<div class="drawer" aria-hidden="true">
-  <div class="dim"></div>
-  <div class="panel">
-    <div class="top">
-      <img src="img/logo_black.png" alt="dpc dope coffee roasters">
-      <button class="close" aria-label="메뉴 닫기"></button>
-    </div>
-    <nav>
-      <a href="index.html#story">브랜드 소개</a>
-      <div>
-        <a class="grp" href="#franTab01" data-fran-go="0">가맹문의</a>
-        <a href="#franTab01" data-fran-go="0">창업경쟁력</a>
-        <a href="#franTab02" data-fran-go="1">창업절차</a>
-        <a href="#franTab03" data-fran-go="2">창업비용</a>
-        <a href="#franTab04" data-fran-go="3">창업문의</a>
-      </div>
-      <a href="index.html#menu">메뉴</a>
-      <a href="index.html#stores">매장리스트</a>
-      <div>
-        <p>뉴스/이벤트</p>
-        <a href="#" data-empty>뉴스</a>
-        <a href="#" data-empty>이벤트</a>
-      </div>
-    </nav>
-  </div>
-</div>
+<header id="header"></header>
+<div class="drawer" aria-hidden="true"></div>
 
 <main class="fw">
 
@@ -741,30 +689,8 @@
 
 </main>
 
-<!-- ============ FOOTER (회사 정보 미제공: 비워둠) ============ -->
-<footer id="footer">
-  <div class="inner_wrap">
-    <div class="inner">
-      <ul>
-        <li>
-          <p data-f="company"></p>
-          <p><span>사업자 번호</span><i data-f="bizno"></i></p>
-          <p><span>대표자</span><i data-f="ceo"></i></p>
-        </li>
-        <li>
-          <p><span>가맹문의</span><i data-f="tel"></i></p>
-          <p><span>메일</span><i data-f="mail"></i></p>
-          <p><span>주소</span><i data-f="addr"></i></p>
-        </li>
-        <li>
-          <p><a href="#" data-empty>이용약관</a></p>
-          <p><a href="#" data-empty>개인정보취급방침</a></p>
-        </li>
-      </ul>
-      <h2><a href="index.html" aria-label="도프커피 홈"><img src="img/wordmark_black.png" alt="dope coffee roasters"></a></h2>
-    </div>
-  </div>
-</footer>
+<!-- ============ FOOTER (헤더·푸터는 js/common.js에서 생성) ============ -->
+<footer id="footer"></footer>
 
 <!-- 프레드 가맹 페이지처럼 원형 플로팅은 숨김 (goFranForm 사용) -->
 <ul id="floating" hidden>
@@ -845,6 +771,10 @@ addEventListener('resize', toggleMoSliders);
 /* ---------- 가맹 문의 폼 ---------- */
 const wrapEl = document.querySelector('.fran09 .contents');
 const form = wrapEl.querySelector('form');
+// 메인 '메뉴 구성 선택'에서 넘어온 구성 미리 채우기
+const pickedMods = new URLSearchParams(location.search).get('mods');
+if (pickedMods) form.elements.message.value = `희망 메뉴 구성: ${pickedMods}
+`;
 const tel = form.elements.tel;
 const privacy = form.querySelector('.privacy');
 privacy.querySelector('.more').addEventListener('click', () => privacy.classList.toggle('open'));

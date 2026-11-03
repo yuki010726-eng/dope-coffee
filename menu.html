@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>메뉴 | 도프커피 dope coffee roasters</title>
+<meta name="description" content="도프커피(DPC) 메뉴 — 시그니처, 커피, 논커피, 티, 주스·스무디, 아이스크림.">
+<link rel="icon" href="img/mark_black.png">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="css/common.css">
+<style>
+/* 수치는 fredcoffeehaus.com/menu.html 원본 CSS 그대로 (컬러만 DPC) */
+#contents{margin:76px auto 0;width:100%}
+#contents>.section{max-width:1500px;margin:0 auto;width:calc(100% - 100px)}
+
+/* 카테고리 탭 */
+#contents>.typeMenu{display:flex;padding:140px 0 48px}
+#contents>.typeMenu ul{display:flex;flex-wrap:wrap;justify-content:center;margin:0 auto}
+#contents>.typeMenu li{margin:0 0 12px;white-space:nowrap}
+#contents>.typeMenu li a{display:inline-block;padding:16px 32px;border-radius:100px;font-size:var(--main-category);font-weight:var(--font-bold);line-height:140%;letter-spacing:-.01em;color:var(--point-color);background:transparent}
+#contents>.typeMenu li.selected a{background:var(--point-color);color:var(--white-color)}
+
+/* 메뉴 목록 */
+.normalpackage_box{margin-bottom:120px}
+.prdList{display:flex;flex-wrap:wrap}
+.prdList>li{margin:0 12px 40px 0;width:calc(33.33% - 8px)}
+.prdList>li:nth-child(3n){margin-right:0}
+.prdList .prdList__item{position:relative;line-height:1}
+.prdList .thumbnail{background:rgb(240,240,240);aspect-ratio:1;display:flex;align-items:center;justify-content:center}
+.prdList .thumbnail img{width:100%}
+.prdList .thumbnail .ph{font-size:var(--board-content);font-weight:var(--font-semi);color:#c4c4c4}
+.prdList .description{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;text-align:center;background:rgba(46,75,116,.4);z-index:10;opacity:0;visibility:hidden;transition:.4s}
+.prdList .description .mark{height:30px;width:auto}
+.prdList .description .name,.prdList .description .summary{max-width:80%;margin:0 auto;line-height:140%;letter-spacing:-.01em;font-weight:var(--font-semi);color:var(--white-color);word-break:keep-all}
+.prdList .description .name{font-size:var(--main-category)}
+.prdList .description .summary{font-size:var(--main-content)}
+.prdList>li:hover .description{opacity:1;visibility:visible}
+.prdList>li h2{display:block;padding:18px 0;text-align:center;font-size:var(--index-content);font-weight:var(--font-bold);line-height:135%;letter-spacing:-.02em;color:var(--main-color)}
+
+@media (max-width:1024px){
+  #contents{margin-top:52px}
+  #contents>.section{max-width:100%;width:calc(100% - 32px)}
+  #contents>.typeMenu{padding:28px 0 40px}
+  #contents>.typeMenu li a{padding:10px 20px;font-size:var(--mobile-content)}
+  .normalpackage_box{margin-bottom:50px}
+  .prdList>li{margin:0 0 40px;width:100%}
+  .prdList .description .name{max-width:calc(100% - 80px);font-size:var(--main-content)}
+  .prdList .description .summary{max-width:calc(100% - 80px);font-size:var(--board-content)}
+  .prdList>li h2{padding:12px 0;font-size:var(--main-content)}
+}
+</style>
+</head>
+<body data-page="menu">
+<div id="wrap">
+
+<!-- ============ HEADER / 모바일 메뉴 / FOOTER는 js/common.js의 NAV로 생성 ============ -->
+<header id="header"></header>
+<div class="drawer" aria-hidden="true"></div>
+
+<main id="contents">
+  <div class="section typeMenu">
+    <ul role="tablist" data-cates></ul>
+  </div>
+  <div class="normalpackage_box section">
+    <ul class="prdList" data-list aria-live="polite"></ul>
+  </div>
+</main>
+
+<footer id="footer"></footer>
+
+<ul id="floating">
+  <li><a href="#" id="goTop" aria-label="맨 위로"><svg viewBox="0 0 44 44" fill="none" stroke="#141414" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 31V13M14 21l8-8 8 8"/></svg></a></li>
+  <li><a href="franchise.html#franTab04">가맹<br>문의</a></li>
+</ul>
+
+</div>
+
+<div class="toast" role="status"></div>
+
+<script src="js/menu-data.js"></script>
+<script src="js/common.js"></script>
+<script>
+/* ---------- 카테고리 탭 + 메뉴 목록 (메뉴는 js/menu-data.js) ---------- */
+const catesEl = document.querySelector('[data-cates]');
+const listEl = document.querySelector('[data-list]');
+catesEl.innerHTML = MENU.map(c => `<li role="presentation"><a role="tab" href="menu.html?cate=${c.key}" data-cate="${c.key}">${c.label}</a></li>`).join('');
+
+function showCate(key, push) {
+  const cate = MENU.find(c => c.key === key) || MENU[0];
+  catesEl.querySelectorAll('a').forEach(a => {
+    const on = a.dataset.cate === cate.key;
+    a.parentElement.classList.toggle('selected', on);
+    a.setAttribute('aria-selected', on);
+  });
+  listEl.innerHTML = cate.items.map(m => `
+    <li>
+      <div class="prdList__item">
+        <div class="thumbnail">${m.img ? `<img src="${esc(m.img)}" alt="${esc(m.name)}" loading="lazy">` : '<span class="ph">이미지 준비 중</span>'}</div>
+        <div class="description">
+          <p><img class="mark" src="img/mark_white.png" alt=""></p>
+          <p class="name">${esc(m.name)}</p>
+          ${m.desc ? `<p class="summary">${esc(m.desc)}</p>` : ''}
+        </div>
+      </div>
+      <h2>${esc(m.name)}</h2>
+    </li>`).join('');
+  document.title = `${cate.label} | 메뉴 | 도프커피 dope coffee roasters`;
+  if (push) history.pushState({ cate: cate.key }, '', `menu.html?cate=${cate.key}`);
+}
+
+// 탭과 헤더의 '메뉴 > 카테고리' 링크는 새로고침 없이 전환
+document.addEventListener('click', e => {
+  const a = e.target.closest('a[data-cate]');
+  if (!a) return;
+  e.preventDefault();
+  showCate(a.dataset.cate, true);
+  scrollTo({ top: 0 });
+});
+addEventListener('popstate', () => showCate(new URLSearchParams(location.search).get('cate')));
+showCate(new URLSearchParams(location.search).get('cate'));
+</script>
+</body>
+</html>
