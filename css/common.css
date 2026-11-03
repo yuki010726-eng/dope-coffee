@@ -79,7 +79,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 #footer .ft_contact span{display:block;font-size:var(--footer-txt);font-weight:var(--font-semi);color:#888;line-height:140%}
 #footer .ft_contact b{display:block;min-height:1.4em;margin-top:8px;font-size:var(--main-content);font-weight:var(--font-bold);color:var(--point-color);line-height:140%}
 #footer .ft_contact b.roboto{font-size:28px;line-height:120%}
-#footer .ft_map{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:24px;margin-top:56px;padding-top:32px;border-top:1px solid #dcdcdc}
+#footer .ft_map{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;margin-top:56px;padding-top:32px;border-top:1px solid #dcdcdc}
 #footer .ft_map a{display:block;font-size:14px;font-weight:var(--font-med);color:#666;line-height:140%;padding:5px 0;transition:color .3s}
 #footer .ft_map a.h{margin-bottom:10px;font-size:var(--board-content);font-weight:var(--font-bold);color:var(--main-color)}
 #footer .ft_map a:hover{color:var(--point-color)}
