@@ -11,10 +11,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
-<link rel="stylesheet" href="css/common.css?v=menu5">
+<link rel="stylesheet" href="css/common.css?v=brand1">
 <style>
 /* 가맹안내: 기획(Main.dc) 12개 섹션을 네 파트(시스템·자유·모델과 비용·시작하기)로 묶음, 색은 DPC 딥블루 + 매장 우드 톤 아이보리 */
 html{scroll-behavior:smooth}
+#wrap{overflow:clip} /* common.css의 overflow:hidden은 sticky를 막아서, 가로 넘침만 자르는 clip으로 */
 .fr,.fab{--ink:#141414;--blue:var(--point-color);--blue-d:#243C5E;--navy:#1B2B42;--ivory:#F6F4EF;--tint:#E9EEF4;--line:#E4E1DA;--mute:#5E5E5E;--mute2:#8C8C8C}
 .fr{padding-top:76px;color:var(--ink);letter-spacing:-.015em}
 .fr [id]{scroll-margin-top:76px}
@@ -27,8 +28,7 @@ html{scroll-behavior:smooth}
 .fr .head{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:32px 80px;align-items:end;margin-bottom:72px}
 .fr .head.solo{grid-template-columns:minmax(0,1fr)}
 .fr .eyebrow{display:flex;align-items:center;font-size:15px;font-weight:700;color:var(--blue);line-height:1.4}
-.fr .eyebrow span{display:inline-flex;align-items:center;font-family:Roboto,sans-serif;font-size:13px;font-weight:600;letter-spacing:.08em}
-.fr .eyebrow span::after{content:"";width:28px;height:1px;margin:0 12px;background:currentColor;opacity:.5}
+.fr .eyebrow span{margin-right:10px;font-family:Roboto,sans-serif;font-size:13px;font-weight:600;color:var(--mute2)}
 .fr .navy .eyebrow{color:#A9BEDA}
 .fr .h2{margin-top:22px;font-size:46px;font-weight:700;line-height:1.28;letter-spacing:-.04em;word-break:keep-all}
 .fr .lead{font-size:18px;font-weight:500;line-height:1.75;color:var(--mute);max-width:520px;word-break:keep-all}
@@ -37,8 +37,6 @@ html{scroll-behavior:smooth}
 
 /* ---------- 버튼 ---------- */
 .fr .btn,.fab .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:56px;padding:0 30px;border-radius:100px;font-size:17px;font-weight:700;letter-spacing:-.01em;white-space:nowrap;transition:background .25s,color .25s,border-color .25s}
-.fr .btn svg,.fab .btn svg{width:18px;height:18px;flex-shrink:0;transition:transform .25s}
-.fr .btn:hover svg,.fab .btn:hover svg{transform:translateX(3px)}
 .fr .btn.fill,.fab .btn{background:var(--blue);color:#fff}
 .fr .btn.fill:hover,.fab .btn:hover{background:var(--blue-d)}
 .fr .btn.line{border:1.5px solid var(--ink);color:var(--ink)}
@@ -46,12 +44,9 @@ html{scroll-behavior:smooth}
 .fr .btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:44px}
 
 /* ---------- 아직 받지 못한 정보 / 사진 자리 ---------- */
-.fr .slot{display:inline-flex;align-items:center;gap:6px;padding:3px 12px;border-radius:100px;background:var(--tint);color:var(--blue);font-size:13px;font-weight:600;line-height:1.5;letter-spacing:-.01em;vertical-align:middle;white-space:nowrap}
-.fr .slot::before{content:"";width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.55}
-.fr .navy .slot,.fr .banner .slot{background:rgba(255,255,255,.12);color:#D3DEEC}
-.fr .ph{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:20px;text-align:center;color:#6C7E96;font-size:14px;font-weight:600;line-height:1.5;
-  background:var(--tint) repeating-linear-gradient(135deg,transparent 0 16px,rgba(46,75,116,.045) 16px 17px)}
-.fr .ph::before{content:"";width:30px;height:30px;opacity:.75;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236C7E96' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 8h3l2-3h6l2 3h3v11H4z'/%3E%3Ccircle cx='12' cy='13' r='3.5'/%3E%3C/svg%3E") center/contain no-repeat}
+.fr .slot{display:inline-block;padding:0 2px;border-bottom:1px dashed #BDBAB3;color:#9A968E;font-size:.9em;font-weight:500;line-height:1.5;vertical-align:baseline;white-space:nowrap}
+.fr .navy .slot,.fr .banner .slot{border-color:rgba(255,255,255,.4);color:rgba(255,255,255,.6)}
+.fr .ph{display:flex;align-items:center;justify-content:center;padding:20px;text-align:center;color:#9A968E;font-size:13px;font-weight:500;line-height:1.5;background:#ECEAE5}
 .fr .img{position:relative;overflow:hidden;background:#e7e5e0}
 .fr .img img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
 
@@ -59,13 +54,8 @@ html{scroll-behavior:smooth}
 .fr .hero{padding:80px 0 0}
 .fr .hero .top{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:80px;align-items:center}
 .fr .hero h1{margin-top:28px;font-size:68px;font-weight:700;line-height:1.18;letter-spacing:-.05em;word-break:keep-all}
-.fr .hero h1 em{font-style:normal;color:var(--blue)}
 .fr .hero .lead{margin-top:28px;max-width:470px}
-.fr .hero .visual{height:620px;border-radius:28px}
-.fr .hero .badge{position:absolute;left:24px;bottom:24px;display:flex;align-items:center;gap:14px;padding:14px 20px 14px 14px;border-radius:18px;background:rgba(255,255,255,.94);backdrop-filter:blur(6px)}
-.fr .hero .badge img{width:44px;height:44px;object-fit:contain;padding:9px;border-radius:12px;background:var(--navy)}
-.fr .hero .badge b{display:block;font-family:Roboto,sans-serif;font-size:15px;font-weight:700;letter-spacing:.06em}
-.fr .hero .badge span{display:block;margin-top:2px;font-size:13px;color:var(--mute)}
+.fr .hero .visual{height:620px;border-radius:12px}
 .fr .facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:96px;border-top:1px solid var(--ink)}
 .fr .facts>div{padding:36px 32px 0 0}
 .fr .facts>div+div{padding-left:40px;border-left:1px solid var(--line)}
@@ -76,23 +66,16 @@ html{scroll-behavior:smooth}
 /* ---------- 한눈에 보기: 네 파트 요약 ---------- */
 .fr .ov{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px;list-style:none}
 .fr .ov li{position:relative}
-.fr .ov li+li::before{content:"";position:absolute;top:50%;left:-19px;width:9px;height:9px;border-top:1.5px solid #BDB7AC;border-right:1.5px solid #BDB7AC;transform:translateY(-50%) rotate(45deg)}
-.fr .ov a{display:flex;flex-direction:column;height:100%;padding:32px 28px 28px;border-radius:24px;background:#fff;transition:transform .3s,box-shadow .3s}
-.fr .ov a:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(27,43,66,.1)}
+.fr .ov a{display:flex;flex-direction:column;height:100%;padding:32px 28px 28px;border-radius:12px;background:#fff;transition:transform .3s,box-shadow .3s}
 .fr .ov .no{font-family:Roboto,sans-serif;font-size:13px;font-weight:600;letter-spacing:.08em;color:var(--blue)}
 .fr .ov b{margin-top:40px;font-size:26px;font-weight:700;letter-spacing:-.04em}
 .fr .ov p{margin-top:12px;font-size:15px;font-weight:500;line-height:1.7;color:var(--mute);word-break:keep-all}
-.fr .ov .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:22px}
-.fr .ov .tags i{padding:4px 10px;border-radius:100px;background:var(--ivory);font-size:12px;font-style:normal;font-weight:600;color:#6A655C}
 .fr .ov .go{display:flex;align-items:center;gap:6px;margin-top:auto;padding-top:28px;font-size:14px;font-weight:700;color:var(--blue)}
-.fr .ov .go svg{width:16px;height:16px;transition:transform .25s}
-.fr .ov a:hover .go svg{transform:translateX(3px)}
 
 /* ---------- 파트 구분: 지금 몇 번째 이야기인지 ---------- */
 .fr .part{padding:120px 0;background:var(--navy);color:#fff}
 .fr .part .wrap{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:80px;align-items:end}
 .fr .pt-no{display:flex;align-items:baseline;gap:8px;font-family:Roboto,sans-serif;font-size:14px;font-weight:700;letter-spacing:.12em;color:#A9BEDA}
-.fr .pt-no span{font-weight:500;opacity:.6}
 .fr .part h2{margin-top:24px;font-size:60px;font-weight:700;line-height:1.15;letter-spacing:-.05em}
 .fr .pt-line{margin-top:24px;font-size:18px;font-weight:500;line-height:1.75;color:rgba(255,255,255,.7)}
 .fr .pt-map{list-style:none;border-top:1px solid rgba(255,255,255,.2)}
@@ -100,58 +83,49 @@ html{scroll-behavior:smooth}
 .fr .pt-map a:hover{color:#fff}
 .fr .pt-map b{font-family:Roboto,sans-serif;font-size:13px;font-weight:600;letter-spacing:.06em}
 .fr .pt-map .on a{color:#fff}
-.fr .pt-map .on a::after{content:"";width:6px;height:6px;margin-left:auto;border-radius:50%;background:#A9BEDA}
 
 /* ---------- 1-1 믿어도 되는 이유 ---------- */
 .fr .cards3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px}
-.fr .pcard .img{aspect-ratio:4/3;border-radius:20px}
-.fr .pcard:hover .img img{transform:scale(1.04)}
-.fr .pcard .tag{position:absolute;top:16px;left:16px;padding:6px 12px;border-radius:100px;background:#fff;font-family:Roboto,sans-serif;font-size:12px;font-weight:700;letter-spacing:.06em}
+.fr .pcard .img{aspect-ratio:4/3;border-radius:12px}
 .fr .pcard h3{margin-top:28px;font-size:24px;font-weight:700;letter-spacing:-.035em}
 .fr .pcard p{margin-top:12px;font-size:16px;font-weight:500;line-height:1.75;color:var(--mute);word-break:keep-all}
-.fr .pcard .slot{margin-top:18px}
+.fr .pcard>.slot{margin-top:18px}
+.fr .pcard p b{font-weight:700;color:var(--ink)}
 
 /* ---------- 2-1 맞춤 운영 ---------- */
 .fr .points{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--ink);list-style:none}
 .fr .points li{padding:36px 40px 0 0}
 .fr .points li+li{padding-left:40px;border-left:1px solid var(--line)}
-.fr .points .n{font-family:Roboto,sans-serif;font-size:14px;font-weight:600;color:var(--blue);letter-spacing:.06em}
 .fr .points h3{margin-top:22px;font-size:24px;font-weight:700;line-height:1.42;letter-spacing:-.035em}
 .fr .points p{margin-top:12px;font-size:16px;font-weight:500;line-height:1.75;color:var(--mute);word-break:keep-all}
 .fr .subhead{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:20px 80px;align-items:end;margin:160px 0 48px}
 .fr .subhead h3{font-size:32px;font-weight:700;line-height:1.35;letter-spacing:-.04em}
 .fr .menus{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
-.fr .menus figure{display:flex;flex-direction:column;margin:0;border:1px solid var(--line);border-radius:24px;overflow:hidden;background:#fff}
+.fr .menus figure{display:flex;flex-direction:column;margin:0;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff}
 .fr .menus .img,.fr .menus .ph{height:360px}
 .fr .menus .img{background:#E7E6EA}
 .fr .menus .img img{object-fit:contain;padding:24px 0 0}
-.fr .menus figure:hover .img img{transform:scale(1.04)}
 .fr .menus figcaption{display:flex;justify-content:space-between;align-items:center;padding:22px 28px;border-top:1px solid var(--line);font-size:18px;font-weight:700}
-.fr .menus figcaption span{font-family:Roboto,sans-serif;font-size:13px;font-weight:600;color:var(--mute2);letter-spacing:.06em}
 .fr .plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
-.fr .plan{display:flex;flex-direction:column;padding:36px;border-radius:24px;background:var(--ivory)}
+.fr .plan{display:flex;flex-direction:column;padding:36px;border-radius:12px;background:var(--ivory)}
 .fr .plan .tags{display:flex;flex-wrap:wrap;gap:6px}
-.fr .plan .tags i{padding:6px 12px;border:1px dashed #C9C4BA;border-radius:100px;font-family:Roboto,sans-serif;font-size:12px;font-style:normal;font-weight:600;letter-spacing:.06em;color:#ABA59A}
+.fr .plan .tags i{padding:6px 12px;border:1px solid #E1DDD5;border-radius:100px;font-family:Roboto,sans-serif;font-size:12px;font-style:normal;font-weight:600;letter-spacing:.06em;color:#ABA59A}
 .fr .plan .tags i.on{border:1px solid var(--blue);background:var(--blue);color:#fff}
 .fr .plan h4{margin-top:56px;font-size:26px;font-weight:700;line-height:1.3;letter-spacing:-.04em}
 .fr .plan p{margin-top:10px;font-size:16px;font-weight:500;line-height:1.7;color:var(--mute);word-break:keep-all}
-.fr .split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);border-radius:24px;overflow:hidden}
+.fr .split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);border-radius:12px;overflow:hidden}
 .fr .split>div{padding:48px 52px}
 .fr .split .hq{background:var(--navy);color:#fff}
 .fr .split .me{background:var(--tint)}
 .fr .split h4{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:18px;font-weight:700}
-.fr .split h4 small{font-family:Roboto,sans-serif;font-size:12px;font-weight:600;letter-spacing:.1em;opacity:.6}
 .fr .split ul{margin-top:28px;list-style:none}
 .fr .split li{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;padding:22px 0;border-top:1px solid rgba(255,255,255,.14);font-size:19px;font-weight:600;letter-spacing:-.03em}
 .fr .split .me li{border-color:rgba(46,75,116,.16)}
-.fr .split li::before{content:"";flex:0 0 22px;height:22px;border-radius:50%;background:rgba(255,255,255,.12) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23A9BEDA' stroke-width='2.4'%3E%3Cpath d='M7 12h10'/%3E%3C/svg%3E") center/14px no-repeat}
-.fr .split .me li::before{background:var(--blue) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5l4 4 8-9'/%3E%3C/svg%3E") center/14px no-repeat}
 
 /* ---------- 3-1 가맹 모델 ---------- */
 .fr .models{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
-.fr .model{display:flex;flex-direction:column;border-radius:24px;overflow:hidden;background:#fff}
+.fr .model{display:flex;flex-direction:column;border-radius:12px;overflow:hidden;background:#fff}
 .fr .model .img,.fr .model .ph{aspect-ratio:16/11}
-.fr .model:hover .img img{transform:scale(1.04)}
 .fr .model .body{display:flex;flex-direction:column;flex:1;padding:32px 32px 32px}
 .fr .model .name{font-family:Roboto,Pretendard,sans-serif;font-size:28px;font-weight:700;letter-spacing:-.02em}
 .fr .model .one{margin-top:8px;font-size:16px;font-weight:600;color:var(--blue);word-break:keep-all}
@@ -161,12 +135,11 @@ html{scroll-behavior:smooth}
 .fr .model dd{font-size:15px;font-weight:500;line-height:1.6;word-break:keep-all}
 .fr .model dd .slot{margin-top:2px}
 .fr .model .btn{margin-top:auto;height:52px;font-size:16px}
-.fr .banner{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:56px;align-items:center;margin-top:24px;padding:64px;border-radius:24px;background:var(--blue);color:#fff}
-.fr .banner .chip{display:inline-block;padding:6px 14px;border-radius:100px;background:rgba(255,255,255,.14);font-size:13px;font-weight:700}
+.fr .banner{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:56px;align-items:center;margin-top:24px;padding:64px;border-radius:12px;background:var(--blue);color:#fff}
 .fr .banner h3{margin-top:20px;font-size:36px;font-weight:700;line-height:1.32;letter-spacing:-.04em}
 .fr .banner p{margin-top:20px;font-size:17px;font-weight:500;line-height:1.75;color:rgba(255,255,255,.78);word-break:keep-all}
 .fr .banner .kpis{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.fr .banner .kpi{display:flex;flex-direction:column;gap:28px;padding:28px 24px;border:1px solid rgba(255,255,255,.2);border-radius:18px;background:rgba(255,255,255,.06)}
+.fr .banner .kpi{display:flex;flex-direction:column;gap:28px;padding:28px 24px;border:1px solid rgba(255,255,255,.2);border-radius:12px;background:rgba(255,255,255,.06)}
 .fr .banner .kpi span{font-size:14px;font-weight:600;color:rgba(255,255,255,.72)}
 .fr .banner .kpi .slot{align-self:flex-start}
 
@@ -179,7 +152,7 @@ html{scroll-behavior:smooth}
 .fr .ptable .row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 24px;align-items:center;padding:22px 4px;border-bottom:1px solid var(--line)}
 .fr .ptable .row b{font-size:18px;font-weight:700}
 .fr .ptable .row small{grid-column:1/-1;font-size:14px;font-weight:500;color:var(--mute2);word-break:keep-all}
-.fr .ltable{padding:12px 40px 40px;border-radius:24px;background:#fff}
+.fr .ltable{padding:12px 40px 40px;border-radius:12px;background:#fff}
 .fr .ltable .r{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr) 88px;gap:16px;align-items:center;padding:22px 0;border-bottom:1px solid var(--line);font-size:17px;font-weight:600}
 .fr .ltable .r>*{justify-self:start}
 .fr .ltable .r>:last-child{justify-self:end}
@@ -188,15 +161,13 @@ html{scroll-behavior:smooth}
 .fr .ltable .r.total b{font-size:19px}
 
 /* ---------- 1-2 본사 지원 ---------- */
-.fr .sgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;border:1px solid var(--line);border-radius:24px;overflow:hidden;background:var(--line)}
+.fr .sgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--line)}
 .fr .sgrid>*{background:#fff;padding:44px 40px 48px;min-height:280px}
 .fr .sgrid>.hd{background:var(--ivory)}
 .fr .sgrid .hd{grid-column:span 2;display:flex;flex-direction:column;justify-content:space-between;gap:40px}
 .fr .sgrid .hd .h2{margin-top:22px}
 .fr .sitem{display:flex;flex-direction:column}
-.fr .sitem .ico{display:grid;place-items:center;width:48px;height:48px;border-radius:14px;background:var(--tint)}
-.fr .sitem .ico svg{width:24px;height:24px;stroke:var(--blue)}
-.fr .sitem h3{margin-top:40px;font-size:21px;font-weight:700;letter-spacing:-.035em}
+.fr .sitem h3{margin-top:0;font-size:21px;font-weight:700;letter-spacing:-.035em}
 .fr .sitem p{margin-top:10px;font-size:15px;font-weight:500;line-height:1.75;color:var(--mute);word-break:keep-all}
 .fr .sitem .slot{align-self:flex-start;margin-top:auto;transform:translateY(16px)}
 
@@ -210,18 +181,15 @@ html{scroll-behavior:smooth}
 .fr .flow p{margin-top:8px;font-size:15px;font-weight:500;line-height:1.65;color:var(--mute);word-break:keep-all}
 .fr .flow li.hot .n{border-color:var(--blue);background:var(--blue);color:#fff;box-shadow:0 0 0 6px var(--tint)}
 .fr .flow li.hot h3{color:var(--blue)}
-.fr .flow li.hot .pin{position:absolute;top:8px;left:60px;padding:4px 10px;border-radius:100px;background:var(--tint);color:var(--blue);font-size:12px;font-weight:700;white-space:nowrap}
 
 /* ---------- 2-2 점장 이야기 ---------- */
 .fr .story{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:96px;align-items:center}
 .fr .story .lead{margin-top:28px}
 .fr .chars{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-.fr .chars .ph{aspect-ratio:5/4;border-radius:24px}
-.fr .chars .ph:first-child{background-color:#DCE5F0}
+.fr .chars .ph{aspect-ratio:5/4;border-radius:12px}
 .fr .interview{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:24px;margin-top:96px}
-.fr .interview .ph{min-height:440px;border-radius:24px;background-color:#E7EBF0}
-.fr .qa{position:relative;padding:56px;border-radius:24px;background:#fff}
-.fr .qa::before{content:"\201C";position:absolute;top:28px;right:44px;font-family:Georgia,serif;font-size:120px;line-height:1;color:var(--tint)}
+.fr .interview .ph{min-height:440px;border-radius:12px}
+.fr .qa{position:relative;padding:56px;border-radius:12px;background:#fff}
 .fr .qa h3{font-size:28px;font-weight:700;letter-spacing:-.04em}
 .fr .qa ol{margin-top:32px;list-style:none;counter-reset:q}
 .fr .qa li{counter-increment:q;padding:22px 0;border-top:1px solid var(--line)}
@@ -230,7 +198,7 @@ html{scroll-behavior:smooth}
 .fr .qa li .slot{margin:10px 0 0 34px}
 
 /* ---------- 4-2 오픈 가능 지역 ---------- */
-.fr .map{min-height:560px;border-radius:24px;background:var(--tint) radial-gradient(rgba(46,75,116,.2) 1.2px,transparent 1.6px) 0 0/18px 18px}
+.fr .map{min-height:560px;border-radius:12px;background:var(--tint) radial-gradient(rgba(46,75,116,.2) 1.2px,transparent 1.6px) 0 0/18px 18px}
 .fr .legend{margin-top:40px;border-top:1px solid var(--ink);list-style:none}
 .fr .legend li{display:flex;align-items:center;gap:14px;padding:18px 0;border-bottom:1px solid var(--line);font-size:16px;font-weight:600}
 .fr .legend i{width:14px;height:14px;border-radius:50%}
@@ -240,12 +208,9 @@ html{scroll-behavior:smooth}
 .fr .faq details:first-child{border-top:2px solid var(--ink)}
 .fr .faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:28px 0;font-size:19px;font-weight:600;line-height:1.5;letter-spacing:-.03em}
 .fr .faq summary::-webkit-details-marker{display:none}
-.fr .faq summary i{position:relative;flex:0 0 32px;height:32px;border:1px solid var(--line);border-radius:50%;background:#fff;transition:background .25s,border-color .25s}
-.fr .faq summary i::before,.fr .faq summary i::after{content:"";position:absolute;top:50%;left:50%;width:12px;height:1.5px;background:var(--ink);transform:translate(-50%,-50%);transition:transform .25s,background .25s}
-.fr .faq summary i::after{transform:translate(-50%,-50%) rotate(90deg)}
-.fr .faq details[open] summary i{border-color:var(--blue);background:var(--blue)}
-.fr .faq details[open] summary i::before{background:#fff}
-.fr .faq details[open] summary i::after{transform:translate(-50%,-50%) rotate(0);background:#fff}
+.fr .faq summary i{flex-shrink:0;font-style:normal;font-size:22px;font-weight:300;line-height:1;color:var(--mute2);transition:transform .25s}
+.fr .faq summary i::before{content:"+"}
+.fr .faq details[open] summary i{transform:rotate(45deg)}
 .fr .faq .a{padding:0 64px 30px 0;font-size:16px;font-weight:500;line-height:1.8;color:var(--mute);word-break:keep-all}
 
 /* ---------- 4-4 문의 폼 ---------- */
@@ -255,7 +220,7 @@ html{scroll-behavior:smooth}
 .fr .call{margin-top:48px;padding-top:28px;border-top:1px solid rgba(255,255,255,.2)}
 .fr .call b{display:block;font-size:18px;font-weight:700}
 .fr .call p{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:14px;font-size:15px;color:rgba(255,255,255,.7)}
-.fr .formbox{padding:56px;border-radius:28px;background:#fff;color:var(--ink)}
+.fr .formbox{padding:56px;border-radius:12px;background:#fff;color:var(--ink)}
 .fr .formbox form{display:flex;flex-direction:column;gap:30px}
 .fr .row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
 .fr .fld{display:flex;flex-direction:column;gap:10px;min-width:0}
@@ -285,8 +250,6 @@ html{scroll-behavior:smooth}
 .fr .formbox button[type=submit]{width:100%;height:60px;font-size:18px}
 .fr .formbox button:disabled{opacity:.6;cursor:wait}
 .fr .done{display:none;padding:96px 0;text-align:center}
-.fr .done .ok{display:grid;place-items:center;width:64px;height:64px;margin:0 auto 24px;border-radius:50%;background:var(--tint)}
-.fr .done .ok svg{width:28px;height:28px;stroke:var(--blue)}
 .fr .done h3{font-size:26px;font-weight:700;letter-spacing:-.04em}
 .fr .done p{margin-top:10px;font-size:16px;color:var(--mute)}
 .fr .formbox.sent form{display:none}
@@ -318,7 +281,7 @@ html{scroll-behavior:smooth}
   .fr .hero .top{grid-template-columns:minmax(0,1fr);gap:40px}
   .fr .hero h1{margin-top:20px;font-size:40px}
   .fr .hero .lead{margin-top:20px}
-  .fr .hero .visual{height:auto;aspect-ratio:4/5;border-radius:20px}
+  .fr .hero .visual{height:auto;aspect-ratio:4/5;border-radius:12px}
   .fr .hero+.sec{margin-top:80px}
   .fr .facts,.fr .points{grid-template-columns:minmax(0,1fr);margin-top:56px}
   .fr .points{margin-top:0}
@@ -345,11 +308,9 @@ html{scroll-behavior:smooth}
   .fr .ltable .r{grid-template-columns:minmax(0,1fr) auto 64px;font-size:15px}
   .fr .ltable .r.total{padding:20px 16px}
   .fr .ov{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-  .fr .ov li+li::before{display:none}
   .fr .ov a{padding:22px 18px}
   .fr .ov b{margin-top:20px;font-size:20px}
   .fr .ov p{margin-top:8px;font-size:13px;line-height:1.6}
-  .fr .ov .tags{display:none}
   .fr .ov .go{padding-top:18px;font-size:13px}
   .fr .part{padding:72px 0}
   .fr .part .wrap{grid-template-columns:minmax(0,1fr);gap:36px}
@@ -359,7 +320,6 @@ html{scroll-behavior:smooth}
   .fr .pt-map{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;border-top:0}
   .fr .pt-map a{flex-direction:column;align-items:flex-start;gap:4px;padding:10px 0 0;border-bottom:0;border-top:2px solid rgba(255,255,255,.18);font-size:12px}
   .fr .pt-map .on a{border-top-color:#A9BEDA}
-  .fr .pt-map .on a::after{display:none}
   .fr .sgrid{grid-template-columns:minmax(0,1fr)}
   .fr .sgrid .hd{grid-column:auto}
   .fr .sgrid>*{min-height:0;padding:32px 24px 40px}
@@ -369,11 +329,9 @@ html{scroll-behavior:smooth}
   .fr .flow li{padding:8px 0 0 64px;min-height:44px}
   .fr .flow li::before,.fr .flow li:nth-child(4n)::before{top:44px;bottom:-32px;left:22px;right:auto;width:1px;height:auto}
   .fr .flow li:last-child::before{display:none}
-  .fr .flow li.hot .pin{position:static;display:inline-block;margin-bottom:8px}
   .fr .interview{margin-top:64px}
   .fr .interview .ph{min-height:300px}
   .fr .qa{padding:36px 24px}
-  .fr .qa::before{right:24px;font-size:90px}
   .fr .qa h3{font-size:22px}
   .fr .qa li p{font-size:16px}
   .fr .map{min-height:320px}
@@ -390,9 +348,6 @@ html{scroll-behavior:smooth}
 <div id="wrap">
 
 <!-- 아이콘 -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-</svg>
 
 <!-- ============ HEADER ============ -->
 <header id="header"></header>
@@ -405,22 +360,21 @@ html{scroll-behavior:smooth}
     <div class="wrap">
       <div class="top">
         <div data-aos="fade-up">
-          <p class="eyebrow"><span>FRANCHISE</span>가맹안내</p>
-          <h1>프랜차이즈의 시스템,<br>개인카페의 <em>자유</em></h1>
+          <p class="eyebrow">가맹안내</p>
+          <h1>프랜차이즈의 시스템,<br>개인카페의 자유</h1>
           <p class="lead">10년간 직영으로 다듬은 운영 노하우는 그대로 가져가고, 메뉴와 매장 분위기는 점장님이 정합니다.</p>
           <div class="btns">
-            <a class="btn fill" href="#franTab04">가맹 문의하기<svg><use href="#i-arrow"/></svg></a>
+            <a class="btn fill" href="#franTab04">가맹 문의하기</a>
             <a class="btn line" href="#franTab03">창업 비용 보기</a>
           </div>
         </div>
         <div class="img visual" data-aos="fade-up" data-aos-delay="100">
           <img src="img/fran/fr06_2.jpg" alt="도프커피 매장 외관">
-          <div class="badge"><img src="img/mark_white.png" alt=""><div><b>SINCE 2016</b><span>dope coffee roasters</span></div></div>
         </div>
       </div>
       <div class="facts" data-aos="fade-up">
         <div><b>2016년부터</b><p>10년째 운영하는 커피입니다</p></div>
-        <div><b>직영 <span class="slot">개수</span>개점</b><p>본사가 직접 운영하며 검증합니다</p></div>
+        <div><b>직영 8개점</b><p>본사가 직접 운영하며 검증합니다</p></div>
         <div><b>직접 로스팅</b><p>원두부터 본사가 관리합니다</p></div>
       </div>
     </div>
@@ -429,26 +383,24 @@ html{scroll-behavior:smooth}
   <!-- 한눈에 보기 -->
   <section class="sec ivory overview">
     <div class="wrap">
-      <div class="head" data-aos="fade-up">
+      <div class="head solo" data-aos="fade-up">
         <div>
-          <p class="eyebrow"><span>OVERVIEW</span>한눈에 보는 도프커피 가맹</p>
-          <h2 class="h2">시스템은 본사가,<br>매장의 색깔은 점장님이</h2>
+          <h2 class="h2">도프커피 가맹<br>한눈에 보기</h2>
         </div>
-        <p class="lead">도프커피 가맹은 네 가지 이야기로 정리됩니다. 왜 믿을 수 있는지, 무엇이 자유로운지, 어떤 형태로 얼마에 여는지, 어떻게 시작하는지 순서대로 보여드립니다.</p>
       </div>
       <ol class="ov" data-aos="fade-up">
         <li><a href="#part1">
           <span class="no">01</span><b>시스템</b><p>10년 직영 노하우와 직접 로스팅한 원두, 오픈 후까지 이어지는 본사 지원</p>
-          <span class="tags"><i>직접 로스팅</i><i>품질관리</i><i>교육·컨설팅</i></span><span class="go">자세히<svg><use href="#i-arrow"/></svg></span></a></li>
+          <span class="go">자세히 보기</span></a></li>
         <li><a href="#part2">
           <span class="no">02</span><b>자유</b><p>평수와 상권에 맞춘 메뉴 구성, 점장님을 닮은 매장 캐릭터</p>
-          <span class="tags"><i>메뉴 구성</i><i>매장 분위기</i><i>점장 캐릭터</i></span><span class="go">자세히<svg><use href="#i-arrow"/></svg></span></a></li>
+          <span class="go">자세히 보기</span></a></li>
         <li><a href="#part3">
           <span class="no">03</span><b>모델과 비용</b><p>일반 매장, 숍인숍, 업종변경 중 고르고 비용과 직영 실적을 먼저 확인</p>
-          <span class="tags"><i>STORE</i><i>SPOT</i><i>업종변경</i></span><span class="go">자세히<svg><use href="#i-arrow"/></svg></span></a></li>
+          <span class="go">자세히 보기</span></a></li>
         <li><a href="#part4">
           <span class="no">04</span><b>시작하기</b><p>문의부터 오픈까지 8단계, 내 지역 확인과 자주 묻는 질문</p>
-          <span class="tags"><i>창업 절차</i><i>오픈 지역</i><i>가맹 문의</i></span><span class="go">자세히<svg><use href="#i-arrow"/></svg></span></a></li>
+          <span class="go">자세히 보기</span></a></li>
       </ol>
     </div>
   </section>
@@ -457,9 +409,9 @@ html{scroll-behavior:smooth}
   <section id="part1" class="part">
     <div class="wrap">
       <div data-aos="fade-up">
-        <p class="pt-no">PART 01<span>/ 04</span></p>
+        <p class="pt-no">01</p>
         <h2>프랜차이즈의 시스템</h2>
-        <p class="pt-line">10년간 직영으로 다듬은 운영 노하우는 그대로 가져갑니다.<br>원두부터 교육, 오픈 후 운영까지 본사가 같이 합니다.</p>
+        <p class="pt-line">10년간 직영으로 다듬은 운영 노하우는 그대로 가져갑니다.</p>
       </div>
       <ol class="pt-map" data-aos="fade-up"><li class="on"><a href="#part1"><b>01</b>시스템</a></li><li><a href="#part2"><b>02</b>자유</a></li><li><a href="#part3"><b>03</b>모델과 비용</a></li><li><a href="#part4"><b>04</b>시작하기</a></li></ol>
     </div>
@@ -476,19 +428,19 @@ html{scroll-behavior:smooth}
       </div>
       <div class="cards3">
         <article class="pcard" data-aos="fade-up">
-          <div class="img"><img src="img/fran/fr03.jpg" alt="도프커피가 직접 로스팅한 원두" loading="lazy"><span class="tag">ROASTING</span></div>
+          <div class="img"><img src="img/fran/fr03.jpg" alt="도프커피가 직접 로스팅한 원두" loading="lazy"></div>
           <h3>직접 로스팅</h3>
           <p>원두는 본사가 직접 로스팅합니다. 매장이 늘어도 같은 맛을 내려면 원두부터 관리해야 하기 때문입니다.</p>
           <span class="slot">로스팅 주기</span>
         </article>
         <article class="pcard" data-aos="fade-up" data-aos-delay="80">
-          <div class="img"><img src="img/fran/fr06_1.jpg" alt="도프커피 직영 매장" loading="lazy"><span class="tag">SINCE 2016</span></div>
+          <div class="img"><img src="img/fran/fr06_1.jpg" alt="도프커피 직영 매장" loading="lazy"></div>
           <h3>10년 노하우</h3>
           <p>2016년에 시작해 직영점을 운영하며 다듬은 방식을 교육과 운영 컨설팅으로 전달합니다.</p>
-          <span class="slot">직영 점포 수 · 누적 운영 기간</span>
+          <p><b>직영 8개점</b> · <span class="slot">누적 운영 기간</span></p>
         </article>
         <article class="pcard" data-aos="fade-up" data-aos-delay="160">
-          <div class="img"><img src="img/fran/fr04.jpg" alt="도프커피 바 장비 세팅" loading="lazy"><span class="tag">QUALITY</span></div>
+          <div class="img"><img src="img/fran/fr04.jpg" alt="도프커피 바 장비 세팅" loading="lazy"></div>
           <h3>안정적인 품질관리</h3>
           <p>원두, 레시피, 장비 세팅을 기준으로 정리해 어느 매장에서 마셔도 같은 수준을 맞춥니다.</p>
           <span class="slot">품질관리 방식</span>
@@ -509,31 +461,24 @@ html{scroll-behavior:smooth}
           <p class="lead">열기 전에 끝나는 교육이 아니라, 오픈 후 운영까지 이어지는 컨설팅입니다.</p>
         </div>
         <div class="sitem">
-          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span>
           <h3>입지·상권 검토</h3><p>후보지의 상권과 경쟁 매장을 같이 봅니다.</p><span class="slot">검토 방식</span>
         </div>
         <div class="sitem">
-          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/></svg></span>
           <h3>매장 패키지 설계</h3><p>평수와 상권에 맞춰 메뉴와 매장 구성을 정합니다.</p>
         </div>
         <div class="sitem">
-          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 4l9 6.5"/><path d="M5 9v11h14V9"/><path d="M10 20v-6h4v6"/></svg></span>
           <h3>인테리어</h3><p>신규는 도프커피 디자인으로, 업종변경은 기존 인테리어를 살려서 진행합니다.</p><span class="slot">시공 방식</span>
         </div>
         <div class="sitem">
-          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 9 12 4.5 21.5 9 12 13.5z"/><path d="M6.5 11v5c0 1.5 2.5 3 5.5 3s5.5-1.5 5.5-3v-5"/></svg></span>
           <h3>점장 교육</h3><p>커피, 메뉴, 매장 운영을 가르칩니다.</p><span class="slot">교육 기간</span>
         </div>
         <div class="sitem">
-          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="12" rx="6" ry="8.5" transform="rotate(35 12 12)"/><path d="M8 17c3-2 5-7 8-10"/></svg></span>
           <h3>원두 공급과 품질 관리</h3><p>본사가 직접 로스팅한 원두를 공급합니다.</p><span class="slot">공급 주기</span>
         </div>
         <div class="sitem">
-          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span>
           <h3>운영 컨설팅</h3><p>오픈 후에도 매출과 운영을 같이 점검합니다.</p><span class="slot">방식과 횟수</span>
         </div>
         <div class="sitem">
-          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="7.5"/><path d="M6.5 7.5 5 3.5l4 2M17.5 7.5 19 3.5l-4 2"/><circle cx="9.5" cy="12.5" r=".6" fill="#2E4B74"/><circle cx="14.5" cy="12.5" r=".6" fill="#2E4B74"/><path d="M10.5 16c.9.7 2.1.7 3 0"/></svg></span>
           <h3>점장 캐릭터</h3><p>점장님마다 동물 캐릭터를 만들어 드립니다.</p><span class="slot">제작 비용 포함 여부</span>
         </div>
       </div>
@@ -544,9 +489,9 @@ html{scroll-behavior:smooth}
   <section id="part2" class="part">
     <div class="wrap">
       <div data-aos="fade-up">
-        <p class="pt-no">PART 02<span>/ 04</span></p>
+        <p class="pt-no">02</p>
         <h2>개인카페의 자유</h2>
-        <p class="pt-line">메뉴와 매장 분위기는 점장님이 정합니다.<br>평수와 상권에 맞춰 구성을 같이 짭니다.</p>
+        <p class="pt-line">메뉴와 매장 분위기는 점장님이 정합니다.</p>
       </div>
       <ol class="pt-map" data-aos="fade-up"><li><a href="#part1"><b>01</b>시스템</a></li><li class="on"><a href="#part2"><b>02</b>자유</a></li><li><a href="#part3"><b>03</b>모델과 비용</a></li><li><a href="#part4"><b>04</b>시작하기</a></li></ol>
     </div>
@@ -563,9 +508,9 @@ html{scroll-behavior:smooth}
         <p class="lead">평수가 다르고 상권이 다르면 잘 되는 구성도 다릅니다. 도프커피는 매장 패키지를 하나로 고정하지 않고, 상권과 평수에 맞춰 같이 정합니다.</p>
       </div>
       <ul class="points" data-aos="fade-up">
-        <li><span class="n">01</span><h3>평수에 맞춰<br>메뉴 수를 정합니다</h3><p>작은 매장은 가볍게, 넓은 매장은 넉넉하게 구성합니다.</p></li>
-        <li><span class="n">02</span><h3>상권에 맞춰<br>판매 구성을 정합니다</h3><p>오피스, 주택가, 대학가처럼 손님이 다르면 잘 팔리는 구성도 다릅니다.</p></li>
-        <li><span class="n">03</span><h3>점장님의 색깔을<br>매장에 담습니다</h3><p>매장마다 점장님을 닮은 캐릭터를 만들어 드립니다.</p></li>
+        <li><h3>평수에 맞춰<br>메뉴 수를 정합니다</h3><p>작은 매장은 가볍게, 넓은 매장은 넉넉하게 구성합니다.</p></li>
+        <li><h3>상권에 맞춰<br>판매 구성을 정합니다</h3><p>오피스, 주택가, 대학가처럼 손님이 다르면 잘 팔리는 구성도 다릅니다.</p></li>
+        <li><h3>점장님의 색깔을<br>매장에 담습니다</h3><p>매장마다 점장님을 닮은 캐릭터를 만들어 드립니다.</p></li>
       </ul>
 
       <div class="subhead" data-aos="fade-up">
@@ -573,9 +518,9 @@ html{scroll-behavior:smooth}
         <p class="lead">부담 없이 마시는 커피부터 스페셜티까지 메뉴 폭이 넓어서, 상권에 맞는 구성을 고를 수 있습니다.</p>
       </div>
       <div class="menus" data-aos="fade-up">
-        <figure><div class="img" style="background:#E5E4E9"><img src="img/fran/fr05_1.jpg" alt="아메리카노 블랙" loading="lazy"></div><figcaption>합리적인 커피<span>01</span></figcaption></figure>
-        <figure><div class="img" style="background:#E7E7E7"><img src="img/fran/fr05_2.jpg" alt="도프오렌지" loading="lazy"></div><figcaption>시그니처<span>02</span></figcaption></figure>
-        <figure><div class="ph">스페셜티 메뉴 사진</div><figcaption>스페셜티<span>03</span></figcaption></figure>
+        <figure><div class="img" style="background:#E5E4E9"><img src="img/fran/fr05_1.jpg" alt="아메리카노 블랙" loading="lazy"></div><figcaption>합리적인 커피</figcaption></figure>
+        <figure><div class="img" style="background:#E7E7E7"><img src="img/fran/fr05_2.jpg" alt="도프오렌지" loading="lazy"></div><figcaption>시그니처</figcaption></figure>
+        <figure><div class="ph">스페셜티 메뉴 사진</div><figcaption>스페셜티</figcaption></figure>
       </div>
 
       <div class="subhead" data-aos="fade-up">
@@ -592,7 +537,7 @@ html{scroll-behavior:smooth}
       </div>
       <div class="split" data-aos="fade-up">
         <div class="hq">
-          <h4>본사가 기준을 정하는 것<small>HEADQUARTERS</small></h4>
+          <h4>본사가 기준을 정하는 것</h4>
           <ul>
             <li>원두와 품질 기준</li>
             <li>기본 운영 시스템</li>
@@ -601,7 +546,7 @@ html{scroll-behavior:smooth}
           </ul>
         </div>
         <div class="me">
-          <h4>점장님이 정하는 것<small>OWNER</small></h4>
+          <h4>점장님이 정하는 것</h4>
           <ul>
             <li>메뉴 구성</li>
             <li>매장 분위기와 캐릭터</li>
@@ -614,7 +559,7 @@ html{scroll-behavior:smooth}
   </section>
 
   <!-- 2-2 점장 이야기 -->
-  <section class="sec ivory">
+  <section id="ownerStory" class="sec ivory">
     <div class="wrap">
       <div class="story">
         <div data-aos="fade-up">
@@ -647,9 +592,9 @@ html{scroll-behavior:smooth}
   <section id="part3" class="part">
     <div class="wrap">
       <div data-aos="fade-up">
-        <p class="pt-no">PART 03<span>/ 04</span></p>
+        <p class="pt-no">03</p>
         <h2>나에게 맞는 모델과 비용</h2>
-        <p class="pt-line">어떤 형태로 열지, 얼마가 드는지, 얼마가 남는지<br>상담 전에 먼저 보여드립니다.</p>
+        <p class="pt-line">상담 전에 궁금한 것부터 공개합니다.</p>
       </div>
       <ol class="pt-map" data-aos="fade-up"><li><a href="#part1"><b>01</b>시스템</a></li><li><a href="#part2"><b>02</b>자유</a></li><li class="on"><a href="#part3"><b>03</b>모델과 비용</a></li><li><a href="#part4"><b>04</b>시작하기</a></li></ol>
     </div>
@@ -675,7 +620,7 @@ html{scroll-behavior:smooth}
               <div><dt>이런 분께</dt><dd>독립된 매장을 운영하고 싶은 분</dd></div>
               <div><dt>초기 비용</dt><dd><span class="slot">금액</span></dd></div>
             </dl>
-            <a class="btn line" href="#franTab04" data-model="DOPE STORE">STORE 문의<svg><use href="#i-arrow"/></svg></a>
+            <a class="btn line" href="#franTab04" data-model="DOPE STORE">STORE 문의</a>
           </div>
         </article>
         <article class="model" data-aos="fade-up" data-aos-delay="80">
@@ -688,7 +633,7 @@ html{scroll-behavior:smooth}
               <div><dt>이런 분께</dt><dd>운영 중인 공간에 커피를 더하고 싶은 분</dd></div>
               <div><dt>초기 비용</dt><dd><span class="slot">금액</span></dd></div>
             </dl>
-            <a class="btn line" href="#franTab04" data-model="DOPE SPOT">SPOT 문의<svg><use href="#i-arrow"/></svg></a>
+            <a class="btn line" href="#franTab04" data-model="DOPE SPOT">SPOT 문의</a>
           </div>
         </article>
         <article class="model" data-aos="fade-up" data-aos-delay="160">
@@ -701,14 +646,13 @@ html{scroll-behavior:smooth}
               <div><dt>이런 분께</dt><dd>이미 매장이 있고 인테리어 비용을 줄이고 싶은 분</dd></div>
               <div><dt>초기 비용</dt><dd><span class="slot">금액</span></dd></div>
             </dl>
-            <a class="btn line" href="#franTab04" data-model="업종변경">업종변경 문의<svg><use href="#i-arrow"/></svg></a>
+            <a class="btn line" href="#franTab04" data-model="업종변경">업종변경 문의</a>
           </div>
         </article>
       </div>
 
       <div class="banner" data-aos="fade-up">
         <div>
-          <span class="chip">업종변경</span>
           <h3>이미 있는 매장,<br>다시 갈아엎지 않아도 됩니다</h3>
           <p>업종을 바꿀 때 가장 부담되는 건 인테리어입니다. 도프커피는 기존 인테리어를 살려서 도프커피의 분위기를 입히는 방식으로 비용과 공사 기간을 줄입니다.</p>
         </div>
@@ -727,7 +671,7 @@ html{scroll-behavior:smooth}
         <p class="eyebrow"><span>3-2</span>창업 비용</p>
         <h2 class="h2">창업 비용을<br>먼저 보여드립니다</h2>
         <p class="lead">상담 전에 궁금한 것부터 공개합니다. 평수와 상권에 따라 달라지는 항목은 따로 표시했습니다.</p>
-        <div class="btns"><a class="btn fill" href="#franTab04">내 평수로 견적 받기<svg><use href="#i-arrow"/></svg></a></div>
+        <div class="btns"><a class="btn fill" href="#franTab04">내 평수로 견적 받기</a></div>
       </div>
       <div data-aos="fade-up">
         <div class="ptable">
@@ -753,7 +697,7 @@ html{scroll-behavior:smooth}
       <div class="side" data-aos="fade-up">
         <p class="eyebrow"><span>3-3</span>직영 실적</p>
         <h2 class="h2">직영점 기준으로,<br>이렇게 남습니다</h2>
-        <p class="note">직영 <span class="slot">개수</span>개점의 <span class="slot">기간</span> 평균 기준입니다. 매장 상황에 따라 달라지며 수익을 보장하는 것은 아닙니다.</p>
+        <p class="note">직영 8개점의 <span class="slot">기간</span> 평균 기준입니다. 매장 상황에 따라 달라지며 수익을 보장하는 것은 아닙니다.</p>
       </div>
       <div class="ltable" data-aos="fade-up">
         <div class="r th"><span>항목</span><span>금액</span><span>비율</span></div>
@@ -771,9 +715,9 @@ html{scroll-behavior:smooth}
   <section id="part4" class="part">
     <div class="wrap">
       <div data-aos="fade-up">
-        <p class="pt-no">PART 04<span>/ 04</span></p>
+        <p class="pt-no">04</p>
         <h2>문의부터 오픈까지</h2>
-        <p class="pt-line">단계마다 무엇을 하는지 먼저 알려드립니다.<br>아직 자리를 정하지 않으셔도 괜찮습니다.</p>
+        <p class="pt-line">단계마다 무엇을 하는지 먼저 알려드립니다.</p>
       </div>
       <ol class="pt-map" data-aos="fade-up"><li><a href="#part1"><b>01</b>시스템</a></li><li><a href="#part2"><b>02</b>자유</a></li><li><a href="#part3"><b>03</b>모델과 비용</a></li><li class="on"><a href="#part4"><b>04</b>시작하기</a></li></ol>
     </div>
@@ -793,7 +737,7 @@ html{scroll-behavior:smooth}
         <li><span class="n">01</span><h3>가맹 문의 접수</h3></li>
         <li><span class="n">02</span><h3>상담</h3><p>희망 지역, 매장 형태, 평수 확인</p></li>
         <li><span class="n">03</span><h3>입지·상권 검토</h3></li>
-        <li class="hot"><span class="n">04</span><span class="pin">차별점이 정해지는 단계</span><h3>모델과 메뉴 구성 결정</h3><p>STORE, SPOT, 업종변경 선택</p></li>
+        <li class="hot"><span class="n">04</span><h3>모델과 메뉴 구성 결정</h3><p>STORE, SPOT, 업종변경 선택</p></li>
         <li><span class="n">05</span><h3>계약</h3></li>
         <li><span class="n">06</span><h3>인테리어 시공,<br>캐릭터 제작</h3><p>업종변경은 기존 인테리어 활용</p></li>
         <li><span class="n">07</span><h3>점장 교육</h3></li>
@@ -815,7 +759,7 @@ html{scroll-behavior:smooth}
           <li><i style="background:var(--blue)"></i>오픈 가능</li>
         </ul>
         <p class="note">근접 출점 제한 기준 <span class="slot">정책</span>이 있으면 "같은 상권에서는 <span class="slot">거리</span>m 안에 두 번째 매장을 열지 않습니다"처럼 구체적으로 적습니다.</p>
-        <div class="btns"><a class="btn fill" href="#franTab04">이 지역 문의하기<svg><use href="#i-arrow"/></svg></a></div>
+        <div class="btns"><a class="btn fill" href="#franTab04">이 지역 문의하기</a></div>
       </div>
       <div class="ph map" data-aos="fade-up">지역별 현황 지도<br>지역마다 세 가지 상태로 표시</div>
     </div>
@@ -912,10 +856,9 @@ html{scroll-behavior:smooth}
 ■ 수집 항목: 이름, 연락처, 상황, 희망 지역, 예상 평수, 점포 유무, 현재 업종, 관심 모델, 희망 메뉴 구성, 상담 가능 시간, 문의 내용
 ■ 보유 및 이용 기간:</textarea>
           </div>
-          <button class="btn fill" type="submit">가맹 문의 보내기<svg><use href="#i-arrow"/></svg></button>
+          <button class="btn fill" type="submit">가맹 문의 보내기</button>
         </form>
         <div class="done" aria-live="polite">
-          <span class="ok"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
           <h3>문의가 접수되었습니다.</h3>
           <p>확인 후 연락드립니다.</p>
         </div>
@@ -928,7 +871,7 @@ html{scroll-behavior:smooth}
 <!-- ============ FOOTER (헤더·푸터는 js/common.js에서 생성) ============ -->
 <footer id="footer"></footer>
 
-<div class="fab off"><a class="btn" href="#franTab04">가맹 문의하기<svg><use href="#i-arrow"/></svg></a></div>
+<div class="fab off"><a class="btn" href="#franTab04">가맹 문의하기</a></div>
 
 <!-- 가맹 페이지는 원형 플로팅 대신 하단 고정 버튼(.fab)을 씁니다 -->
 <ul id="floating" hidden>
@@ -940,7 +883,7 @@ html{scroll-behavior:smooth}
 <div class="toast" role="status"></div>
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script src="js/common.js?v=menu5"></script>
+<script src="js/common.js?v=brand1"></script>
 <script>
 /* ---------- 가맹 문의 폼 ---------- */
 const box = document.querySelector('.formbox');

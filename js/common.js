@@ -12,23 +12,28 @@ const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':
 
 /* ---------- 사이트맵: 헤더·모바일 메뉴·푸터가 같이 씁니다 (to가 null이면 '준비 중') ---------- */
 const NAV = [
-  { label:'브랜드', to:{ home:'story' }, subs:[
-    ['브랜드 스토리', { home:'story' }], ['DOPE A MIND', { home:'story' }], ['즐기는 법', null], ['로스터리', null], ['공간', { home:'design' }] ] },
-  { label:'가맹 안내', page:'franchise', to:{ fran:0 }, subs:[
-    ['창업 경쟁력', { fran:0 }], ['창업 모델', { home:'model' }], ['창업 절차', { fran:1 }], ['창업 비용', { fran:2 }], ['창업 문의', { fran:3 }] ] },
-  { label:'메뉴', page:'menu', to:{ menu:'signature' }, subs:[
+  { label:'도프커피 이야기', page:'brand', to:{ brand:'' }, subs:[
+    ['브랜드 스토리', { brand:'' }], ['DOPE A MIND', { brand:'mind' }], ['로스터리', { brand:'roastery' }] ] },
+  { label:'도프커피 스타일', to:{ brand:'space' }, subs:[
+    ['공간', { brand:'space' }], ['캐릭터', { brand:'character' }] ] },
+  { label:'메뉴 안내', page:'menu', to:{ menu:'signature' }, subs:[
     ['시그니처', { menu:'signature' }], ['커피', { menu:'coffee' }], ['논커피', { menu:'noncoffee' }], ['티', { menu:'tea' }],
     ['주스·스무디', { menu:'juice' }], ['아이스크림', { menu:'icecream' }] ] },
-  { label:'매장 안내', to:{ home:'stores' }, subs:[
-    ['매장 찾기', { home:'stores' }], ['점장 이야기', null] ] },
-  { label:'소식', to:null, subs:[
-    ['공지', null], ['이벤트', null] ] },
+  { label:'매장 안내', to:{ home:'stores' }, subs:[] },
+  { label:'가맹스토리', to:{ fran:'ownerStory' }, subs:[
+    ['점장 이야기', { fran:'ownerStory' }], ['점주 인터뷰', { home:'interview' }] ] },
+  { label:'가맹안내', page:'franchise', to:{ fran:0 }, subs:[
+    ['창업 경쟁력', { fran:0 }], ['창업 모델', { fran:'part3' }], ['창업 절차', { fran:1 }], ['창업 비용', { fran:2 }], ['창업 문의', { fran:3 }] ] },
 ];
 const PAGE = document.body.dataset.page || 'home';
 function linkAttr(to) {
   if (!to) return 'href="#" data-empty';
-  if (to.fran !== undefined) return PAGE === 'franchise'
-    ? `href="#franTab0${to.fran + 1}" data-fran-go="${to.fran}"` : `href="franchise.html#franTab0${to.fran + 1}"`;
+  // fran: 숫자는 franTab01~04, 문자열은 가맹안내 페이지의 섹션 id
+  if (to.fran !== undefined) {
+    const id = typeof to.fran === 'number' ? `franTab0${to.fran + 1}` : to.fran;
+    return PAGE === 'franchise' ? `href="#${id}"` : `href="franchise.html#${id}"`;
+  }
+  if (to.brand !== undefined) return PAGE === 'brand' ? `href="#${to.brand || 'top'}"` : `href="brand.html${to.brand ? '#' + to.brand : ''}"`;
   if (to.menu) return `href="menu.html?cate=${to.menu}"${PAGE === 'menu' ? ` data-cate="${to.menu}"` : ''}`;
   return PAGE === 'home' ? `href="#${to.home}"` : `href="./#${to.home}"`;
 }

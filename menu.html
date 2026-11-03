@@ -10,63 +10,97 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="css/common.css?v=menu5">
+<link rel="stylesheet" href="css/common.css?v=brand1">
 <style>
-/* 수치는 fredcoffeehaus.com/menu.html 원본 CSS 그대로 (컬러만 DPC) */
-#contents{margin:76px auto 0;width:100%}
-#contents>.section{max-width:1500px;margin:0 auto;width:calc(100% - 100px)}
+/* 메뉴: 짧은 머리 + 세그먼트 탭 + 4열 메뉴판. 색·타이포는 가맹안내·메인과 같은 체계 */
+#wrap{overflow:clip}
+.mn{--ink:#141414;--blue:var(--point-color);--navy:#1B2B42;--ivory:#F6F4EF;--line:#E4E1DA;--mute:#5E5E5E;--mute2:#8C8C8C;--photo:#E4E5E7;
+  padding-top:76px;color:var(--ink);letter-spacing:-.015em}
+.mn .wrap{max-width:1280px;margin:0 auto;padding:0 40px}
 
-/* 카테고리 탭 */
-#contents>.typeMenu{display:flex;padding:140px 0 48px}
-#contents>.typeMenu ul{display:flex;flex-wrap:wrap;justify-content:center;margin:0 auto}
-#contents>.typeMenu li{margin:0 0 12px;white-space:nowrap}
-#contents>.typeMenu li a{display:inline-block;padding:16px 32px;border-radius:100px;font-size:var(--main-category);font-weight:var(--font-bold);line-height:140%;letter-spacing:-.01em;color:var(--point-color);background:transparent}
-#contents>.typeMenu li.selected a{background:var(--point-color);color:var(--white-color)}
+/* ---------- 머리 ---------- */
+.mhead{padding:72px 0 0}
+.mhead .top{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;padding-bottom:36px;border-bottom:1px solid var(--ink)}
+.mhead .label{font-family:Roboto,sans-serif;font-size:13px;font-weight:600;letter-spacing:.12em;color:var(--blue)}
+.mhead h1{margin-top:12px;font-family:Roboto,sans-serif;font-size:72px;font-weight:700;line-height:1;letter-spacing:-.03em}
+.mhead .lead{max-width:430px;font-size:16px;font-weight:500;line-height:1.75;color:var(--mute);word-break:keep-all}
 
-/* 메뉴 목록 */
-.normalpackage_box{margin-bottom:120px}
-.prdList{display:flex;flex-wrap:wrap}
-.prdList>li{margin:0 12px 40px 0;width:calc(33.33% - 8px)}
-.prdList>li:nth-child(3n){margin-right:0}
-.prdList .prdList__item{position:relative;line-height:1}
-.prdList .thumbnail{background:rgb(240,240,240);aspect-ratio:1;display:flex;align-items:center;justify-content:center}
-.prdList .thumbnail img{width:100%}
-.prdList .thumbnail .ph{font-size:var(--board-content);font-weight:var(--font-semi);color:#c4c4c4}
-.prdList .description{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;text-align:center;background:rgba(46,75,116,.4);z-index:10;opacity:0;visibility:hidden;transition:.4s}
-.prdList .description .mark{height:30px;width:auto}
-.prdList .description .name,.prdList .description .summary{max-width:80%;margin:0 auto;line-height:140%;letter-spacing:-.01em;font-weight:var(--font-semi);color:var(--white-color);word-break:keep-all}
-.prdList .description .name{font-size:var(--main-category)}
-.prdList .description .summary{font-size:var(--main-content)}
-.prdList>li:hover .description{opacity:1;visibility:visible}
-.prdList>li h2{display:block;padding:18px 0;text-align:center;font-size:var(--index-content);font-weight:var(--font-bold);line-height:135%;letter-spacing:-.02em;color:var(--main-color)}
+/* ---------- 세그먼트 탭 ---------- */
+.seg{display:flex;margin-top:32px}
+.seg ul{display:inline-flex;gap:4px;padding:6px;border-radius:100px;background:var(--ivory);list-style:none;overflow-x:auto;scrollbar-width:none}
+.seg ul::-webkit-scrollbar{display:none}
+.seg a{display:flex;align-items:center;gap:6px;padding:11px 20px;border-radius:100px;font-size:15px;font-weight:600;color:var(--mute);white-space:nowrap;transition:background .2s,color .2s,box-shadow .2s}
+.seg a:hover{color:var(--ink)}
+.seg a small{font-family:Roboto,sans-serif;font-size:12px;font-weight:600;color:#B0AA9F}
+.seg li.selected a{background:#fff;color:var(--ink);box-shadow:0 2px 10px rgba(20,20,20,.08)}
+.seg li.selected a small{color:var(--blue)}
+
+/* ---------- 카테고리 + 메뉴판 ---------- */
+.mn .board{padding-top:56px;padding-bottom:160px}
+.csec[hidden]{display:none}
+.csec .chead{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:32px}
+.csec .en{font-family:Roboto,sans-serif;font-size:12px;font-weight:600;letter-spacing:.12em;color:var(--blue)}
+.csec h2{display:flex;align-items:baseline;gap:10px;margin-top:8px;font-size:30px;font-weight:700;letter-spacing:-.045em}
+.csec h2 small{font-family:Roboto,sans-serif;font-size:15px;font-weight:600;color:var(--mute2);letter-spacing:0}
+.csec .intro{max-width:430px;font-size:15px;font-weight:500;line-height:1.7;color:var(--mute);text-align:right;word-break:keep-all}
+.items{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:48px 20px;list-style:none}
+.item .pic{aspect-ratio:1/1;border-radius:12px;overflow:hidden;background:var(--photo)}
+.item .pic img{width:100%;height:100%;object-fit:cover;transform:scale(1.5);transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+.item .pic .none{display:grid;place-items:center;height:100%;font-size:14px;font-weight:600;color:#9A9A9A}
+.item h3{margin-top:18px;font-size:18px;font-weight:700;line-height:1.4;letter-spacing:-.035em}
+.item p{margin-top:6px;font-size:14px;font-weight:500;line-height:1.6;color:var(--mute);word-break:keep-all}
+
 
 @media (max-width:1024px){
-  #contents{margin-top:52px}
-  #contents>.section{max-width:100%;width:calc(100% - 32px)}
-  #contents>.typeMenu{padding:28px 0 40px}
-  #contents>.typeMenu li a{padding:10px 20px;font-size:var(--mobile-content)}
-  .normalpackage_box{margin-bottom:50px}
-  .prdList>li{margin:0 0 40px;width:100%}
-  .prdList .description .name{max-width:calc(100% - 80px);font-size:var(--main-content)}
-  .prdList .description .summary{max-width:calc(100% - 80px);font-size:var(--board-content)}
-  .prdList>li h2{padding:12px 0;font-size:var(--main-content)}
+  .mn{padding-top:52px}
+  .mn .wrap{padding:0 20px}
+  .mhead{padding-top:40px}
+  .mhead .top{flex-direction:column;align-items:flex-start;gap:16px;padding-bottom:24px}
+  .mhead h1{font-size:48px}
+  .mhead .lead{font-size:15px}
+  .seg{margin:24px -20px 0;padding:0 20px;overflow-x:auto;scrollbar-width:none}
+  .seg::-webkit-scrollbar{display:none}
+  .seg ul{overflow:visible}
+  .seg a{padding:10px 16px;font-size:14px}
+  .mn .board{padding-top:40px;padding-bottom:100px}
+  .csec .chead{flex-direction:column;align-items:flex-start;gap:10px;margin-bottom:24px}
+  .csec h2{font-size:24px}
+  .csec .intro{text-align:left;font-size:14px}
+  .items{grid-template-columns:repeat(2,minmax(0,1fr));gap:32px 12px}
+  .item .pic{border-radius:16px}
+  .item h3{margin-top:12px;font-size:16px}
+  .item p{font-size:13px}
 }
 </style>
 </head>
 <body data-page="menu">
 <div id="wrap">
 
+
 <!-- ============ HEADER / 모바일 메뉴 / FOOTER는 js/common.js의 NAV로 생성 ============ -->
 <header id="header"></header>
 <div class="drawer" aria-hidden="true"></div>
 
-<main id="contents">
-  <div class="section typeMenu">
-    <ul role="tablist" data-cates></ul>
-  </div>
-  <div class="normalpackage_box section">
-    <ul class="prdList" data-list aria-live="polite"></ul>
-  </div>
+<main id="contents" class="mn">
+
+  <!-- 머리 + 카테고리 탭 -->
+  <section class="mhead">
+    <div class="wrap">
+      <div class="top">
+        <div>
+          <p class="label">DOPE COFFEE ROASTERS</p>
+          <h1>Menu</h1>
+        </div>
+        <p class="lead">직접 로스팅한 블랙·화이트·레드 블렌드로 커피를 만들고, 시그니처와 논커피, 티, 주스, 아이스크림까지 함께 냅니다.</p>
+      </div>
+      <nav class="seg" aria-label="메뉴 카테고리"><ul role="tablist" data-cates></ul></nav>
+    </div>
+  </section>
+
+  <!-- 카테고리별 메뉴 (js/menu-data.js) -->
+  <div class="board wrap" data-board aria-live="polite"></div>
+
+
 </main>
 
 <footer id="footer"></footer>
@@ -81,32 +115,56 @@
 <div class="toast" role="status"></div>
 
 <script src="js/menu-data.js?v=menu5"></script>
-<script src="js/common.js?v=menu5"></script>
+<script src="js/common.js?v=brand1"></script>
 <script>
-/* ---------- 카테고리 탭 + 메뉴 목록 (메뉴는 js/menu-data.js) ---------- */
-const catesEl = document.querySelector('[data-cates]');
-const listEl = document.querySelector('[data-list]');
-catesEl.innerHTML = MENU.map(c => `<li role="presentation"><a role="tab" href="menu.html?cate=${c.key}" data-cate="${c.key}">${c.label}</a></li>`).join('');
+/* ---------- 카테고리 안내 (메뉴 자체는 js/menu-data.js) ---------- */
+const CATE_INFO = {
+  signature: { en:'SIGNATURE',        intro:'100% 초콜릿을 녹인 도프초코, 과일청 위에 우유거품과 2샷을 올린 도프 시리즈' },
+  coffee:    { en:'COFFEE',           intro:'블랙·화이트·레드 세 가지 블렌드와 디카페인, 블렌드별 라떼' },
+  noncoffee: { en:'NON-COFFEE',       intro:'밤·이천쌀·피스타치오·흑임자 라떼와 식혜' },
+  tea:       { en:'TEA',              intro:'청귤·매실·오미자 티와 대추·레몬생강 같은 따뜻한 차' },
+  juice:     { en:'JUICE & SMOOTHIE', intro:'사과오렌지·수박 주스와 식혜 스무디' },
+  icecream:  { en:'ICE CREAM',        intro:'아이스크림과 요거트, 딸기·망고·초코 쉘' },
+};
 
+const catesEl = document.querySelector('[data-cates]');
+const boardEl = document.querySelector('[data-board]');
+
+catesEl.innerHTML = MENU.map(c =>
+  `<li role="presentation"><a role="tab" href="menu.html?cate=${c.key}" data-cate="${c.key}">${c.label}<small>${c.items.length}</small></a></li>`).join('');
+
+boardEl.innerHTML = MENU.map(c => {
+  const info = CATE_INFO[c.key] || {};
+  return `
+  <section class="csec" data-sec="${c.key}" hidden>
+    <div class="chead">
+      <div>
+        ${info.en ? `<p class="en">${info.en}</p>` : ''}
+        <h2>${esc(c.label)}<small>${c.items.length}</small></h2>
+      </div>
+      ${info.intro ? `<p class="intro">${esc(info.intro)}</p>` : ''}
+    </div>
+    <ul class="items">${c.items.map(m => `
+      <li class="item">
+        <div class="pic">${m.img ? `<img src="${esc(m.img)}" alt="${esc(m.name)}" loading="lazy">` : '<span class="none">이미지 준비 중</span>'}</div>
+        <h3>${esc(m.name)}</h3>
+        ${m.desc ? `<p>${esc(m.desc)}</p>` : ''}
+      </li>`).join('')}
+    </ul>
+  </section>`;
+}).join('');
+
+/* ---------- 카테고리 탭: 누른 카테고리만 표시 ---------- */
+const segEl = document.querySelector('.seg');
 function showCate(key, push) {
   const cate = MENU.find(c => c.key === key) || MENU[0];
   catesEl.querySelectorAll('a').forEach(a => {
     const on = a.dataset.cate === cate.key;
     a.parentElement.classList.toggle('selected', on);
     a.setAttribute('aria-selected', on);
+    if (on) segEl.scrollTo?.({ left: a.offsetLeft - 20, behavior: 'smooth' });
   });
-  listEl.innerHTML = cate.items.map(m => `
-    <li>
-      <div class="prdList__item">
-        <div class="thumbnail">${m.img ? `<img src="${esc(m.img)}" alt="${esc(m.name)}" loading="lazy">` : '<span class="ph">이미지 준비 중</span>'}</div>
-        <div class="description">
-          <p><img class="mark" src="img/mark_white.png" alt=""></p>
-          <p class="name">${esc(m.name)}</p>
-          ${m.desc ? `<p class="summary">${esc(m.desc)}</p>` : ''}
-        </div>
-      </div>
-      <h2>${esc(m.name)}</h2>
-    </li>`).join('');
+  boardEl.querySelectorAll('[data-sec]').forEach(s => { s.hidden = s.dataset.sec !== cate.key; });
   document.title = `${cate.label} | 메뉴 | 도프커피 dope coffee roasters`;
   if (push) history.pushState({ cate: cate.key }, '', `menu.html?cate=${cate.key}`);
 }
@@ -117,7 +175,7 @@ document.addEventListener('click', e => {
   if (!a) return;
   e.preventDefault();
   showCate(a.dataset.cate, true);
-  scrollTo({ top: 0 });
+  if (segEl.getBoundingClientRect().top < 0) scrollTo({ top: 0, behavior: 'smooth' });
 });
 addEventListener('popstate', () => showCate(new URLSearchParams(location.search).get('cate')));
 showCate(new URLSearchParams(location.search).get('cate'));

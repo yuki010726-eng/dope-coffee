@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>도프커피 이야기 | 도프커피 dope coffee roasters</title>
+<meta name="description" content="DOPE A MIND. 도파민에서 온 이름, 2016년부터 직영으로 다듬은 커피 브랜드 도프커피의 이야기.">
+<link rel="icon" href="img/mark_black.png">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+<link rel="stylesheet" href="css/common.css?v=brand1">
+<style>
+/* 도프커피 이야기: 문구는 기존 브랜드 자료(메인·가맹 페이지 이력)와 메뉴 데이터에서만 가져옴 */
+html{scroll-behavior:smooth}
+#wrap{overflow:clip}
+.br{--ink:#141414;--blue:var(--point-color);--navy:#1B2B42;--ivory:#F6F4EF;--line:#E4E1DA;--mute:#5E5E5E;--mute2:#8C8C8C;
+  padding-top:76px;color:var(--ink);letter-spacing:-.015em}
+.br [id]{scroll-margin-top:76px}
+.br .wrap{max-width:1280px;margin:0 auto;padding:0 40px}
+.br .sec{padding:160px 0}
+.br .ivory{background:var(--ivory)}
+.br .navy{background:var(--navy);color:#fff}
+.br .eyebrow{font-size:15px;font-weight:700;color:var(--blue);line-height:1.4}
+.br .navy .eyebrow{color:#A9BEDA}
+.br .h2{margin-top:20px;font-size:46px;font-weight:700;line-height:1.28;letter-spacing:-.04em;word-break:keep-all}
+.br .lead{font-size:18px;font-weight:500;line-height:1.75;color:var(--mute);max-width:520px;word-break:keep-all}
+.br .navy .lead{color:rgba(255,255,255,.72)}
+.br .head{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:32px 80px;align-items:end;margin-bottom:64px}
+.br .img{overflow:hidden;border-radius:12px;background:#e7e5e0}
+.br .img img{width:100%;height:100%;object-fit:cover}
+
+/* ---------- 첫 화면 ---------- */
+.bhero{padding:80px 0 0}
+.bhero .top{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:80px;align-items:center}
+.bhero h1{margin-top:24px;font-family:Roboto,sans-serif;font-size:88px;font-weight:700;line-height:1;letter-spacing:-.03em}
+.bhero .name{margin-top:32px;font-size:22px;font-weight:600;line-height:1.6;letter-spacing:-.03em}
+.bhero .lead{margin-top:16px}
+.bhero .img{height:620px}
+.br .facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:96px;border-top:1px solid var(--ink)}
+.br .facts>div{padding:36px 32px 0 0}
+.br .facts>div+div{padding-left:40px;border-left:1px solid var(--line)}
+.br .facts b{display:block;font-size:34px;font-weight:700;line-height:1.25;letter-spacing:-.04em}
+.br .facts p{margin-top:12px;font-size:16px;font-weight:500;color:var(--mute)}
+.bhero+.sec{margin-top:140px}
+
+/* ---------- 브랜드 기준 ---------- */
+.scale{display:grid;grid-template-columns:1fr 1.3fr 1fr;align-items:stretch;border-top:1px solid var(--ink);border-bottom:1px solid var(--line)}
+.scale .lv{display:flex;flex-direction:column;justify-content:space-between;gap:56px;padding:40px 36px}
+.scale .lv+.lv{border-left:1px solid var(--line)}
+.scale .lv span{font-family:Roboto,sans-serif;font-size:32px;font-weight:700;letter-spacing:-.02em;color:#B5B0A6}
+.scale .lv p{font-size:16px;font-weight:600;color:var(--mute2)}
+.scale .lv.on{background:var(--navy);border-color:var(--navy)}
+.scale .lv.on span{font-size:44px;color:#fff}
+.scale .lv.on p{color:rgba(255,255,255,.8)}
+.scale .lv.on+.lv{border-left-color:transparent}
+.statement{margin-top:48px;font-size:24px;font-weight:600;line-height:1.6;letter-spacing:-.035em;word-break:keep-all}
+
+/* ---------- DOPE A MIND ---------- */
+.moments{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));list-style:none;border-top:1px solid var(--ink)}
+.moments li{padding:36px 32px 0 0}
+.moments li+li{padding-left:32px;border-left:1px solid var(--line)}
+.moments .n{font-family:Roboto,sans-serif;font-size:14px;font-weight:600;color:var(--blue)}
+.moments h3{margin-top:48px;font-size:40px;font-weight:700;letter-spacing:-.05em}
+.moments p{margin-top:14px;font-size:16px;font-weight:500;line-height:1.7;color:var(--mute);word-break:keep-all}
+
+/* ---------- 로스터리 ---------- */
+.roast{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:96px;align-items:center}
+.roast .img{aspect-ratio:4/5}
+.roast .lead{margin-top:24px}
+.blends{margin-top:48px;list-style:none;border-top:1px solid rgba(255,255,255,.25)}
+.blends li{display:grid;grid-template-columns:120px minmax(0,1fr);gap:20px;align-items:baseline;padding:22px 0;border-bottom:1px solid rgba(255,255,255,.12)}
+.blends b{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:700}
+.blends b i{width:12px;height:12px;border-radius:3px;flex-shrink:0}
+.blends p{font-size:16px;font-weight:500;line-height:1.6;color:rgba(255,255,255,.75);word-break:keep-all}
+
+/* ---------- 공간 ---------- */
+.feature{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:72px;align-items:center}
+.feature+.feature{margin-top:96px}
+.feature.rev .img{order:2}
+.feature .img{aspect-ratio:4/3}
+.feature h3{font-size:30px;font-weight:700;line-height:1.35;letter-spacing:-.045em}
+.feature p{margin-top:16px;font-size:17px;font-weight:500;line-height:1.75;color:var(--mute);word-break:keep-all}
+.strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:96px}
+.strip .img{aspect-ratio:3/4}
+
+/* ---------- 캐릭터 ---------- */
+.chara{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:96px;align-items:center}
+.chara .img{aspect-ratio:1/1}
+.chara .img img{object-position:62% 45%}
+.chara .lead{margin-top:24px}
+
+/* ---------- 매장 ---------- */
+.stores{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 48px;list-style:none;border-top:1px solid var(--ink)}
+.stores li{display:grid;grid-template-columns:72px minmax(0,1fr);gap:20px;align-items:center;padding:20px 0;border-bottom:1px solid var(--line)}
+.stores .img{aspect-ratio:1/1}
+.stores b{display:block;font-size:18px;font-weight:700;letter-spacing:-.03em}
+.stores span{display:block;margin-top:4px;font-size:14px;font-weight:500;line-height:1.55;color:var(--mute);word-break:keep-all}
+
+/* ---------- 다음 페이지 ---------- */
+.next{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.next a{display:flex;flex-direction:column;justify-content:space-between;gap:48px;min-height:220px;padding:40px;border-radius:12px;background:var(--ivory);transition:background .25s}
+.next a:hover{background:#EDEAE3}
+.next a.dark{background:var(--navy);color:#fff}
+.next a.dark:hover{background:#22354F}
+.next small{font-size:15px;font-weight:700;color:var(--blue)}
+.next a.dark small{color:#A9BEDA}
+.next b{display:block;margin-top:12px;font-size:30px;font-weight:700;letter-spacing:-.045em}
+.next p{font-size:16px;font-weight:500;color:var(--mute)}
+.next a.dark p{color:rgba(255,255,255,.72)}
+
+@media (max-width:1280px){
+  .br .h2{font-size:40px}
+  .bhero h1{font-size:72px}
+}
+@media (max-width:1024px){
+  .br{padding-top:52px}
+  .br [id]{scroll-margin-top:52px}
+  .br .wrap{padding:0 20px}
+  .br .sec{padding:96px 0}
+  .br .head{grid-template-columns:minmax(0,1fr);gap:20px;margin-bottom:40px}
+  .br .h2{margin-top:14px;font-size:30px}
+  .br .lead{font-size:16px}
+  .bhero{padding-top:40px}
+  .bhero .top{grid-template-columns:minmax(0,1fr);gap:40px}
+  .bhero h1{margin-top:16px;font-size:48px}
+  .bhero .name{margin-top:20px;font-size:18px}
+  .bhero .img{height:auto;aspect-ratio:4/5}
+  .bhero+.sec{margin-top:80px}
+  .br .facts{grid-template-columns:minmax(0,1fr);margin-top:56px}
+  .br .facts>div,.br .facts>div+div{padding:24px 0;border-left:0;border-bottom:1px solid var(--line)}
+  .br .facts b{font-size:26px}
+  .scale{grid-template-columns:minmax(0,1fr)}
+  .scale .lv{flex-direction:row;align-items:center;gap:20px;padding:24px 20px}
+  .scale .lv+.lv{border-left:0;border-top:1px solid var(--line)}
+  .scale .lv span{font-size:24px}
+  .scale .lv.on span{font-size:28px}
+  .scale .lv p{font-size:14px;text-align:right}
+  .statement{margin-top:32px;font-size:19px}
+  .moments{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .moments li,.moments li+li{padding:24px 16px 24px 0;border-left:0;border-bottom:1px solid var(--line)}
+  .moments li:nth-child(even){padding-left:16px;border-left:1px solid var(--line)}
+  .moments h3{margin-top:20px;font-size:28px}
+  .moments p{font-size:14px}
+  .roast,.feature,.chara{grid-template-columns:minmax(0,1fr);gap:36px}
+  .feature.rev .img{order:0}
+  .feature+.feature{margin-top:64px}
+  .feature h3{font-size:24px}
+  .feature p{font-size:15px}
+  .blends li{grid-template-columns:96px minmax(0,1fr);gap:12px;padding:18px 0}
+  .blends b{font-size:16px}
+  .blends p{font-size:14px}
+  .strip{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:56px}
+  .stores{grid-template-columns:minmax(0,1fr)}
+  .stores li{grid-template-columns:60px minmax(0,1fr);gap:14px;padding:16px 0}
+  .stores b{font-size:16px}
+  .stores span{font-size:13px}
+  .next{grid-template-columns:minmax(0,1fr)}
+  .next a{min-height:0;padding:28px 24px;gap:28px}
+  .next b{font-size:24px}
+}
+</style>
+</head>
+<body data-page="brand">
+<div id="wrap">
+
+<!-- ============ HEADER / 모바일 메뉴 / FOOTER는 js/common.js의 NAV로 생성 ============ -->
+<header id="header"></header>
+<div class="drawer" aria-hidden="true"></div>
+
+<main class="br">
+
+  <!-- 첫 화면 -->
+  <section id="top" class="bhero">
+    <div class="wrap">
+      <div class="top">
+        <div data-aos="fade-up">
+          <p class="eyebrow">도프커피 이야기</p>
+          <h1>DOPE A MIND.</h1>
+          <p class="name">하루에 한 번, 기분이 고개를 드는 커피</p>
+          <p class="lead">도파민에서 온 이름.<br>2016년부터 직영으로 다듬은 브랜드.</p>
+        </div>
+        <div class="img" data-aos="fade-up"><img src="img/brand_1.jpg" alt="도프커피 상암 본점 외관"></div>
+      </div>
+      <div class="facts" data-aos="fade-up">
+        <div><b>2016년부터</b><p>10년째 운영하는 커피입니다</p></div>
+        <div><b>직영 8개점</b><p>상암에서 시작해 을지로·종로까지</p></div>
+        <div><b>직접 로스팅</b><p>원두부터 본사가 관리합니다</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 브랜드 기준 -->
+  <section id="standard" class="sec ivory">
+    <div class="wrap">
+      <div class="head" data-aos="fade-up">
+        <div>
+          <p class="eyebrow">브랜드 기준</p>
+          <h2 class="h2">저가 커피도, 고급 스페셜티도 아닌<br>DPC New Standard</h2>
+        </div>
+        <p class="lead">일상 속에서 부담 없이 좋은 커피를 경험할 수 있는 커피 브랜드입니다.</p>
+      </div>
+      <div class="scale" data-aos="fade-up">
+        <div class="lv"><span>Luxury</span><p>접근하기 꺼려지는</p></div>
+        <div class="lv on"><span>Standard</span><p>가격 이상의 정돈된 경험</p></div>
+        <div class="lv"><span>Cheap</span><p>싸고 낮아 보이는</p></div>
+      </div>
+      <p class="statement" data-aos="fade-up">비싸 보이는 것이 목적이 아닌,<br>가격 이상의 정돈된 경험을 제공합니다.</p>
+    </div>
+  </section>
+
+  <!-- DOPE A MIND -->
+  <section id="mind" class="sec">
+    <div class="wrap">
+      <div class="head" data-aos="fade-up">
+        <div>
+          <p class="eyebrow">DOPE A MIND</p>
+          <h2 class="h2">기대, 발견, 수집, 재방문</h2>
+        </div>
+      </div>
+      <ol class="moments" data-aos="fade-up">
+        <li><span class="n">01</span><h3>기대</h3><p>이번 주엔 뭐가 나왔을까</p></li>
+        <li><span class="n">02</span><h3>발견</h3><p>매장마다 다른 메뉴와 이야기</p></li>
+        <li><span class="n">03</span><h3>수집</h3><p>들를 때마다 쌓이는 나만의 도프</p></li>
+        <li><span class="n">04</span><h3>재방문</h3><p>다음 시즌이 기다려지는 이유</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 로스터리 -->
+  <section id="roastery" class="sec navy">
+    <div class="wrap roast">
+      <div class="img" data-aos="fade-up"><img src="img/fran/fr03.jpg" alt="도프커피 블렌드 원두 패키지" loading="lazy"></div>
+      <div data-aos="fade-up">
+        <p class="eyebrow">로스터리</p>
+        <h2 class="h2">직접 로스팅한 원두를<br>합리적인 가격으로</h2>
+        <p class="lead">본사 로스터리에서 직접 볶은 원두를 매장에 공급합니다.</p>
+        <ul class="blends" data-blends></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 공간 -->
+  <section id="space" class="sec ivory">
+    <div class="wrap">
+      <div class="head" data-aos="fade-up">
+        <div>
+          <p class="eyebrow">공간</p>
+          <h2 class="h2">흰 벽, 자작나무, 스테인리스,<br>그리고 오렌지 한 점.</h2>
+        </div>
+        <p class="lead">지점마다 건축적 조건은 다르지만, 하나의 기준으로 일관된 브랜드 경험을 만듭니다.</p>
+      </div>
+      <div class="feature" data-aos="fade-up">
+        <div class="img"><img src="img/fran/fr02_3.jpg" alt="도프커피 종로점 파사드" loading="lazy"></div>
+        <div>
+          <h3>간결한 파사드</h3>
+          <p>간결한 파사드와 브랜드 사인을 중심으로, 외부에서 매장을 빠르게 인지시킵니다.</p>
+        </div>
+      </div>
+      <div class="feature rev" data-aos="fade-up">
+        <div class="img"><img src="img/fran/fr06_4.jpg" alt="도프커피 매장 좌석" loading="lazy"></div>
+        <div>
+          <h3>밝고 편안한 공간</h3>
+          <p>주문과 제조 공간을 개방하고, 고객 공간과 작업 공간을 명확하게 구분해 작은 면적에서도 직관적인 이용 흐름을 만듭니다.</p>
+        </div>
+      </div>
+      <div class="strip" data-aos="fade-up">
+        <div class="img"><img src="img/mq1_4.jpg" alt="개방형 바" loading="lazy"></div>
+        <div class="img"><img src="img/fran/fr06_3.jpg" alt="창가 좌석" loading="lazy"></div>
+        <div class="img"><img src="img/mq2_1.jpg" alt="이안점 외관" loading="lazy"></div>
+        <div class="img"><img src="img/mq2_5.jpg" alt="우드 좌석" loading="lazy"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 캐릭터 -->
+  <section id="character" class="sec">
+    <div class="wrap chara">
+      <div class="img" data-aos="fade-up"><img src="img/brand_3.jpg" alt="도프커피 상암 IT점 창에 붙은 캐릭터 포스터" loading="lazy"></div>
+      <div data-aos="fade-up">
+        <p class="eyebrow">캐릭터</p>
+        <h2 class="h2">점장마다 생기는<br>매장 캐릭터</h2>
+        <p class="lead">점장이 정해지면 그 사람의 캐릭터가 매장의 개성이 됩니다. 대표 캐릭터는 모자 쓰고 안경 쓴 미어캣입니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 매장 -->
+  <section id="stores" class="sec ivory">
+    <div class="wrap">
+      <div class="head" data-aos="fade-up">
+        <div>
+          <p class="eyebrow">매장</p>
+          <h2 class="h2">상암에서 시작해<br>을지로·종로까지</h2>
+        </div>
+        <p class="lead" data-store-count></p>
+      </div>
+      <ul class="stores" data-stores data-aos="fade-up"></ul>
+    </div>
+  </section>
+
+  <!-- 다음 페이지 -->
+  <section class="sec">
+    <div class="wrap next">
+      <a href="menu.html"><div><small>메뉴 안내</small><b>커피부터 아이스크림까지</b></div><p>시그니처, 커피, 논커피, 티, 주스·스무디, 아이스크림</p></a>
+      <a class="dark" href="franchise.html"><div><small>가맹안내</small><b>프랜차이즈의 시스템,<br>개인카페의 자유</b></div><p>가맹 모델, 창업 비용, 본사 지원, 창업 절차</p></a>
+    </div>
+  </section>
+
+</main>
+
+<footer id="footer"></footer>
+
+<ul id="floating">
+  <li><a href="#" id="goTop" aria-label="맨 위로"><svg viewBox="0 0 44 44" fill="none" stroke="#141414" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 31V13M14 21l8-8 8 8"/></svg></a></li>
+  <li><a href="franchise.html#franTab04">가맹<br>문의</a></li>
+</ul>
+
+</div>
+
+<div class="toast" role="status"></div>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="js/menu-data.js?v=menu5"></script>
+<script src="js/stores-data.js?v=brand1"></script>
+<script src="js/common.js?v=brand1"></script>
+<script>
+/* ---------- 블렌드: 메뉴 데이터의 커피 설명을 그대로 사용 ---------- */
+const BLEND_COLOR = { '블랙':'#4A4A4A', '화이트':'#E9B47E', '레드':'#E5786B', '디카페인':'#3F6B4C' };
+const coffee = MENU.find(c => c.key === 'coffee')?.items || [];
+document.querySelector('[data-blends]').innerHTML = Object.keys(BLEND_COLOR)
+  .map(name => coffee.find(m => m.name === name))
+  .filter(Boolean)
+  .map(m => `<li><b><i style="background:${BLEND_COLOR[m.name]}"></i>${esc(m.name)}</b><p>${esc(m.desc || '')}</p></li>`).join('');
+
+/* ---------- 매장 (js/stores-data.js) ---------- */
+document.querySelector('[data-store-count]').textContent = `직영 ${STORES.length}개점을 본사가 직접 운영합니다.`;
+document.querySelector('[data-stores]').innerHTML = STORES.map(st => `
+  <li>
+    <div class="img"><img src="${esc(st.img)}" alt="도프커피 ${esc(st.name)}" loading="lazy"></div>
+    <div><b>${esc(st.name)}</b><span>${esc(st.addr)}</span></div>
+  </li>`).join('');
+
+AOS.init({ once: true, duration: 700, offset: 60, easing: 'ease-out-cubic' });
+</script>
+</body>
+</html>
