@@ -95,8 +95,9 @@
 .main_wrap .main03 .prd_list_wrap>div:not(:first-child){position:absolute;top:0;left:0;right:0;width:100%}
 .main_wrap .main03 .prd_list_wrap>div.show{opacity:1;visibility:visible}
 .main_wrap .main03 .prd_list_wrap li .thumbnail{border-radius:50%;overflow:hidden;background:rgb(240,240,240);aspect-ratio:1;display:flex;align-items:center;justify-content:center}
-.main_wrap .main03 .prd_list_wrap li .thumbnail img{width:100%;transition:.3s}
-.main_wrap .main03 .prd_list_wrap li:hover .thumbnail img{transform:scale(1.15)}
+/* 촬영컷은 여백이 넓어 원형 안에서 컵 중심으로 확대 */
+.main_wrap .main03 .prd_list_wrap li .thumbnail img{width:100%;transition:.3s;transform:scale(1.45);transform-origin:53.5% 52%}
+.main_wrap .main03 .prd_list_wrap li:hover .thumbnail img{transform:scale(1.65)}
 .main_wrap .main03 .prd_list_wrap li .thumbnail .ph{font-size:var(--board-content);font-weight:var(--font-semi);color:#c4c4c4}
 .main_wrap .main03 .prd_list_wrap li h2 span{display:block;text-align:center;padding:30px 0;font-weight:var(--font-bold);line-height:132%;letter-spacing:-.02em;font-size:var(--main-category)!important;color:var(--point-color)!important}
 .main_wrap .main03 .prd_list_wrap li h2 span.empty{color:#c4c4c4!important}
