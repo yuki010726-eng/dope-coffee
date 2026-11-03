@@ -9,245 +9,319 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&family=Red+Hat+Display:wght@300;400;500;700;800&display=swap">
 <link rel="stylesheet" href="css/common.css?v=brand4">
+<link rel="stylesheet" href="css/dpc-ui.css?v=ui2">
 <style>
-/* 가맹안내: 기획(Main.dc) 12개 섹션을 네 파트(시스템·자유·모델과 비용·시작하기)로 묶음, 색은 DPC 딥블루 + 매장 우드 톤 아이보리 */
-html{scroll-behavior:smooth}
-#wrap{overflow:clip} /* common.css의 overflow:hidden은 sticky를 막아서, 가로 넘침만 자르는 clip으로 */
-.fr,.fab{--ink:#141414;--blue:var(--point-color);--blue-d:#243C5E;--navy:#1B2B42;--ivory:#F6F4EF;--tint:#E9EEF4;--line:#E4E1DA;--mute:#5E5E5E;--mute2:#8C8C8C}
-.fr{padding-top:76px;color:var(--ink);letter-spacing:-.015em}
-.fr [id]{scroll-margin-top:76px}
-.fr .wrap{max-width:1280px;margin:0 auto;padding:0 40px}
-.fr .sec{padding:160px 0}
-.fr .ivory{background:var(--ivory)}
-.fr .navy{background:var(--navy);color:#fff}
+/* 가맹안내: 기획(Main.dc) 12개 섹션을 네 파트(시스템·자유·모델과 비용·시작하기)로 묶음. 공통 모양은 css/dpc-ui.css */
+.fab{--navy:#0E1A30;--navy3:#22355A;--ink:#0E1A30}
 
-/* ---------- 섹션 머리: 번호 + 소제목 / 큰 제목 / 오른쪽 설명 ---------- */
-.fr .head{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:32px 80px;align-items:end;margin-bottom:72px}
-.fr .head.solo{grid-template-columns:minmax(0,1fr)}
-.fr .eyebrow{display:flex;align-items:center;font-size:15px;font-weight:700;color:var(--blue);line-height:1.4}
-.fr .eyebrow span{margin-right:10px;font-family:Roboto,sans-serif;font-size:13px;font-weight:600;color:var(--mute2)}
-.fr .navy .eyebrow{color:#A9BEDA}
-.fr .h2{margin-top:22px;font-size:46px;font-weight:700;line-height:1.28;letter-spacing:-.04em;word-break:keep-all}
+/* ---------- 섹션 머리 소제목: 번호 알약 ---------- */
+.fr .eyebrow{display:inline-flex;align-items:center;gap:10px;height:30px;padding:0 16px 0 5px;border-radius:100px;background:var(--navy);color:#fff;font-size:13px;font-weight:700;line-height:1}
+.fr .eyebrow span{display:grid;place-items:center;height:22px;padding:0 9px;border-radius:100px;background:#fff;color:var(--navy);font-family:var(--en);font-size:11px;font-weight:800;letter-spacing:.04em}
+.fr .dark .eyebrow{background:#fff;color:var(--navy)}
+.fr .dark .eyebrow span{background:var(--navy);color:#fff}
 .fr .lead{font-size:18px;font-weight:500;line-height:1.75;color:var(--mute);max-width:520px;word-break:keep-all}
-.fr .navy .lead{color:rgba(255,255,255,.7)}
-.fr .note{margin-top:24px;font-size:14px;font-weight:500;line-height:1.75;color:var(--mute2);word-break:keep-all}
-
-/* ---------- 버튼 ---------- */
-.fr .btn,.fab .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:56px;padding:0 30px;border-radius:100px;font-size:17px;font-weight:700;letter-spacing:-.01em;white-space:nowrap;transition:background .25s,color .25s,border-color .25s}
-.fr .btn.fill,.fab .btn{background:var(--blue);color:#fff}
-.fr .btn.fill:hover,.fab .btn:hover{background:var(--blue-d)}
-.fr .btn.line{border:1.5px solid var(--ink);color:var(--ink)}
-.fr .btn.line:hover{background:var(--ink);color:#fff}
-.fr .btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:44px}
-
-/* ---------- 아직 받지 못한 정보 / 사진 자리 ---------- */
-.fr .slot{display:inline-block;padding:0 2px;border-bottom:1px dashed #BDBAB3;color:#9A968E;font-size:.9em;font-weight:500;line-height:1.5;vertical-align:baseline;white-space:nowrap}
-.fr .navy .slot,.fr .banner .slot{border-color:rgba(255,255,255,.4);color:rgba(255,255,255,.6)}
-.fr .ph{display:flex;align-items:center;justify-content:center;padding:20px;text-align:center;color:#9A968E;font-size:13px;font-weight:500;line-height:1.5;background:#ECEAE5}
-.fr .img{position:relative;overflow:hidden;background:#e7e5e0}
-.fr .img img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.fr .dark .lead{color:var(--silver)}
 
 /* ---------- 01 첫 화면 ---------- */
-.fr .hero{padding:80px 0 0}
-.fr .hero .top{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:80px;align-items:center}
-.fr .hero h1{margin-top:28px;font-size:68px;font-weight:700;line-height:1.18;letter-spacing:-.05em;word-break:keep-all}
-.fr .hero .lead{margin-top:28px;max-width:470px}
-.fr .hero .visual{height:620px;border-radius:12px}
-.fr .facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:96px;border-top:1px solid var(--ink)}
-.fr .facts>div{padding:36px 32px 0 0}
-.fr .facts>div+div{padding-left:40px;border-left:1px solid var(--line)}
-.fr .facts b{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:34px;font-weight:700;line-height:1.25;letter-spacing:-.04em}
-.fr .facts p{margin-top:12px;font-size:16px;font-weight:500;color:var(--mute)}
-.fr .hero+.sec{margin-top:140px}
+.fr .fhero{position:relative;overflow:hidden;padding:110px 0 0}
+.fr .fhero .bg{position:absolute;left:-2vw;bottom:120px;font-size:15vw;transform:translateX(calc(var(--hp,0) * -20%))}
+.fr .fhero .top{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:24px;align-items:center}
+.fr .fhero h1{margin-top:28px;font-size:58px;font-weight:700;line-height:1.18;letter-spacing:-.055em;word-break:keep-all}
+.fr .fhero .sub{margin-top:28px;max-width:480px}
+.fr .kitwrap{margin:-10px -110px 0 0}
+.fr .kit .k{opacity:0;transform:translateY(-80px);transition:opacity .5s calc(var(--d) * 1.4),transform 1.1s cubic-bezier(.3,1.35,.5,1) calc(var(--d) * 1.4)}
+.fr .kit.in .k{opacity:1;transform:none}
+.fr .kit .lab{transition-delay:2.3s}
+.fr .facts{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:88px;padding:40px 0 72px;border-top:1px solid rgba(255,255,255,.22)}
+.fr .facts>div+div{padding-left:40px;border-left:1px solid rgba(255,255,255,.14)}
+.fr .facts strong{display:block;font-family:var(--en);font-size:72px;font-weight:300;line-height:1;letter-spacing:-.04em}
+.fr .facts small{display:block;margin-top:10px;font-family:var(--en);font-size:12px;font-weight:700;letter-spacing:.2em;color:var(--silver)}
+.fr .facts p{margin-top:6px;font-size:15px;font-weight:500;color:rgba(255,255,255,.75)}
 
-/* ---------- 한눈에 보기: 네 파트 요약 ---------- */
-.fr .ov{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px;list-style:none}
-.fr .ov li{position:relative}
-.fr .ov a{display:flex;flex-direction:column;height:100%;padding:32px 28px 28px;border-radius:12px;background:#fff;transition:transform .3s,box-shadow .3s}
-.fr .ov .no{font-family:Roboto,sans-serif;font-size:13px;font-weight:600;letter-spacing:.08em;color:var(--blue)}
-.fr .ov b{margin-top:40px;font-size:26px;font-weight:700;letter-spacing:-.04em}
-.fr .ov p{margin-top:12px;font-size:15px;font-weight:500;line-height:1.7;color:var(--mute);word-break:keep-all}
-.fr .ov .go{display:flex;align-items:center;gap:6px;margin-top:auto;padding-top:28px;font-size:14px;font-weight:700;color:var(--blue)}
+/* ---------- 한눈에 보기 ---------- */
+.fr .ov{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;list-style:none}
+.fr .ov a{position:relative;isolation:isolate;display:flex;flex-direction:column;height:100%;min-height:330px;padding:32px 28px 28px;border-radius:8px;overflow:hidden;background:#fff;transition:color .5s,transform .6s var(--out)}
+.fr .ov a::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--navy);transform:translateY(101%);transition:transform .6s var(--io)}
+.fr .ov a:hover{color:#fff;transform:translateY(-6px)}
+.fr .ov a:hover::before{transform:none}
+.fr .ov .no{font-family:var(--en);font-size:64px;font-weight:300;line-height:1;letter-spacing:-.04em;color:transparent;-webkit-text-stroke:1px #A9B1BB;transition:-webkit-text-stroke-color .5s}
+.fr .ov a:hover .no{-webkit-text-stroke-color:#fff}
+.fr .ov b{margin-top:36px;font-size:26px;font-weight:700;letter-spacing:-.045em}
+.fr .ov p{margin-top:10px;font-size:15px;font-weight:500;line-height:1.7;color:var(--mute);word-break:keep-all;transition:color .5s}
+.fr .ov a:hover p{color:var(--silver)}
+.fr .ov .go{align-self:flex-end;margin-top:auto;width:46px;height:46px;border-radius:50%;background:var(--navy);font-size:0;transition:background .5s,transform .5s var(--out)}
+.fr .ov .go::before{content:"";display:block;width:100%;height:100%;background:#fff;-webkit-mask:var(--arrow) center/18px no-repeat;mask:var(--arrow) center/18px no-repeat;transform:rotate(90deg);transition:background .5s}
+.fr .ov a:hover .go{background:#fff;transform:translateY(4px)}
+.fr .ov a:hover .go::before{background:var(--navy)}
 
-/* ---------- 파트 구분: 지금 몇 번째 이야기인지 ---------- */
-.fr .part{padding:120px 0;background:var(--navy);color:#fff}
-.fr .part .wrap{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:80px;align-items:end}
-.fr .pt-no{display:flex;align-items:baseline;gap:8px;font-family:Roboto,sans-serif;font-size:14px;font-weight:700;letter-spacing:.12em;color:#A9BEDA}
-.fr .part h2{margin-top:24px;font-size:60px;font-weight:700;line-height:1.15;letter-spacing:-.05em}
-.fr .pt-line{margin-top:24px;font-size:18px;font-weight:500;line-height:1.75;color:rgba(255,255,255,.7)}
+/* ---------- 파트 구분 ---------- */
+.fr .part{position:relative;overflow:hidden;padding:130px 0 110px;background:var(--navy);color:#fff}
+.fr .part .word{position:absolute;right:-2vw;top:30px;font-size:15vw;-webkit-text-stroke-color:rgba(185,192,201,.16);transform:translateX(calc(10% - var(--drift,0) * 24%))}
+.fr .part .wrap{position:relative;display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:80px;align-items:end}
+.fr .pt-no{font-family:var(--en);font-size:14px;font-weight:800;letter-spacing:.2em;color:var(--silver)}
+.fr .pt-no::before{content:"PART ";color:var(--silver2)}
+.fr .part h2{margin-top:20px;font-size:64px;font-weight:700;line-height:1.15;letter-spacing:-.055em}
+.fr .pt-line{margin-top:20px;font-size:18px;font-weight:500;line-height:1.75;color:var(--silver)}
 .fr .pt-map{list-style:none;border-top:1px solid rgba(255,255,255,.2)}
-.fr .pt-map a{display:flex;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.12);font-size:16px;font-weight:600;color:rgba(255,255,255,.4);transition:color .2s}
-.fr .pt-map a:hover{color:#fff}
-.fr .pt-map b{font-family:Roboto,sans-serif;font-size:13px;font-weight:600;letter-spacing:.06em}
+.fr .pt-map a{display:flex;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.1);font-size:16px;font-weight:600;color:rgba(255,255,255,.38);transition:color .3s,padding .5s var(--out)}
+.fr .pt-map a:hover{color:#fff;padding-left:10px}
+.fr .pt-map b{font-family:var(--en);font-size:12px;font-weight:800;letter-spacing:.08em}
 .fr .pt-map .on a{color:#fff}
+.fr .pt-map .on a::after{content:"";margin-left:auto;width:8px;height:8px;border-radius:50%;background:#fff}
 
 /* ---------- 1-1 믿어도 되는 이유 ---------- */
 .fr .cards3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px}
-.fr .pcard .img{aspect-ratio:4/3;border-radius:12px}
-.fr .pcard h3{margin-top:28px;font-size:24px;font-weight:700;letter-spacing:-.035em}
-.fr .pcard p{margin-top:12px;font-size:16px;font-weight:500;line-height:1.75;color:var(--mute);word-break:keep-all}
-.fr .pcard>.slot{margin-top:18px}
+.fr .cards3 .pcard:nth-child(2){margin-top:72px}
+.fr .cards3 .pcard:nth-child(3){margin-top:144px}
+.fr .pcard .img{aspect-ratio:4/5}
+.fr .pcard:hover .img img{transform:scale(1.06)}
+.fr .pcard h3{margin-top:26px;font-size:24px;font-weight:700;letter-spacing:-.045em}
+.fr .pcard p{margin-top:10px;font-size:16px;font-weight:500;line-height:1.75;color:var(--mute);word-break:keep-all}
+.fr .pcard>.slot{margin-top:16px}
 .fr .pcard p b{font-weight:700;color:var(--ink)}
 
+/* ---------- 1-2 본사 지원: 가로 스크롤 카드 ---------- */
+.fr .support{padding:0}
+.fr .support .shead{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:24px 80px;align-items:end;margin-bottom:44px;width:100%}
+.fr .support .h2{font-size:44px}
+.fr .scard{position:relative;isolation:isolate;flex-shrink:0;display:flex;flex-direction:column;width:330px;height:min(54vh,440px);padding:30px 30px 28px;border-radius:8px;overflow:hidden;background:#fff;transition:color .5s,transform .6s var(--out)}
+.fr .scard::after{content:"";position:absolute;inset:0;z-index:-1;background:var(--navy);clip-path:circle(0 at 100% 0);transition:clip-path .7s var(--io)}
+.fr .scard:hover{color:#fff;transform:translateY(-8px)}
+.fr .scard:hover::after{clip-path:circle(150% at 100% 0)}
+.fr .scard .top{display:flex;justify-content:space-between;align-items:center}
+.fr .scard .phase{padding:6px 10px;border-radius:100px;background:var(--mist);font-family:var(--en);font-size:10px;font-weight:800;letter-spacing:.14em;color:var(--silver2);transition:background .5s,color .5s}
+.fr .scard.after .phase{background:var(--navy);color:#fff}
+.fr .scard:hover .phase{background:rgba(255,255,255,.12);color:#fff}
+.fr .scard .no{font-family:var(--en);font-size:52px;font-weight:300;line-height:1;letter-spacing:-.04em;color:transparent;-webkit-text-stroke:1px #A9B1BB;transition:-webkit-text-stroke-color .5s}
+.fr .scard:hover .no{-webkit-text-stroke-color:#fff}
+.fr .scard .ic{width:56px;height:56px;margin-top:auto;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.fr .scard h3{margin-top:22px;font-size:22px;font-weight:700;letter-spacing:-.045em}
+.fr .scard p{margin-top:10px;font-size:15px;font-weight:500;line-height:1.7;color:var(--mute);word-break:keep-all;transition:color .5s}
+.fr .scard:hover p{color:var(--silver)}
+.fr .scard .slot{align-self:flex-start;margin-top:14px}
+.fr .scard:hover .slot{border-color:rgba(255,255,255,.4);color:rgba(255,255,255,.6)}
+.fr .openmark{flex-shrink:0;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:10px;width:240px;text-align:center}
+.fr .openmark span{font-family:var(--en);font-size:12px;font-weight:800;letter-spacing:.24em;color:var(--silver2)}
+.fr .openmark b{display:grid;place-items:center;width:150px;height:150px;border-radius:50%;background:var(--navy);color:#fff;font-family:var(--en);font-size:30px;font-weight:800;letter-spacing:.06em;box-shadow:0 0 0 12px rgba(14,26,48,.06),0 0 0 26px rgba(14,26,48,.03)}
+.fr .openmark i{width:1px;height:40px;background:repeating-linear-gradient(180deg,var(--navy) 0 4px,transparent 4px 8px)}
+.fr .openmark small{font-size:13px;font-weight:700;color:var(--mute)}
+
 /* ---------- 2-1 맞춤 운영 ---------- */
-.fr .points{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--ink);list-style:none}
-.fr .points li{padding:36px 40px 0 0}
+.fr .points{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--ink);list-style:none;counter-reset:pt}
+.fr .points li{padding:36px 40px 0 0;counter-increment:pt}
 .fr .points li+li{padding-left:40px;border-left:1px solid var(--line)}
-.fr .points h3{margin-top:22px;font-size:24px;font-weight:700;line-height:1.42;letter-spacing:-.035em}
+.fr .points li::before{content:counter(pt,decimal-leading-zero);display:block;font-family:var(--en);font-size:64px;font-weight:300;line-height:1;letter-spacing:-.04em;color:transparent;-webkit-text-stroke:1px #A9B1BB;transition:color .45s}
+.fr .points li:hover::before{color:var(--navy);-webkit-text-stroke-color:transparent}
+.fr .points h3{margin-top:26px;font-size:24px;font-weight:700;line-height:1.42;letter-spacing:-.04em}
 .fr .points p{margin-top:12px;font-size:16px;font-weight:500;line-height:1.75;color:var(--mute);word-break:keep-all}
-.fr .subhead{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:20px 80px;align-items:end;margin:160px 0 48px}
-.fr .subhead h3{font-size:32px;font-weight:700;line-height:1.35;letter-spacing:-.04em}
-.fr .menus{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
-.fr .menus figure{display:flex;flex-direction:column;margin:0;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff}
-.fr .menus .img,.fr .menus .ph{height:360px}
-.fr .menus .img{background:#E7E6EA}
+.fr .subhead{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:20px 80px;align-items:end;margin:150px 0 48px}
+.fr .subhead h3{font-size:34px;font-weight:700;line-height:1.35;letter-spacing:-.05em}
+.fr .menus{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.fr .menus figure{margin:0;border-radius:8px;overflow:hidden;background:var(--mist);transition:transform .6s var(--out)}
+.fr .menus figure:hover{transform:translateY(-8px)}
+.fr .menus .img,.fr .menus .ph{height:360px;border-radius:0}
 .fr .menus .img img{object-fit:contain;padding:24px 0 0}
-.fr .menus figcaption{display:flex;justify-content:space-between;align-items:center;padding:22px 28px;border-top:1px solid var(--line);font-size:18px;font-weight:700}
-.fr .plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
-.fr .plan{display:flex;flex-direction:column;padding:36px;border-radius:12px;background:var(--ivory)}
+.fr .menus figure:hover .img img{transform:scale(1.06)}
+.fr .menus figcaption{padding:22px 28px;font-size:18px;font-weight:700}
+.fr .plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.fr .plan{display:flex;flex-direction:column;overflow:hidden;padding:28px 28px 32px;border-radius:8px;background:linear-gradient(180deg,#EEF0F3 0%,#E1E5EA 100%);transition:transform .6s var(--out),box-shadow .6s}
+.fr .plan:hover{transform:translateY(-8px);box-shadow:0 30px 50px -30px rgba(14,26,48,.4)}
+.fr .plan .iso{margin:4px -8px 18px}
 .fr .plan .tags{display:flex;flex-wrap:wrap;gap:6px}
-.fr .plan .tags i{padding:6px 12px;border:1px solid #E1DDD5;border-radius:100px;font-family:Roboto,sans-serif;font-size:12px;font-style:normal;font-weight:600;letter-spacing:.06em;color:#ABA59A}
-.fr .plan .tags i.on{border:1px solid var(--blue);background:var(--blue);color:#fff}
-.fr .plan h4{margin-top:56px;font-size:26px;font-weight:700;line-height:1.3;letter-spacing:-.04em}
-.fr .plan p{margin-top:10px;font-size:16px;font-weight:500;line-height:1.7;color:var(--mute);word-break:keep-all}
-.fr .split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);border-radius:12px;overflow:hidden}
-.fr .split>div{padding:48px 52px}
+.fr .plan .tags i{padding:6px 12px;border:1px solid #C9CED5;border-radius:100px;font-family:var(--en);font-size:11px;font-style:normal;font-weight:800;letter-spacing:.08em;color:#9AA2AC}
+.fr .plan .tags i.on{border-color:var(--navy);background:var(--navy);color:#fff}
+.fr .plan h4{margin-top:22px;font-size:24px;font-weight:700;line-height:1.3;letter-spacing:-.045em}
+.fr .plan p{margin-top:8px;font-size:15px;font-weight:500;line-height:1.7;color:var(--mute);word-break:keep-all}
+.fr [data-plan] .eqs{opacity:0;transform:translateY(-30px);transition:opacity .5s,transform .9s cubic-bezier(.3,1.45,.5,1) .15s}
+.fr [data-plan].in .eqs{opacity:1;transform:none}
+.fr .split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
+.fr .split>div{padding:48px 48px 32px;border-radius:8px}
 .fr .split .hq{background:var(--navy);color:#fff}
-.fr .split .me{background:var(--tint)}
-.fr .split h4{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:18px;font-weight:700}
-.fr .split ul{margin-top:28px;list-style:none}
-.fr .split li{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;padding:22px 0;border-top:1px solid rgba(255,255,255,.14);font-size:19px;font-weight:600;letter-spacing:-.03em}
-.fr .split .me li{border-color:rgba(46,75,116,.16)}
-
-/* ---------- 3-1 가맹 모델 ---------- */
-.fr .models{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
-.fr .model{display:flex;flex-direction:column;border-radius:12px;overflow:hidden;background:#fff}
-.fr .model .img,.fr .model .ph{aspect-ratio:16/11}
-.fr .model .body{display:flex;flex-direction:column;flex:1;padding:32px 32px 32px}
-.fr .model .name{font-family:Roboto,Pretendard,sans-serif;font-size:28px;font-weight:700;letter-spacing:-.02em}
-.fr .model .one{margin-top:8px;font-size:16px;font-weight:600;color:var(--blue);word-break:keep-all}
-.fr .model dl{margin:24px 0 28px;border-top:1px solid var(--line)}
-.fr .model dl>div{display:grid;grid-template-columns:80px minmax(0,1fr);gap:12px;padding:15px 0;border-bottom:1px solid var(--line)}
-.fr .model dt{font-size:14px;font-weight:600;color:var(--mute2);line-height:1.6}
-.fr .model dd{font-size:15px;font-weight:500;line-height:1.6;word-break:keep-all}
-.fr .model dd .slot{margin-top:2px}
-.fr .model .btn{margin-top:auto;height:52px;font-size:16px}
-.fr .banner{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:56px;align-items:center;margin-top:24px;padding:64px;border-radius:12px;background:var(--blue);color:#fff}
-.fr .banner h3{margin-top:20px;font-size:36px;font-weight:700;line-height:1.32;letter-spacing:-.04em}
-.fr .banner p{margin-top:20px;font-size:17px;font-weight:500;line-height:1.75;color:rgba(255,255,255,.78);word-break:keep-all}
-.fr .banner .kpis{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.fr .banner .kpi{display:flex;flex-direction:column;gap:28px;padding:28px 24px;border:1px solid rgba(255,255,255,.2);border-radius:12px;background:rgba(255,255,255,.06)}
-.fr .banner .kpi span{font-size:14px;font-weight:600;color:rgba(255,255,255,.72)}
-.fr .banner .kpi .slot{align-self:flex-start}
-
-/* ---------- 3-2·3-3·4-2·4-3 왼쪽 제목 + 오른쪽 내용 ---------- */
-.fr .aside{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:96px;align-items:start}
-.fr .aside .side{position:sticky;top:120px}
-.fr .aside .side .lead{margin-top:24px}
-.fr .ptable{border-top:2px solid var(--ink)}
-.fr .ptable .th{display:flex;justify-content:space-between;padding:16px 4px;border-bottom:1px solid var(--line);font-size:13px;font-weight:600;color:var(--mute2)}
-.fr .ptable .row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 24px;align-items:center;padding:22px 4px;border-bottom:1px solid var(--line)}
-.fr .ptable .row b{font-size:18px;font-weight:700}
-.fr .ptable .row small{grid-column:1/-1;font-size:14px;font-weight:500;color:var(--mute2);word-break:keep-all}
-.fr .ltable{padding:12px 40px 40px;border-radius:12px;background:#fff}
-.fr .ltable .r{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr) 88px;gap:16px;align-items:center;padding:22px 0;border-bottom:1px solid var(--line);font-size:17px;font-weight:600}
-.fr .ltable .r>*{justify-self:start}
-.fr .ltable .r>:last-child{justify-self:end}
-.fr .ltable .r.th{font-size:13px;color:var(--mute2);padding:20px 0 16px}
-.fr .ltable .r.total{margin-top:16px;padding:24px 24px;border:0;border-radius:16px;background:var(--navy);color:#fff}
-.fr .ltable .r.total b{font-size:19px}
-
-/* ---------- 1-2 본사 지원 ---------- */
-.fr .sgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--line)}
-.fr .sgrid>*{background:#fff;padding:44px 40px 48px;min-height:280px}
-.fr .sgrid>.hd{background:var(--ivory)}
-.fr .sgrid .hd{grid-column:span 2;display:flex;flex-direction:column;justify-content:space-between;gap:40px}
-.fr .sgrid .hd .h2{margin-top:22px}
-.fr .sitem{display:flex;flex-direction:column}
-.fr .sitem h3{margin-top:0;font-size:21px;font-weight:700;letter-spacing:-.035em}
-.fr .sitem p{margin-top:10px;font-size:15px;font-weight:500;line-height:1.75;color:var(--mute);word-break:keep-all}
-.fr .sitem .slot{align-self:flex-start;margin-top:auto;transform:translateY(16px)}
-
-/* ---------- 4-1 창업 절차 ---------- */
-.fr .flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:64px 24px;list-style:none}
-.fr .flow li{position:relative;padding:72px 16px 0 0}
-.fr .flow li::before{content:"";position:absolute;top:22px;left:0;right:-24px;height:1px;background:var(--line)}
-.fr .flow li:nth-child(4n)::before{right:0}
-.fr .flow .n{position:absolute;top:0;left:0;z-index:1;display:grid;place-items:center;width:44px;height:44px;border:1.5px solid var(--ink);border-radius:50%;background:#fff;font-family:Roboto,sans-serif;font-size:15px;font-weight:600}
-.fr .flow h3{font-size:20px;font-weight:700;line-height:1.4;letter-spacing:-.035em;word-break:keep-all}
-.fr .flow p{margin-top:8px;font-size:15px;font-weight:500;line-height:1.65;color:var(--mute);word-break:keep-all}
-.fr .flow li.hot .n{border-color:var(--blue);background:var(--blue);color:#fff;box-shadow:0 0 0 6px var(--tint)}
-.fr .flow li.hot h3{color:var(--blue)}
+.fr .split .me{background:var(--mist)}
+.fr .split h4{font-size:18px;font-weight:700}
+.fr .split h4::before{display:block;margin-bottom:10px;font-family:var(--en);font-size:12px;font-weight:800;letter-spacing:.2em;color:var(--silver2)}
+.fr .split .hq h4::before{content:"HEADQUARTER"}
+.fr .split .me h4::before{content:"OWNER"}
+.fr .split ul{margin-top:24px;list-style:none}
+.fr .split li{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;padding:20px 0;border-top:1px solid rgba(255,255,255,.14);font-size:19px;font-weight:600;letter-spacing:-.03em;transition:padding .5s var(--out)}
+.fr .split li:hover{padding-left:10px}
+.fr .split .me li{border-color:rgba(14,26,48,.12)}
 
 /* ---------- 2-2 점장 이야기 ---------- */
 .fr .story{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:96px;align-items:center}
 .fr .story .lead{margin-top:28px}
-.fr .chars{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-.fr .chars .ph{aspect-ratio:5/4;border-radius:12px}
-.fr .interview{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:24px;margin-top:96px}
-.fr .interview .ph{min-height:440px;border-radius:12px}
-.fr .qa{position:relative;padding:56px;border-radius:12px;background:#fff}
-.fr .qa h3{font-size:28px;font-weight:700;letter-spacing:-.04em}
+.fr .chars{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.fr .chars .ph{aspect-ratio:5/4;border-radius:8px}
+.fr .interview{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:12px;margin-top:96px}
+.fr .interview .ph{min-height:440px;border-radius:8px}
+.fr .qa{padding:56px;border-radius:8px;background:#fff}
+.fr .qa h3{font-size:28px;font-weight:700;letter-spacing:-.045em}
 .fr .qa ol{margin-top:32px;list-style:none;counter-reset:q}
 .fr .qa li{counter-increment:q;padding:22px 0;border-top:1px solid var(--line)}
 .fr .qa li p{display:flex;gap:12px;font-size:18px;font-weight:600;line-height:1.55;letter-spacing:-.03em;word-break:keep-all}
-.fr .qa li p::before{content:"Q" counter(q);flex-shrink:0;font-family:Roboto,sans-serif;font-size:14px;font-weight:700;line-height:1.95;color:var(--blue)}
+.fr .qa li p::before{content:"Q" counter(q);flex-shrink:0;font-family:var(--en);font-size:14px;font-weight:800;line-height:1.95;color:var(--blue)}
 .fr .qa li .slot{margin:10px 0 0 34px}
 
-/* ---------- 4-2 오픈 가능 지역 ---------- */
-.fr .map{min-height:560px;border-radius:12px;background:var(--tint) radial-gradient(rgba(46,75,116,.2) 1.2px,transparent 1.6px) 0 0/18px 18px}
-.fr .legend{margin-top:40px;border-top:1px solid var(--ink);list-style:none}
-.fr .legend li{display:flex;align-items:center;gap:14px;padding:18px 0;border-bottom:1px solid var(--line);font-size:16px;font-weight:600}
+/* ---------- 3-1 가맹 모델 ---------- */
+.fr .models{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.fr .model{display:flex;flex-direction:column;border-radius:8px;overflow:hidden;background:#fff;transition:transform .6s var(--out),box-shadow .6s}
+.fr .model:hover{transform:translateY(-8px);box-shadow:0 40px 70px -40px rgba(14,26,48,.45)}
+.fr .mplan{padding:28px 20px 16px;background:radial-gradient(ellipse 70% 60% at 50% 60%,#F7F8F9 0%,rgba(247,248,249,0) 70%),linear-gradient(180deg,#E6E9ED 0%,#D6DAE0 100%)}
+.fr .mplan{display:flex;align-items:center;height:300px}
+.fr .mplan .iso{width:100%;height:100%;transition:transform .8s var(--out)}
+.fr .model:hover .mplan .iso{transform:scale(1.04)}
+.fr [data-model-plan] .new{opacity:0;transform:translateY(-36px);transition:opacity .5s .3s,transform 1s cubic-bezier(.3,1.4,.5,1) .3s}
+.fr [data-model-plan].in .new{opacity:1;transform:none}
+.fr .model .body{display:flex;flex-direction:column;flex:1;padding:30px 30px 30px}
+.fr .model .name{font-family:var(--en);font-size:30px;font-weight:700;letter-spacing:-.02em}
+.fr .model .one{margin-top:6px;font-size:16px;font-weight:600;color:var(--blue);word-break:keep-all}
+.fr .model dl{margin:22px 0 28px;border-top:1px solid var(--ink)}
+.fr .model dl>div{display:grid;grid-template-columns:80px minmax(0,1fr);gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}
+.fr .model dt{font-size:14px;font-weight:600;color:var(--silver2);line-height:1.6}
+.fr .model dd{font-size:15px;font-weight:500;line-height:1.6;word-break:keep-all}
+.fr .model .btn{margin-top:auto;align-self:flex-start}
+.fr .banner{position:relative;overflow:hidden;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:56px;align-items:center;margin-top:20px;padding:64px;border-radius:8px;background:linear-gradient(120deg,#22355A 0%,#0E1A30 70%);color:#fff}
+.fr .banner::after{content:"RE:";position:absolute;right:-10px;bottom:-60px;font-family:var(--en);font-size:240px;font-weight:800;line-height:1;letter-spacing:-.05em;color:transparent;-webkit-text-stroke:1px rgba(185,192,201,.18);pointer-events:none}
+.fr .banner h3{font-size:36px;font-weight:700;line-height:1.32;letter-spacing:-.05em}
+.fr .banner p{margin-top:20px;font-size:17px;font-weight:500;line-height:1.75;color:var(--silver);word-break:keep-all}
+.fr .banner .kpis{position:relative;z-index:1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.fr .banner .kpi{display:flex;flex-direction:column;gap:28px;padding:28px 24px;border-radius:8px;background:rgba(255,255,255,.07);box-shadow:inset 0 0 0 1px rgba(255,255,255,.16)}
+.fr .banner .kpi span{font-size:14px;font-weight:600;color:var(--silver)}
+.fr .banner .kpi .slot{align-self:flex-start;border-color:rgba(255,255,255,.35);color:rgba(255,255,255,.6)}
+
+/* ---------- 3-2·3-3·4-2·4-3 왼쪽 고정 제목 + 오른쪽 내용 ---------- */
+.fr .aside{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:96px;align-items:start}
+.fr .aside .side{position:sticky;top:130px}
+.fr .aside .side .lead{margin-top:24px}
+.fr .receipt{position:relative;padding:40px 44px 36px;background:#fff;box-shadow:0 30px 60px -36px rgba(14,26,48,.35);clip-path:inset(0 0 100% 0);transition:clip-path 1.6s var(--io) .2s}
+.fr [data-rv].in .receipt{clip-path:inset(-60px -60px -60px -60px)}
+.fr .receipt::after{content:"";position:absolute;left:0;right:0;bottom:-12px;height:12px;background:linear-gradient(135deg,#fff 6px,transparent 0) 0 0/12px 12px repeat-x,linear-gradient(-135deg,#fff 6px,transparent 0) 0 0/12px 12px repeat-x}
+.fr .rhead{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:22px;margin-bottom:6px;border-bottom:2px dashed var(--line)}
+.fr .rhead b{font-family:var(--en);font-size:18px;font-weight:800;letter-spacing:.12em}
+.fr .rhead span{font-size:13px;font-weight:600;color:var(--silver2)}
+.fr .rfoot{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-top:22px;padding-top:22px;border-top:2px dashed var(--line)}
+.fr .rfoot span{font-size:13px;font-weight:500;color:var(--silver2);word-break:keep-all}
+.fr .rfoot b{flex-shrink:0;display:flex;align-items:center;gap:12px;font-family:var(--en);font-size:15px;font-weight:800;letter-spacing:.14em}
+.fr .ptable{border-top:0}
+.fr .ptable .row b{display:flex;align-items:center;gap:14px}
+.fr .ptable .row b::after{content:"";flex:1;border-bottom:1px dotted #C3C9D0}
+.fr .ptable .th{display:flex;justify-content:space-between;padding:16px 4px;border-bottom:1px solid var(--line);font-family:var(--en);font-size:12px;font-weight:800;letter-spacing:.14em;color:var(--silver2)}
+.fr .ptable .row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 24px;align-items:center;padding:22px 4px;border-bottom:1px solid var(--line);transition:padding .5s var(--out),background .4s}
+.fr .ptable .row:hover{padding-left:16px;background:linear-gradient(90deg,var(--mist),rgba(238,240,243,0))}
+.fr .ptable .row b{font-size:18px;font-weight:700}
+.fr .ptable .row small{grid-column:1/-1;font-size:14px;font-weight:500;color:var(--silver2);word-break:keep-all}
+.fr .ltable{padding:12px 40px 40px;border-radius:8px;background:#fff}
+.fr .ltable .r{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr) 88px;gap:16px;align-items:center;padding:22px 0;border-bottom:1px solid var(--line);font-size:17px;font-weight:600}
+.fr .ltable .r>:last-child{justify-self:end}
+.fr .ltable .r.th{padding:20px 0 16px;font-family:var(--en);font-size:12px;font-weight:800;letter-spacing:.14em;color:var(--silver2)}
+.fr .ltable .r.total{margin-top:16px;padding:24px;border:0;border-radius:8px;background:var(--navy);color:#fff}
+.fr .ltable .r.total b{font-size:19px}
+
+/* ---------- 4-1 창업 절차: 스크롤에 따라 채워지는 선 ---------- */
+.fr .flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:72px 24px;list-style:none}
+.fr .flow li{position:relative;padding:76px 16px 0 0}
+.fr .flow li::before,.fr .flow li::after{content:"";position:absolute;top:24px;left:0;right:-24px;height:2px;background:var(--line)}
+.fr .flow li::after{background:var(--navy);transform:scaleX(0);transform-origin:left;transition:transform .8s var(--io)}
+.fr .flow li.on::after{transform:scaleX(1)}
+.fr .flow li:nth-child(4n)::before,.fr .flow li:nth-child(4n)::after{right:0}
+.fr .flow .n{position:absolute;top:0;left:0;z-index:1;display:grid;place-items:center;width:50px;height:50px;border:1.5px solid var(--line);border-radius:50%;background:#fff;font-family:var(--en);font-size:15px;font-weight:800;color:var(--silver2);transition:background .5s,border-color .5s,color .5s,transform .5s var(--out)}
+.fr .flow li.on .n{border-color:var(--navy);background:var(--navy);color:#fff;transform:scale(1.08)}
+.fr .flow h3{font-size:20px;font-weight:700;line-height:1.4;letter-spacing:-.04em;word-break:keep-all;opacity:.35;transition:opacity .5s}
+.fr .flow p{margin-top:8px;font-size:15px;font-weight:500;line-height:1.65;color:var(--mute);word-break:keep-all;opacity:.35;transition:opacity .5s}
+.fr .flow li.on h3,.fr .flow li.on p{opacity:1}
+.fr .flow li.hot .n{box-shadow:0 0 0 7px rgba(46,75,116,.15)}
+.fr .flow li.hot h3{color:var(--blue)}
+
+/* ---------- 4-2 오픈 가능 지역: 직영 매장 지도 ---------- */
+.fr .mapgrid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:80px;align-items:start}
+.fr .mapgrid .side{position:sticky;top:130px}
+.fr .mapgrid .lead{margin-top:24px}
+.fr .legend{margin-top:36px;border-top:1px solid var(--ink);list-style:none}
+.fr .legend li{display:flex;align-items:center;gap:14px;padding:16px 0;border-bottom:1px solid var(--line);font-size:16px;font-weight:600}
+.fr .legend li>:last-child{margin-left:auto}
+.fr .legend b{font-family:var(--en);font-size:15px;font-weight:800}
 .fr .legend i{width:14px;height:14px;border-radius:50%}
+.fr .legend .op{background:var(--navy);box-shadow:0 0 0 4px rgba(14,26,48,.12)}
+.fr .legend .soon{background:#B4C4D9}
+.fr .legend .can{border:2px solid var(--blue)}
+.fr .mapbox{padding:28px 28px 20px;border-radius:8px;background:#fff;box-shadow:0 30px 60px -40px rgba(14,26,48,.35)}
+.fr .smap{display:block;width:100%;height:auto;overflow:visible}
+.fr .smap .dot{fill:#C3CAD3;opacity:0;transition:opacity .6s var(--d)}
+.fr .smap.in .dot{opacity:1}
+.fr .smap .river{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 2s var(--io) .4s}
+.fr .smap.in .river{stroke-dashoffset:0}
+.fr .smap .riv{font-family:'Red Hat Display',sans-serif;font-size:11px;font-weight:800;letter-spacing:.3em;fill:#7F93AD}
+.fr .smap .big{font-family:'Red Hat Display',sans-serif;font-size:72px;font-weight:800;letter-spacing:-.04em;fill:none;stroke:rgba(14,26,48,.09);text-anchor:middle}
+.fr .smap .pin{opacity:0;transform:translateY(-26px);transition:opacity .4s,transform .9s cubic-bezier(.3,1.5,.5,1);transition-delay:calc(1.1s + var(--i) * .09s);cursor:default}
+.fr .smap.in .pin{opacity:1;transform:none}
+.fr .smap .pin .pulse{fill:none;stroke:#0E1A30;stroke-width:1.2;transform-box:fill-box;transform-origin:center;animation:mapPulse 2.6s ease-out infinite;animation-delay:calc(var(--i) * .3s)}
+.fr .smap .pin.hi circle:nth-child(2){fill:#2E4B74}
+.fr .smap .pin.hi .tip rect{fill:#2E4B74}
+.fr .smap .pin .tip text{font-family:'Red Hat Display',sans-serif;font-size:10px;font-weight:800;fill:#fff;text-anchor:middle}
+.fr .smap .lens{opacity:0;transform:scale(.6);transform-box:fill-box;transform-origin:center;transition:opacity .6s .8s,transform 1s cubic-bezier(.3,1.4,.5,1) .8s}
+.fr .smap.in .lens{opacity:1;transform:none}
+.fr .smap .lens-t{font-family:'Red Hat Display',sans-serif;font-size:12px;font-weight:800;letter-spacing:.14em;fill:#0E1A30;text-anchor:middle}
+@keyframes mapPulse{from{transform:scale(1);opacity:.7}to{transform:scale(3.2);opacity:0}}
+.fr .mlist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 24px;margin-top:18px;list-style:none;border-top:1px solid var(--ink)}
+.fr .mlist li{display:grid;grid-template-columns:30px minmax(0,1fr) auto;gap:2px 10px;align-items:center;padding:12px 6px;border-bottom:1px solid var(--line);transition:background .4s,padding .5s var(--out)}
+.fr .mlist li:hover{padding-left:12px;background:linear-gradient(90deg,var(--mist),rgba(238,240,243,0))}
+.fr .mlist .n{grid-row:span 2;font-family:var(--en);font-size:12px;font-weight:800;color:var(--silver2)}
+.fr .mlist li:hover .n{color:var(--ink)}
+.fr .mlist b{font-size:15px;font-weight:700;letter-spacing:-.03em}
+.fr .mlist .gu{grid-column:2;font-size:12px;font-weight:500;color:var(--silver2)}
+.fr .mlist a{grid-row:1/3;grid-column:3;padding:6px 12px;border-radius:100px;background:var(--mist);font-size:12px;font-weight:700;transition:background .3s,color .3s}
+.fr .mlist a:hover{background:var(--navy);color:#fff}
 
 /* ---------- 4-3 FAQ ---------- */
 .fr .faq details{border-bottom:1px solid var(--line)}
 .fr .faq details:first-child{border-top:2px solid var(--ink)}
-.fr .faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:28px 0;font-size:19px;font-weight:600;line-height:1.5;letter-spacing:-.03em}
+.fr .faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:28px 0;font-size:19px;font-weight:600;line-height:1.5;letter-spacing:-.03em;transition:padding .5s var(--out)}
+.fr .faq summary:hover{padding-left:10px}
 .fr .faq summary::-webkit-details-marker{display:none}
-.fr .faq summary i{flex-shrink:0;font-style:normal;font-size:22px;font-weight:300;line-height:1;color:var(--mute2);transition:transform .25s}
-.fr .faq summary i::before{content:"+"}
-.fr .faq details[open] summary i{transform:rotate(45deg)}
-.fr .faq .a{padding:0 64px 30px 0;font-size:16px;font-weight:500;line-height:1.8;color:var(--mute);word-break:keep-all}
+.fr .faq summary i{position:relative;flex-shrink:0;width:36px;height:36px;border:1px solid var(--line);border-radius:50%;transition:background .4s,border-color .4s,transform .45s var(--io)}
+.fr .faq summary i::before,.fr .faq summary i::after{content:"";position:absolute;left:50%;top:50%;width:12px;height:1.5px;background:var(--ink);transform:translate(-50%,-50%);transition:background .4s}
+.fr .faq summary i::after{transform:translate(-50%,-50%) rotate(90deg)}
+.fr .faq details[open] summary i{background:var(--navy);border-color:var(--navy);transform:rotate(45deg)}
+.fr .faq details[open] summary i::before,.fr .faq details[open] summary i::after{background:#fff}
+.fr .faq .a{padding:0 64px 30px 0;font-size:16px;font-weight:500;line-height:1.8;color:var(--mute);word-break:keep-all;animation:uiRise .6s var(--out)}
 
 /* ---------- 4-4 문의 폼 ---------- */
 .fr .inq{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:80px;align-items:start}
-.fr .inq .side{position:sticky;top:120px}
+.fr .inq .side{position:sticky;top:130px}
 .fr .inq .side .lead{margin-top:24px}
 .fr .call{margin-top:48px;padding-top:28px;border-top:1px solid rgba(255,255,255,.2)}
 .fr .call b{display:block;font-size:18px;font-weight:700}
-.fr .call p{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:14px;font-size:15px;color:rgba(255,255,255,.7)}
-.fr .formbox{padding:56px;border-radius:12px;background:#fff;color:var(--ink)}
+.fr .call p{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:14px;font-size:15px;color:var(--silver)}
+.fr .formbox{padding:56px;border-radius:8px;background:#fff;color:var(--ink)}
 .fr .formbox form{display:flex;flex-direction:column;gap:30px}
 .fr .row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
 .fr .fld{display:flex;flex-direction:column;gap:10px;min-width:0}
 .fr .fld>label,.fr .fld>.lbl{font-size:14px;font-weight:700}
 .fr .fld em{margin-left:3px;font-style:normal;color:var(--blue)}
-.fr .fld small{font-weight:500;color:var(--mute2)}
-.fr .fld input[type=text],.fr .fld input[type=tel],.fr .fld textarea{width:100%;height:54px;padding:0 18px;border:1px solid #DAD7D0;border-radius:12px;background:#fff;font:inherit;font-size:16px;color:var(--ink);outline:none;transition:border-color .2s,box-shadow .2s}
+.fr .fld small{font-weight:500;color:var(--silver2)}
+.fr .fld input[type=text],.fr .fld input[type=tel],.fr .fld textarea{width:100%;height:54px;padding:0 18px;border:1px solid var(--line);border-radius:8px;background:var(--mist);font:inherit;font-size:16px;color:var(--ink);outline:none;transition:border-color .3s,box-shadow .3s,background .3s}
 .fr .fld textarea{height:130px;padding:15px 18px;line-height:1.6;resize:vertical}
-.fr .fld input::placeholder,.fr .fld textarea::placeholder{color:#AFAAA0}
-.fr .fld input:focus,.fr .fld textarea:focus{border-color:var(--blue);box-shadow:0 0 0 4px rgba(46,75,116,.12)}
+.fr .fld input::placeholder,.fr .fld textarea::placeholder{color:#A3ABB5}
+.fr .fld input:focus,.fr .fld textarea:focus{border-color:var(--navy);background:#fff;box-shadow:0 0 0 4px rgba(14,26,48,.08)}
 .fr .fld.invalid input{border-color:#C0392B;box-shadow:0 0 0 4px rgba(192,57,43,.1)}
 .fr .chips{display:flex;flex-wrap:wrap;gap:8px}
 .fr .chip{position:relative;display:inline-block}
 .fr .chip input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer}
-.fr .chip span{display:block;padding:12px 18px;border:1px solid #DAD7D0;border-radius:100px;font-size:15px;font-weight:600;color:#4A4A4A;line-height:1.3;transition:.2s}
-.fr .chip:hover span{border-color:var(--ink)}
-.fr .chip input:checked+span{border-color:var(--blue);background:var(--blue);color:#fff}
+.fr .chip span{display:block;padding:12px 18px;border-radius:100px;background:var(--mist);font-size:15px;font-weight:600;color:var(--mute);line-height:1.3;transition:background .3s,color .3s,box-shadow .3s}
+.fr .chip:hover span{color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.fr .chip input:checked+span{background:var(--navy);color:#fff;box-shadow:0 8px 18px -8px rgba(14,26,48,.5)}
 .fr .chip input:focus-visible+span{outline:2px solid var(--ink);outline-offset:2px}
 .fr .agree{padding-top:26px;border-top:1px solid var(--line)}
 .fr .agree .top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px 12px}
 .fr .agree label{display:flex;align-items:center;gap:10px;cursor:pointer;font-size:15px;font-weight:600}
-.fr .agree input{width:20px;height:20px;margin:0;accent-color:var(--blue)}
+.fr .agree input{width:20px;height:20px;margin:0;accent-color:var(--navy)}
 .fr .agree.invalid label{color:#C0392B}
-.fr .agree .more{font-size:14px;color:var(--mute2);text-decoration:underline;text-underline-offset:3px}
-.fr .agree textarea{display:none;width:100%;height:120px;margin-top:14px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--ivory);font:inherit;font-size:13px;color:var(--mute);resize:none}
+.fr .agree .more{font-size:14px;color:var(--silver2);text-decoration:underline;text-underline-offset:3px}
+.fr .agree textarea{display:none;width:100%;height:120px;margin-top:14px;padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:var(--mist);font:inherit;font-size:13px;color:var(--mute);resize:none}
 .fr .agree.open textarea{display:block}
-.fr .formbox button[type=submit]{width:100%;height:60px;font-size:18px}
+.fr .formbox button[type=submit]{width:100%;height:62px;font-size:17px}
 .fr .formbox button:disabled{opacity:.6;cursor:wait}
 .fr .done{display:none;padding:96px 0;text-align:center}
 .fr .done h3{font-size:26px;font-weight:700;letter-spacing:-.04em}
@@ -258,83 +332,95 @@ html{scroll-behavior:smooth}
 /* ---------- 하단 고정 버튼 ---------- */
 .fab{position:fixed;right:32px;bottom:32px;z-index:50;transition:opacity .3s,transform .3s}
 .fab.off{opacity:0;transform:translateY(16px);pointer-events:none}
-.fab .btn{box-shadow:0 12px 32px rgba(27,43,66,.28)}
+.fab .btn{box-shadow:0 14px 34px -8px rgba(14,26,48,.5)}
 
 @media (max-width:1280px){
-  .fr .hero h1{font-size:58px}
-  .fr .h2{font-size:40px}
+  .fr .fhero h1{font-size:46px}
+  .fr .kitwrap{margin-right:-40px}
+  .fr .part h2{font-size:52px}
   .fr .aside,.fr .story{gap:64px}
 }
 @media (max-width:1024px){
-  .fr{padding-top:52px}
-  .fr [id]{scroll-margin-top:52px}
-  .fr .wrap{padding:0 20px}
-  .fr .sec{padding:96px 0}
-  .fr .head,.fr .subhead{grid-template-columns:minmax(0,1fr);gap:20px;margin-bottom:44px}
-  .fr .subhead{margin-top:100px}
-  .fr .h2{margin-top:16px;font-size:30px}
-  .fr .subhead h3{font-size:24px}
   .fr .lead{font-size:16px}
-  .fr .btn,.fab .btn{height:52px;padding:0 24px;font-size:16px}
-  .fr .btns{margin-top:32px}
-  .fr .hero{padding-top:40px}
-  .fr .hero .top{grid-template-columns:minmax(0,1fr);gap:40px}
-  .fr .hero h1{margin-top:20px;font-size:40px}
-  .fr .hero .lead{margin-top:20px}
-  .fr .hero .visual{height:auto;aspect-ratio:4/5;border-radius:12px}
-  .fr .hero+.sec{margin-top:80px}
-  .fr .facts,.fr .points{grid-template-columns:minmax(0,1fr);margin-top:56px}
-  .fr .points{margin-top:0}
-  .fr .facts>div,.fr .facts>div+div,.fr .points li,.fr .points li+li{padding:24px 0;border-left:0;border-bottom:1px solid var(--line)}
-  .fr .facts b{font-size:26px}
-  .fr .points h3{margin-top:12px;font-size:20px}
-  .fr .cards3,.fr .menus,.fr .plans,.fr .models{grid-template-columns:minmax(0,1fr);gap:40px}
-  .fr .menus,.fr .plans,.fr .models{gap:16px}
+  .fr .fhero{padding-top:48px}
+  .fr .fhero .bg{font-size:30vw;bottom:auto;top:20px}
+  .fr .fhero .top{grid-template-columns:minmax(0,1fr);gap:40px}
+  .fr .fhero h1{margin-top:20px;font-size:36px}
+  .fr .kitwrap{order:-1;margin:0 -12px}
+  .fr .fhero .sub{margin-top:18px}
+  .fr .facts{grid-template-columns:repeat(3,minmax(0,1fr));margin-top:48px;padding:28px 0 56px}
+  .fr .facts>div+div{padding-left:12px}
+  .fr .facts strong{font-size:32px}
+  .fr .facts small{font-size:10px;letter-spacing:.1em}
+  .fr .facts p{font-size:12px}
+  .fr .ov{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .fr .ov a{min-height:0;padding:22px 18px}
+  .fr .ov .no{font-size:40px}
+  .fr .ov b{margin-top:16px;font-size:20px}
+  .fr .ov p{font-size:13px;line-height:1.6}
+  .fr .ov .go{width:38px;height:38px;margin-top:16px}
+  .fr .part{padding:72px 0}
+  .fr .part .word{font-size:28vw;top:16px}
+  .fr .part .wrap{grid-template-columns:minmax(0,1fr);gap:36px}
+  .fr .part h2{margin-top:14px;font-size:34px}
+  .fr .pt-line{margin-top:14px;font-size:15px}
+  .fr .pt-map{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;border-top:0}
+  .fr .pt-map a{flex-direction:column;align-items:flex-start;gap:4px;padding:10px 0 0;border-bottom:0;border-top:2px solid rgba(255,255,255,.18);font-size:12px}
+  .fr .pt-map .on a{border-top-color:#fff}
+  .fr .pt-map .on a::after{display:none}
+  .fr .cards3,.fr .menus,.fr .plans,.fr .models{grid-template-columns:minmax(0,1fr);gap:16px}
+  .fr .cards3{gap:40px}
+  .fr .cards3 .pcard:nth-child(n){margin-top:0}
+  .fr .support{padding:96px 0}
+  .fr .support .shead{grid-template-columns:minmax(0,1fr);gap:16px;margin-bottom:28px}
+  .fr .support .h2{font-size:30px}
+  .fr .scard{width:78vw;height:auto;min-height:330px;padding:24px 22px}
+  .fr .scard .ic{margin-top:40px}
+  .fr .openmark{width:150px}
+  .fr .openmark b{width:100px;height:100px;font-size:22px}
+  .fr .points{grid-template-columns:minmax(0,1fr)}
+  .fr .points li,.fr .points li+li{padding:24px 0;border-left:0;border-bottom:1px solid var(--line)}
+  .fr .points li::before{font-size:44px}
+  .fr .points h3{margin-top:14px;font-size:20px}
+  .fr .subhead{grid-template-columns:minmax(0,1fr);gap:16px;margin:96px 0 32px}
+  .fr .subhead h3{font-size:24px}
   .fr .menus .img{height:280px}
   .fr .menus .ph{height:264px}
-  .fr .plan{padding:28px}
-  .fr .plan h4{margin-top:36px;font-size:22px}
+  .fr .plan{padding:22px}
+  .fr .plan h4{font-size:21px}
   .fr .split{grid-template-columns:minmax(0,1fr)}
-  .fr .split>div{padding:32px 24px}
+  .fr .split>div{padding:32px 24px 20px}
   .fr .split li{font-size:17px;padding:18px 0}
-  .fr .model .body{padding:26px 24px}
+  .fr .model .body{padding:24px 22px}
+  .fr .mplan{height:240px}
   .fr .banner{grid-template-columns:minmax(0,1fr);gap:32px;padding:40px 24px}
+  .fr .banner::after{font-size:140px;bottom:-30px}
   .fr .banner h3{font-size:26px}
   .fr .banner .kpis{grid-template-columns:minmax(0,1fr)}
   .fr .banner .kpi{gap:16px;padding:22px 20px}
   .fr .aside,.fr .story,.fr .inq,.fr .interview{grid-template-columns:minmax(0,1fr);gap:44px}
   .fr .aside .side,.fr .inq .side{position:static}
+  .fr .receipt{padding:28px 20px 24px}
+  .fr .rfoot{flex-direction:column;align-items:flex-start}
   .fr .ltable{padding:8px 20px 20px}
   .fr .ltable .r{grid-template-columns:minmax(0,1fr) auto 64px;font-size:15px}
   .fr .ltable .r.total{padding:20px 16px}
-  .fr .ov{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-  .fr .ov a{padding:22px 18px}
-  .fr .ov b{margin-top:20px;font-size:20px}
-  .fr .ov p{margin-top:8px;font-size:13px;line-height:1.6}
-  .fr .ov .go{padding-top:18px;font-size:13px}
-  .fr .part{padding:72px 0}
-  .fr .part .wrap{grid-template-columns:minmax(0,1fr);gap:36px}
-  .fr .part h2{margin-top:16px;font-size:36px}
-  .fr .pt-line{margin-top:16px;font-size:15px}
-  .fr .pt-line br{display:none}
-  .fr .pt-map{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;border-top:0}
-  .fr .pt-map a{flex-direction:column;align-items:flex-start;gap:4px;padding:10px 0 0;border-bottom:0;border-top:2px solid rgba(255,255,255,.18);font-size:12px}
-  .fr .pt-map .on a{border-top-color:#A9BEDA}
-  .fr .sgrid{grid-template-columns:minmax(0,1fr)}
-  .fr .sgrid .hd{grid-column:auto}
-  .fr .sgrid>*{min-height:0;padding:32px 24px 40px}
-  .fr .sitem h3{margin-top:24px}
-  .fr .sitem .slot{margin-top:16px;transform:none}
   .fr .flow{grid-template-columns:minmax(0,1fr);gap:32px}
-  .fr .flow li{padding:8px 0 0 64px;min-height:44px}
-  .fr .flow li::before,.fr .flow li:nth-child(4n)::before{top:44px;bottom:-32px;left:22px;right:auto;width:1px;height:auto}
-  .fr .flow li:last-child::before{display:none}
+  .fr .flow li{padding:10px 0 0 70px;min-height:50px}
+  .fr .flow li::before,.fr .flow li::after,.fr .flow li:nth-child(4n)::before,.fr .flow li:nth-child(4n)::after{top:50px;bottom:-32px;left:24px;right:auto;width:2px;height:auto}
+  .fr .flow li::after{transform:scaleY(0);transform-origin:top}
+  .fr .flow li.on::after{transform:scaleY(1)}
+  .fr .flow li:last-child::before,.fr .flow li:last-child::after{display:none}
   .fr .interview{margin-top:64px}
   .fr .interview .ph{min-height:300px}
   .fr .qa{padding:36px 24px}
   .fr .qa h3{font-size:22px}
   .fr .qa li p{font-size:16px}
-  .fr .map{min-height:320px}
+  .fr .mapgrid{grid-template-columns:minmax(0,1fr);gap:40px}
+  .fr .mapgrid .side{position:static}
+  .fr .mapbox{padding:16px 14px 10px}
+  .fr .smap .big{font-size:48px}
+  .fr .mlist{grid-template-columns:minmax(0,1fr)}
   .fr .faq summary{font-size:17px;padding:22px 0}
   .fr .faq .a{padding-right:0}
   .fr .formbox{padding:32px 20px}
@@ -353,42 +439,41 @@ html{scroll-behavior:smooth}
 <header id="header"></header>
 <div class="drawer" aria-hidden="true"></div>
 
-<main class="fr">
+<main class="fr ui">
 
   <!-- 01 첫 화면 -->
-  <section id="franTab01" class="hero">
+  <section id="franTab01" class="fhero hero dark">
+    <p class="word bg" aria-hidden="true">FRANCHISE</p>
     <div class="wrap">
       <div class="top">
-        <div data-aos="fade-up">
-          <p class="eyebrow">가맹안내</p>
-          <h1>프랜차이즈의 시스템,<br>개인카페의 자유</h1>
-          <p class="lead">10년간 직영으로 다듬은 운영 노하우는 그대로 가져가고, 메뉴와 매장 분위기는 점장님이 정합니다.</p>
-          <div class="btns">
-            <a class="btn fill" href="#franTab04">가맹 문의하기</a>
-            <a class="btn line" href="#franTab03">창업 비용 보기</a>
+        <div>
+          <span class="pill rv">FRANCHISE <b>· DOPE COFFEE</b></span>
+          <h1 data-lines>프랜차이즈의 시스템,<br>개인카페의 자유</h1>
+          <p class="sub rv">10년간 직영으로 다듬은 운영 노하우는 그대로 가져가고, 메뉴와 매장 분위기는 점장님이 정합니다.</p>
+          <div class="btns rv">
+            <a class="btn white" href="#franTab04">가맹 문의하기<i></i></a>
+            <a class="btn glass" href="#franTab03">창업 비용 보기<i></i></a>
           </div>
         </div>
-        <div class="img visual" data-aos="fade-up" data-aos-delay="100">
-          <img src="img/fran/fr06_2.jpg" alt="도프커피 매장 외관">
-        </div>
+        <div class="kitwrap"><svg class="iso kit" data-store-kit role="img" aria-label="바닥, 벽, 사인, 슬랫 카운터, 장비, 좌석이 차례로 놓이는 도프커피 매장 패키지"></svg></div>
       </div>
-      <div class="facts" data-aos="fade-up">
-        <div><b>2016년부터</b><p>10년째 운영하는 커피입니다</p></div>
-        <div><b>직영 8개점</b><p>본사가 직접 운영하며 검증합니다</p></div>
-        <div><b>직접 로스팅</b><p>원두부터 본사가 관리합니다</p></div>
+      <div class="facts" data-stagger>
+        <div><strong data-count="2016" data-from="1990">1990</strong><small>SINCE</small><p>10년째 운영하는 커피입니다</p></div>
+        <div><strong data-count="8">00</strong><small>DIRECT STORES</small><p>본사가 직접 운영하며 검증합니다</p></div>
+        <div><strong>HQ</strong><small>DIRECT ROASTING</small><p>원두부터 본사가 관리합니다</p></div>
       </div>
     </div>
   </section>
 
   <!-- 한눈에 보기 -->
-  <section class="sec ivory overview">
+  <section class="sec mist overview">
     <div class="wrap">
-      <div class="head solo" data-aos="fade-up">
+      <div class="head solo">
         <div>
-          <h2 class="h2">도프커피 가맹<br>한눈에 보기</h2>
+          <h2 class="h2" data-lines>도프커피 가맹<br>한눈에 보기</h2>
         </div>
       </div>
-      <ol class="ov" data-aos="fade-up">
+      <ol class="ov" data-stagger>
         <li><a href="#part1">
           <span class="no">01</span><b>시스템</b><p>10년 직영 노하우와 직접 로스팅한 원두, 오픈 후까지 이어지는 본사 지원</p>
           <span class="go">자세히 보기</span></a></li>
@@ -406,41 +491,42 @@ html{scroll-behavior:smooth}
   </section>
 
   <!-- PART 01 -->
-  <section id="part1" class="part">
+  <section id="part1" class="part" data-drift>
+    <p class="word" aria-hidden="true">PART 01</p>
     <div class="wrap">
-      <div data-aos="fade-up">
+      <div data-rv>
         <p class="pt-no">01</p>
         <h2>프랜차이즈의 시스템</h2>
         <p class="pt-line">10년간 직영으로 다듬은 운영 노하우는 그대로 가져갑니다.</p>
       </div>
-      <ol class="pt-map" data-aos="fade-up"><li class="on"><a href="#part1"><b>01</b>시스템</a></li><li><a href="#part2"><b>02</b>자유</a></li><li><a href="#part3"><b>03</b>모델과 비용</a></li><li><a href="#part4"><b>04</b>시작하기</a></li></ol>
+      <ol class="pt-map" data-rv><li class="on"><a href="#part1"><b>01</b>시스템</a></li><li><a href="#part2"><b>02</b>자유</a></li><li><a href="#part3"><b>03</b>모델과 비용</a></li><li><a href="#part4"><b>04</b>시작하기</a></li></ol>
     </div>
   </section>
 
   <!-- 1-1 믿어도 되는 이유 -->
   <section class="sec">
     <div class="wrap">
-      <div class="head solo" data-aos="fade-up">
+      <div class="head solo">
         <div>
           <p class="eyebrow"><span>1-1</span>도프커피를 믿어도 되는 이유</p>
-          <h2 class="h2">10년 운영한 곳이<br>직접 볶고, 직접 가르칩니다</h2>
+          <h2 class="h2" data-lines>10년 운영한 곳이<br>직접 볶고, 직접 가르칩니다</h2>
         </div>
       </div>
       <div class="cards3">
-        <article class="pcard" data-aos="fade-up">
-          <div class="img"><img src="img/fran/fr03.jpg" alt="도프커피가 직접 로스팅한 원두" loading="lazy"></div>
+        <article class="pcard" data-rv>
+          <div class="img" data-clip><img src="img/fran/fr03.jpg" alt="도프커피가 직접 로스팅한 원두" loading="lazy"></div>
           <h3>직접 로스팅</h3>
           <p>원두는 본사가 직접 로스팅합니다. 매장이 늘어도 같은 맛을 내려면 원두부터 관리해야 하기 때문입니다.</p>
           <span class="slot">로스팅 주기</span>
         </article>
-        <article class="pcard" data-aos="fade-up" data-aos-delay="80">
-          <div class="img"><img src="img/fran/fr06_1.jpg" alt="도프커피 직영 매장" loading="lazy"></div>
+        <article class="pcard" data-rv>
+          <div class="img" data-clip><img src="img/fran/fr06_1.jpg" alt="도프커피 직영 매장" loading="lazy"></div>
           <h3>10년 노하우</h3>
           <p>2016년에 시작해 직영점을 운영하며 다듬은 방식을 교육과 운영 컨설팅으로 전달합니다.</p>
           <p><b>직영 8개점</b> · <span class="slot">누적 운영 기간</span></p>
         </article>
-        <article class="pcard" data-aos="fade-up" data-aos-delay="160">
-          <div class="img"><img src="img/fran/fr04.jpg" alt="도프커피 바 장비 세팅" loading="lazy"></div>
+        <article class="pcard" data-rv>
+          <div class="img" data-clip><img src="img/fran/fr04.jpg" alt="도프커피 바 장비 세팅" loading="lazy"></div>
           <h3>안정적인 품질관리</h3>
           <p>원두, 레시피, 장비 세팅을 기준으로 정리해 어느 매장에서 마셔도 같은 수준을 맞춥니다.</p>
           <span class="slot">품질관리 방식</span>
@@ -449,93 +535,82 @@ html{scroll-behavior:smooth}
     </div>
   </section>
 
-  <!-- 1-2 본사 지원 -->
-  <section class="sec ivory">
-    <div class="wrap">
-      <div class="sgrid">
-        <div class="hd" data-aos="fade-up">
-          <div>
-            <p class="eyebrow"><span>1-2</span>본사 지원</p>
-            <h2 class="h2">10년 노하우로 가르치고,<br>같이 운영합니다</h2>
-          </div>
-          <p class="lead">열기 전에 끝나는 교육이 아니라, 오픈 후 운영까지 이어지는 컨설팅입니다.</p>
+  <!-- 1-2 본사 지원: 오픈 전 → 오픈 → 오픈 후, 세로 스크롤이 가로로 흐름 -->
+  <section class="support mist" data-hscroll>
+    <div class="stick">
+      <div class="wrap shead">
+        <div>
+          <p class="eyebrow" data-rv><span>1-2</span>본사 지원</p>
+          <h2 class="h2" data-lines>10년 노하우로 가르치고,<br>같이 운영합니다</h2>
         </div>
-        <div class="sitem">
-          <h3>입지·상권 검토</h3><p>후보지의 상권과 경쟁 매장을 같이 봅니다.</p><span class="slot">검토 방식</span>
-        </div>
-        <div class="sitem">
-          <h3>매장 패키지 설계</h3><p>평수와 상권에 맞춰 메뉴와 매장 구성을 정합니다.</p>
-        </div>
-        <div class="sitem">
-          <h3>인테리어</h3><p>신규는 도프커피 디자인으로, 업종변경은 기존 인테리어를 살려서 진행합니다.</p><span class="slot">시공 방식</span>
-        </div>
-        <div class="sitem">
-          <h3>점장 교육</h3><p>커피, 메뉴, 매장 운영을 가르칩니다.</p><span class="slot">교육 기간</span>
-        </div>
-        <div class="sitem">
-          <h3>원두 공급과 품질 관리</h3><p>본사가 직접 로스팅한 원두를 공급합니다.</p><span class="slot">공급 주기</span>
-        </div>
-        <div class="sitem">
-          <h3>운영 컨설팅</h3><p>오픈 후에도 매출과 운영을 같이 점검합니다.</p><span class="slot">방식과 횟수</span>
-        </div>
-        <div class="sitem">
-          <h3>점장 캐릭터</h3><p>점장님마다 동물 캐릭터를 만들어 드립니다.</p><span class="slot">제작 비용 포함 여부</span>
-        </div>
+        <p class="lead rv">열기 전에 끝나는 교육이 아니라, 오픈 후 운영까지 이어지는 컨설팅입니다.</p>
       </div>
+      <div class="track">
+        <article class="scard"><div class="top"><span class="phase">BEFORE OPEN</span><span class="no">01</span></div><svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 42s-12-11-12-21a12 12 0 0 1 24 0c0 10-12 21-12 21z"/><circle cx="24" cy="21" r="4.5"/></svg><h3>입지·상권 검토</h3><p>후보지의 상권과 경쟁 매장을 같이 봅니다.</p><span class="slot">검토 방식</span></article>
+        <article class="scard"><div class="top"><span class="phase">BEFORE OPEN</span><span class="no">02</span></div><svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><rect x="8" y="8" width="32" height="32" rx="3"/><path d="M8 20h32M20 20v20"/></svg><h3>매장 패키지 설계</h3><p>평수와 상권에 맞춰 메뉴와 매장 구성을 정합니다.</p></article>
+        <article class="scard"><div class="top"><span class="phase">BEFORE OPEN</span><span class="no">03</span></div><svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><path d="M10 40V10l30 30z"/><path d="M16 34V24l10 10z"/></svg><h3>인테리어</h3><p>신규는 도프커피 디자인으로, 업종변경은 기존 인테리어를 살려서 진행합니다.</p><span class="slot">시공 방식</span></article>
+        <article class="scard"><div class="top"><span class="phase">BEFORE OPEN</span><span class="no">04</span></div><svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="27" r="13"/><circle cx="19" cy="26" r="3.4"/><circle cx="29" cy="26" r="3.4"/><path d="M22.4 26h3.2M13 17l3.5-7h15l3.5 7z"/></svg><h3>점장 캐릭터</h3><p>점장님마다 동물 캐릭터를 만들어 드립니다.</p><span class="slot">제작 비용 포함 여부</span></article>
+        <article class="scard"><div class="top"><span class="phase">BEFORE OPEN</span><span class="no">05</span></div><svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><path d="M8 12c6-3 11-3 16 1 5-4 10-4 16-1v26c-6-3-11-3-16 1-5-4-10-4-16-1z"/><path d="M24 13v26"/></svg><h3>점장 교육</h3><p>커피, 메뉴, 매장 운영을 가르칩니다.</p><span class="slot">교육 기간</span></article>
+        <div class="openmark" aria-hidden="true"><span>D-DAY</span><b>OPEN</b><i></i><small>오픈 후에도 이어집니다</small></div>
+        <article class="scard after"><div class="top"><span class="phase">AFTER OPEN</span><span class="no">06</span></div><svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><ellipse cx="24" cy="24" rx="11" ry="15" transform="rotate(30 24 24)"/><path d="M18 13c7 6 4 16 12 22"/></svg><h3>원두 공급과 품질 관리</h3><p>본사가 직접 로스팅한 원두를 공급합니다.</p><span class="slot">공급 주기</span></article>
+        <article class="scard after"><div class="top"><span class="phase">AFTER OPEN</span><span class="no">07</span></div><svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><path d="M8 40h32"/><path d="M13 34V25M21 34V17M29 34V21M37 34V11"/></svg><h3>운영 컨설팅</h3><p>오픈 후에도 매출과 운영을 같이 점검합니다.</p><span class="slot">방식과 횟수</span></article>
+      </div>
+      <div class="bar"><i></i></div>
     </div>
   </section>
 
   <!-- PART 02 -->
-  <section id="part2" class="part">
+  <section id="part2" class="part" data-drift>
+    <p class="word" aria-hidden="true">PART 02</p>
     <div class="wrap">
-      <div data-aos="fade-up">
+      <div data-rv>
         <p class="pt-no">02</p>
         <h2>개인카페의 자유</h2>
         <p class="pt-line">메뉴와 매장 분위기는 점장님이 정합니다.</p>
       </div>
-      <ol class="pt-map" data-aos="fade-up"><li><a href="#part1"><b>01</b>시스템</a></li><li class="on"><a href="#part2"><b>02</b>자유</a></li><li><a href="#part3"><b>03</b>모델과 비용</a></li><li><a href="#part4"><b>04</b>시작하기</a></li></ol>
+      <ol class="pt-map" data-rv><li><a href="#part1"><b>01</b>시스템</a></li><li class="on"><a href="#part2"><b>02</b>자유</a></li><li><a href="#part3"><b>03</b>모델과 비용</a></li><li><a href="#part4"><b>04</b>시작하기</a></li></ol>
     </div>
   </section>
 
   <!-- 2-1 맞춤 운영 -->
   <section class="sec">
     <div class="wrap">
-      <div class="head" data-aos="fade-up">
+      <div class="head">
         <div>
           <p class="eyebrow"><span>2-1</span>맞춤 운영</p>
-          <h2 class="h2">정해진 틀 없이,<br>내 매장에 맞게 짭니다</h2>
+          <h2 class="h2" data-lines>정해진 틀 없이,<br>내 매장에 맞게 짭니다</h2>
         </div>
         <p class="lead">평수가 다르고 상권이 다르면 잘 되는 구성도 다릅니다. 도프커피는 매장 패키지를 하나로 고정하지 않고, 상권과 평수에 맞춰 같이 정합니다.</p>
       </div>
-      <ul class="points" data-aos="fade-up">
+      <ul class="points" data-rv>
         <li><h3>평수에 맞춰<br>메뉴 수를 정합니다</h3><p>작은 매장은 가볍게, 넓은 매장은 넉넉하게 구성합니다.</p></li>
         <li><h3>상권에 맞춰<br>판매 구성을 정합니다</h3><p>오피스, 주택가, 대학가처럼 손님이 다르면 잘 팔리는 구성도 다릅니다.</p></li>
         <li><h3>점장님의 색깔을<br>매장에 담습니다</h3><p>매장마다 점장님을 닮은 캐릭터를 만들어 드립니다.</p></li>
       </ul>
 
-      <div class="subhead" data-aos="fade-up">
+      <div class="subhead" data-rv>
         <h3>합리적인 커피부터<br>스페셜티까지</h3>
         <p class="lead">부담 없이 마시는 커피부터 스페셜티까지 메뉴 폭이 넓어서, 상권에 맞는 구성을 고를 수 있습니다.</p>
       </div>
-      <div class="menus" data-aos="fade-up">
+      <div class="menus" data-rv>
         <figure><div class="img" style="background:#E5E4E9"><img src="img/fran/fr05_1.jpg" alt="아메리카노 블랙" loading="lazy"></div><figcaption>합리적인 커피</figcaption></figure>
         <figure><div class="img" style="background:#E7E7E7"><img src="img/fran/fr05_2.jpg" alt="도프오렌지" loading="lazy"></div><figcaption>시그니처</figcaption></figure>
         <figure><div class="ph">스페셜티 메뉴 사진</div><figcaption>스페셜티</figcaption></figure>
       </div>
 
-      <div class="subhead" data-aos="fade-up">
+      <div class="subhead" data-rv>
         <h3>메뉴 구성도 고릅니다</h3>
       </div>
-      <div class="plans" data-aos="fade-up">
-        <div class="plan"><div class="tags"><i class="on">COFFEE</i><i>DESSERT</i><i>ICECREAM</i></div><h4>커피만</h4><p>작은 평수에서 빠르게 운영하는 구성입니다.</p></div>
-        <div class="plan"><div class="tags"><i class="on">COFFEE</i><i class="on">DESSERT</i><i>ICECREAM</i></div><h4>커피 + 디저트</h4><p>머무는 손님이 많은 매장에 맞는 구성입니다.</p></div>
-        <div class="plan"><div class="tags"><i class="on">COFFEE</i><i class="on">DESSERT</i><i class="on">ICECREAM</i></div><h4>커피 + 디저트 + 아이스크림</h4><p>평수가 넉넉하고 가족 단위 손님이 오는 상권에 맞는 구성입니다.</p></div>
+      <div class="plans" data-stagger>
+        <div class="plan"><svg class="iso" data-plan="COFFEE" role="img" aria-label="COFFEE 장비가 놓인 카운터"></svg><div class="tags"><i class="on">COFFEE</i><i>DESSERT</i><i>ICECREAM</i></div><h4>커피만</h4><p>작은 평수에서 빠르게 운영하는 구성입니다.</p></div>
+        <div class="plan"><svg class="iso" data-plan="COFFEE DESSERT" role="img" aria-label="COFFEE, DESSERT 장비가 놓인 카운터"></svg><div class="tags"><i class="on">COFFEE</i><i class="on">DESSERT</i><i>ICECREAM</i></div><h4>커피 + 디저트</h4><p>머무는 손님이 많은 매장에 맞는 구성입니다.</p></div>
+        <div class="plan"><svg class="iso" data-plan="COFFEE DESSERT ICECREAM" role="img" aria-label="COFFEE, DESSERT, ICECREAM 장비가 놓인 카운터"></svg><div class="tags"><i class="on">COFFEE</i><i class="on">DESSERT</i><i class="on">ICECREAM</i></div><h4>커피 + 디저트 + 아이스크림</h4><p>평수가 넉넉하고 가족 단위 손님이 오는 상권에 맞는 구성입니다.</p></div>
       </div>
 
-      <div class="subhead" data-aos="fade-up">
+      <div class="subhead" data-rv>
         <h3>정해두는 것과 자유로운 것</h3>
       </div>
-      <div class="split" data-aos="fade-up">
+      <div class="split" data-rv>
         <div class="hq">
           <h4>본사가 기준을 정하는 것</h4>
           <ul>
@@ -559,22 +634,22 @@ html{scroll-behavior:smooth}
   </section>
 
   <!-- 2-2 점장 이야기 -->
-  <section id="ownerStory" class="sec ivory">
+  <section id="ownerStory" class="sec mist">
     <div class="wrap">
       <div class="story">
-        <div data-aos="fade-up">
+        <div data-rv>
           <p class="eyebrow"><span>2-2</span>점장 이야기</p>
-          <h2 class="h2">점장님마다<br>캐릭터와 색깔이 생깁니다</h2>
+          <h2 class="h2" data-lines>점장님마다<br>캐릭터와 색깔이 생깁니다</h2>
           <p class="lead">간판과 컵, 인테리어는 모든 매장이 같은 도프커피로 보이게 통일합니다. 대신 매장마다 점장님을 닮은 동물 캐릭터를 하나씩 만들어 드립니다. 대표 캐릭터는 모자 쓰고 안경 쓴 미어캣입니다.</p>
         </div>
-        <div class="chars" data-aos="fade-up">
+        <div class="chars" data-rv>
           <div class="ph">대표 캐릭터<br>미어캣</div>
           <div class="ph">점장 캐릭터 1</div>
           <div class="ph">점장 캐릭터 2</div>
           <div class="ph">점장 캐릭터 3</div>
         </div>
       </div>
-      <div class="interview" data-aos="fade-up">
+      <div class="interview" data-rv>
         <div class="ph">직영 점장님 사진</div>
         <div class="qa">
           <h3>점장님 인터뷰</h3>
@@ -589,29 +664,30 @@ html{scroll-behavior:smooth}
   </section>
 
   <!-- PART 03 -->
-  <section id="part3" class="part">
+  <section id="part3" class="part" data-drift>
+    <p class="word" aria-hidden="true">PART 03</p>
     <div class="wrap">
-      <div data-aos="fade-up">
+      <div data-rv>
         <p class="pt-no">03</p>
         <h2>나에게 맞는 모델과 비용</h2>
         <p class="pt-line">상담 전에 궁금한 것부터 공개합니다.</p>
       </div>
-      <ol class="pt-map" data-aos="fade-up"><li><a href="#part1"><b>01</b>시스템</a></li><li><a href="#part2"><b>02</b>자유</a></li><li class="on"><a href="#part3"><b>03</b>모델과 비용</a></li><li><a href="#part4"><b>04</b>시작하기</a></li></ol>
+      <ol class="pt-map" data-rv><li><a href="#part1"><b>01</b>시스템</a></li><li><a href="#part2"><b>02</b>자유</a></li><li class="on"><a href="#part3"><b>03</b>모델과 비용</a></li><li><a href="#part4"><b>04</b>시작하기</a></li></ol>
     </div>
   </section>
 
   <!-- 3-1 가맹 모델 -->
-  <section class="sec ivory">
+  <section class="sec mist">
     <div class="wrap">
-      <div class="head solo" data-aos="fade-up">
+      <div class="head solo">
         <div>
           <p class="eyebrow"><span>3-1</span>가맹 모델</p>
-          <h2 class="h2">어떻게 여느냐에 따라<br>세 가지 길이 있습니다</h2>
+          <h2 class="h2" data-lines>어떻게 여느냐에 따라<br>세 가지 길이 있습니다</h2>
         </div>
       </div>
       <div class="models">
-        <article class="model" data-aos="fade-up">
-          <div class="img"><img src="img/fran/fr02_3.jpg" alt="DOPE STORE 매장" loading="lazy"></div>
+        <article class="model" data-rv>
+          <div class="mplan"><svg class="iso" data-model-plan="store" role="img" aria-label="독립 매장: 벽면 사인, 슬랫 카운터, 좌석"></svg></div>
           <div class="body">
             <p class="name">DOPE STORE</p>
             <p class="one">일반 상권에 여는 도프커피 매장</p>
@@ -620,11 +696,11 @@ html{scroll-behavior:smooth}
               <div><dt>이런 분께</dt><dd>독립된 매장을 운영하고 싶은 분</dd></div>
               <div><dt>초기 비용</dt><dd><span class="slot">금액</span></dd></div>
             </dl>
-            <a class="btn line" href="#franTab04" data-model="DOPE STORE">STORE 문의</a>
+            <a class="btn" href="#franTab04" data-model="DOPE STORE">STORE 문의<i></i></a>
           </div>
         </article>
-        <article class="model" data-aos="fade-up" data-aos-delay="80">
-          <div class="img"><img src="img/area_5.jpg" alt="건물 안에 들어간 도프커피 카운터" loading="lazy"></div>
+        <article class="model" data-rv>
+          <div class="mplan"><svg class="iso" data-model-plan="spot" role="img" aria-label="캡슐토이 매장 같은 공간 안에 들어간 작은 도프커피 카운터"></svg></div>
           <div class="body">
             <p class="name">DOPE SPOT</p>
             <p class="one">사람이 모이는 공간 안에 들어가는 도프커피</p>
@@ -633,11 +709,11 @@ html{scroll-behavior:smooth}
               <div><dt>이런 분께</dt><dd>운영 중인 공간에 커피를 더하고 싶은 분</dd></div>
               <div><dt>초기 비용</dt><dd><span class="slot">금액</span></dd></div>
             </dl>
-            <a class="btn line" href="#franTab04" data-model="DOPE SPOT">SPOT 문의</a>
+            <a class="btn" href="#franTab04" data-model="DOPE SPOT">SPOT 문의<i></i></a>
           </div>
         </article>
-        <article class="model" data-aos="fade-up" data-aos-delay="160">
-          <div class="ph">업종변경 전후 사진</div>
+        <article class="model" data-rv>
+          <div class="mplan"><svg class="iso" data-model-plan="convert" role="img" aria-label="기존 매장의 벽과 좌석은 두고 도프커피 카운터와 사인만 더한 모습"></svg></div>
           <div class="body">
             <p class="name">업종변경</p>
             <p class="one">운영 중인 매장을 도프커피로 바꾸는 방식</p>
@@ -646,12 +722,12 @@ html{scroll-behavior:smooth}
               <div><dt>이런 분께</dt><dd>이미 매장이 있고 인테리어 비용을 줄이고 싶은 분</dd></div>
               <div><dt>초기 비용</dt><dd><span class="slot">금액</span></dd></div>
             </dl>
-            <a class="btn line" href="#franTab04" data-model="업종변경">업종변경 문의</a>
+            <a class="btn" href="#franTab04" data-model="업종변경">업종변경 문의<i></i></a>
           </div>
         </article>
       </div>
 
-      <div class="banner" data-aos="fade-up">
+      <div class="banner" data-rv>
         <div>
           <h3>이미 있는 매장,<br>다시 갈아엎지 않아도 됩니다</h3>
           <p>업종을 바꿀 때 가장 부담되는 건 인테리어입니다. 도프커피는 기존 인테리어를 살려서 도프커피의 분위기를 입히는 방식으로 비용과 공사 기간을 줄입니다.</p>
@@ -665,16 +741,18 @@ html{scroll-behavior:smooth}
   </section>
 
   <!-- 3-2 창업 비용 -->
-  <section id="franTab03" class="sec">
+  <section id="franTab03" class="sec silverbg">
     <div class="wrap aside">
-      <div class="side" data-aos="fade-up">
+      <div class="side" data-rv>
         <p class="eyebrow"><span>3-2</span>창업 비용</p>
-        <h2 class="h2">창업 비용을<br>먼저 보여드립니다</h2>
+        <h2 class="h2" data-lines>창업 비용을<br>먼저 보여드립니다</h2>
         <p class="lead">상담 전에 궁금한 것부터 공개합니다. 평수와 상권에 따라 달라지는 항목은 따로 표시했습니다.</p>
-        <div class="btns"><a class="btn fill" href="#franTab04">내 평수로 견적 받기</a></div>
+        <div class="btns"><a class="btn navy" href="#franTab04">내 평수로 견적 받기<i></i></a></div>
       </div>
-      <div data-aos="fade-up">
-        <div class="ptable">
+      <div data-rv>
+        <div class="receipt">
+          <div class="rhead"><b>DPC STARTUP COST</b><span>가맹 창업 비용표</span></div>
+          <div class="ptable" data-stagger>
           <div class="th"><span>항목</span><span>금액</span></div>
           <div class="row"><b>가맹비</b><span class="slot">금액</span></div>
           <div class="row"><b>교육비</b><span class="slot">금액</span></div>
@@ -686,20 +764,22 @@ html{scroll-behavior:smooth}
           <div class="row"><b>시스템(포스 등)</b><span class="slot">금액</span></div>
           <div class="row"><b>로열티</b><span class="slot">월 금액</span><small>월 기준입니다</small></div>
         </div>
+          <div class="rfoot"><span>평수와 상권에 따라 달라지는 항목은 상담에서 확정합니다</span><b>TOTAL <span class="slot">합계</span></b></div>
+        </div>
         <p class="note">기본 비용에 포함되지 않는 항목(철거, 전기 증설, 소방 설비 등 <span class="slot">해당 항목 확인</span>)도 함께 적습니다. 매장 상황에 따라 달라질 수 있습니다.</p>
       </div>
     </div>
   </section>
 
   <!-- 3-3 직영 실적 -->
-  <section class="sec ivory">
+  <section class="sec mist">
     <div class="wrap aside">
-      <div class="side" data-aos="fade-up">
+      <div class="side" data-rv>
         <p class="eyebrow"><span>3-3</span>직영 실적</p>
-        <h2 class="h2">직영점 기준으로,<br>이렇게 남습니다</h2>
+        <h2 class="h2" data-lines>직영점 기준으로,<br>이렇게 남습니다</h2>
         <p class="note">직영 8개점의 <span class="slot">기간</span> 평균 기준입니다. 매장 상황에 따라 달라지며 수익을 보장하는 것은 아닙니다.</p>
       </div>
-      <div class="ltable" data-aos="fade-up">
+      <div class="ltable" data-rv>
         <div class="r th"><span>항목</span><span>금액</span><span>비율</span></div>
         <div class="r"><span>월 매출</span><span class="slot">금액</span><span>100%</span></div>
         <div class="r"><span>재료비</span><span class="slot">금액</span><span class="slot">비율</span></div>
@@ -712,67 +792,72 @@ html{scroll-behavior:smooth}
   </section>
 
   <!-- PART 04 -->
-  <section id="part4" class="part">
+  <section id="part4" class="part" data-drift>
+    <p class="word" aria-hidden="true">PART 04</p>
     <div class="wrap">
-      <div data-aos="fade-up">
+      <div data-rv>
         <p class="pt-no">04</p>
         <h2>문의부터 오픈까지</h2>
         <p class="pt-line">단계마다 무엇을 하는지 먼저 알려드립니다.</p>
       </div>
-      <ol class="pt-map" data-aos="fade-up"><li><a href="#part1"><b>01</b>시스템</a></li><li><a href="#part2"><b>02</b>자유</a></li><li><a href="#part3"><b>03</b>모델과 비용</a></li><li class="on"><a href="#part4"><b>04</b>시작하기</a></li></ol>
+      <ol class="pt-map" data-rv><li><a href="#part1"><b>01</b>시스템</a></li><li><a href="#part2"><b>02</b>자유</a></li><li><a href="#part3"><b>03</b>모델과 비용</a></li><li class="on"><a href="#part4"><b>04</b>시작하기</a></li></ol>
     </div>
   </section>
 
   <!-- 4-1 창업 절차 -->
   <section id="franTab02" class="sec">
     <div class="wrap">
-      <div class="head" data-aos="fade-up">
+      <div class="head">
         <div>
           <p class="eyebrow"><span>4-1</span>창업 절차</p>
-          <h2 class="h2">문의부터 오픈까지</h2>
+          <h2 class="h2" data-lines>문의부터 오픈까지</h2>
         </div>
         <p class="lead">총 <span class="slot">기간</span> 안팎으로 진행됩니다. 단계마다 무엇을 하는지 먼저 알려드립니다.</p>
       </div>
-      <ol class="flow" data-aos="fade-up">
-        <li><span class="n">01</span><h3>가맹 문의 접수</h3></li>
-        <li><span class="n">02</span><h3>상담</h3><p>희망 지역, 매장 형태, 평수 확인</p></li>
-        <li><span class="n">03</span><h3>입지·상권 검토</h3></li>
-        <li class="hot"><span class="n">04</span><h3>모델과 메뉴 구성 결정</h3><p>STORE, SPOT, 업종변경 선택</p></li>
-        <li><span class="n">05</span><h3>계약</h3></li>
-        <li><span class="n">06</span><h3>인테리어 시공,<br>캐릭터 제작</h3><p>업종변경은 기존 인테리어 활용</p></li>
-        <li><span class="n">07</span><h3>점장 교육</h3></li>
-        <li><span class="n">08</span><h3>오픈</h3></li>
+      <ol class="flow" data-scrub>
+        <li data-step><span class="n">01</span><h3>가맹 문의 접수</h3></li>
+        <li data-step><span class="n">02</span><h3>상담</h3><p>희망 지역, 매장 형태, 평수 확인</p></li>
+        <li data-step><span class="n">03</span><h3>입지·상권 검토</h3></li>
+        <li class="hot" data-step><span class="n">04</span><h3>모델과 메뉴 구성 결정</h3><p>STORE, SPOT, 업종변경 선택</p></li>
+        <li data-step><span class="n">05</span><h3>계약</h3></li>
+        <li data-step><span class="n">06</span><h3>인테리어 시공,<br>캐릭터 제작</h3><p>업종변경은 기존 인테리어 활용</p></li>
+        <li data-step><span class="n">07</span><h3>점장 교육</h3></li>
+        <li data-step><span class="n">08</span><h3>오픈</h3></li>
       </ol>
       <p class="note" style="margin-top:56px">단계별 예상 기간 <span class="slot">입력 예정</span>을 각 단계 옆에 붙입니다.</p>
     </div>
   </section>
 
-  <!-- 4-2 오픈 가능 지역 -->
-  <section class="sec ivory">
-    <div class="wrap aside">
-      <div class="side" data-aos="fade-up">
-        <p class="eyebrow"><span>4-2</span>오픈 가능 지역</p>
-        <h2 class="h2">내 지역에 아직<br>자리가 있는지 확인하세요</h2>
-        <ul class="legend">
-          <li><i style="background:var(--ink)"></i>운영 중</li>
-          <li><i style="background:#B4C4D9"></i>오픈 예정</li>
-          <li><i style="background:var(--blue)"></i>오픈 가능</li>
+  <!-- 4-2 오픈 가능 지역: 직영 매장 지도 (js/stores-data.js 위치) -->
+  <section id="area" class="sec mist">
+    <div class="wrap mapgrid">
+      <div class="side">
+        <p class="eyebrow" data-rv><span>4-2</span>오픈 가능 지역</p>
+        <h2 class="h2" data-lines>내 지역에 아직<br>자리가 있는지 확인하세요</h2>
+        <p class="lead rv">지금 운영 중인 직영점 위치입니다. 오픈 예정·오픈 가능 지역은 상담에서 안내합니다.</p>
+        <ul class="legend" data-rv>
+          <li><i class="op"></i>운영 중<b data-map-count></b></li>
+          <li><i class="soon"></i>오픈 예정<span class="slot">입력 예정</span></li>
+          <li><i class="can"></i>오픈 가능<span class="slot">입력 예정</span></li>
         </ul>
         <p class="note">근접 출점 제한 기준 <span class="slot">정책</span>이 있으면 "같은 상권에서는 <span class="slot">거리</span>m 안에 두 번째 매장을 열지 않습니다"처럼 구체적으로 적습니다.</p>
-        <div class="btns"><a class="btn fill" href="#franTab04">이 지역 문의하기</a></div>
+        <div class="btns"><a class="btn navy" href="#franTab04">이 지역 문의하기<i></i></a></div>
       </div>
-      <div class="ph map" data-aos="fade-up">지역별 현황 지도<br>지역마다 세 가지 상태로 표시</div>
+      <div class="mapbox" data-rv>
+        <svg class="smap" data-store-map role="img" aria-label="서울 지도 위 도프커피 직영 매장 위치"></svg>
+        <ol class="mlist" data-map-list></ol>
+      </div>
     </div>
   </section>
 
   <!-- 4-3 자주 묻는 질문 -->
   <section class="sec">
     <div class="wrap aside">
-      <div class="side" data-aos="fade-up">
+      <div class="side" data-rv>
         <p class="eyebrow"><span>4-3</span>자주 묻는 질문</p>
-        <h2 class="h2">문의하기 전에<br>많이 묻는 것들</h2>
+        <h2 class="h2" data-lines>문의하기 전에<br>많이 묻는 것들</h2>
       </div>
-      <div class="faq" data-aos="fade-up">
+      <div class="faq" data-rv>
         <details><summary>점포가 아직 없어도 문의할 수 있나요?<i></i></summary><p class="a">네. 입지와 상권 검토부터 같이 합니다.</p></details>
         <details><summary>카페 경험이 없어도 되나요?<i></i></summary><p class="a">점장 교육에서 커피, 메뉴, 매장 운영을 가르칩니다. <span class="slot">교육 기간</span></p></details>
         <details><summary>개인카페를 운영 중인데 도프커피로 바꿀 수 있나요?<i></i></summary><p class="a">상담에서 먼저 확인합니다. 운영 방식과 메뉴 구성은 점장님이 정하는 부분이 넓습니다. <span class="slot">허용 범위</span></p></details>
@@ -786,18 +871,18 @@ html{scroll-behavior:smooth}
   </section>
 
   <!-- 4-4 가맹 문의 -->
-  <section id="franTab04" class="sec navy">
+  <section id="franTab04" class="sec dark">
     <div class="wrap inq">
-      <div class="side" data-aos="fade-up">
+      <div class="side" data-rv>
         <p class="eyebrow"><span>4-4</span>가맹 문의</p>
-        <h2 class="h2">내 매장에 맞는 구성부터<br>이야기해 봅니다</h2>
+        <h2 class="h2" data-lines>내 매장에 맞는 구성부터<br>이야기해 봅니다</h2>
         <p class="lead">아직 자리를 정하지 않으셔도 괜찮습니다. 남겨주시면 확인 후 순차적으로 연락드립니다.</p>
         <div class="call">
           <b>담당자가 직접 전화드립니다</b>
           <p>바로 통화를 원하시면 <span class="slot">연락처</span> 평일 <span class="slot">시간</span></p>
         </div>
       </div>
-      <div class="formbox" data-aos="fade-up">
+      <div class="formbox" data-rv>
         <form novalidate>
           <div class="row">
             <div class="fld"><label for="f-name">이름<em>*</em></label><input id="f-name" type="text" name="name" autocomplete="name" placeholder="홍길동"></div>
@@ -856,7 +941,7 @@ html{scroll-behavior:smooth}
 ■ 수집 항목: 이름, 연락처, 상황, 희망 지역, 예상 평수, 점포 유무, 현재 업종, 관심 모델, 희망 메뉴 구성, 상담 가능 시간, 문의 내용
 ■ 보유 및 이용 기간:</textarea>
           </div>
-          <button class="btn fill" type="submit">가맹 문의 보내기</button>
+          <button class="btn navy" type="submit">가맹 문의 보내기<i></i></button>
         </form>
         <div class="done" aria-live="polite">
           <h3>문의가 접수되었습니다.</h3>
@@ -871,7 +956,7 @@ html{scroll-behavior:smooth}
 <!-- ============ FOOTER (헤더·푸터는 js/common.js에서 생성) ============ -->
 <footer id="footer"></footer>
 
-<div class="fab off"><a class="btn" href="#franTab04">가맹 문의하기</a></div>
+<div class="fab off"><a class="btn navy" href="#franTab04">가맹 문의하기<i></i></a></div>
 
 <!-- 가맹 페이지는 원형 플로팅 대신 하단 고정 버튼(.fab)을 씁니다 -->
 <ul id="floating" hidden>
@@ -882,9 +967,17 @@ html{scroll-behavior:smooth}
 
 <div class="toast" role="status"></div>
 
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="js/stores-data.js?v=map1"></script>
 <script src="js/common.js?v=brand4"></script>
+<script src="js/store-iso.js?v=iso8"></script>
+<script src="js/page-iso.js?v=p9"></script>
 <script>
+/* ---------- 4-2 직영 매장 목록 (지도 핀과 번호가 같음) ---------- */
+document.querySelector('[data-map-count]').textContent = `${STORES.length}곳`;
+document.querySelector('[data-map-list]').innerHTML = STORES.map((st, i) => `
+  <li data-map-i="${i}"><span class="n">${String(i + 1).padStart(2, '0')}</span><b>${esc(st.name)}</b><span class="gu">${esc(st.addr.split(' ').slice(1, 2).join(''))}</span>
+  <a href="https://map.naver.com/p/search/${encodeURIComponent('도프커피 ' + st.name)}" target="_blank" rel="noopener">지도</a></li>`).join('');
+
 /* ---------- 가맹 문의 폼 ---------- */
 const box = document.querySelector('.formbox');
 const form = box.querySelector('form');
@@ -952,7 +1045,7 @@ const io = new IntersectionObserver(es => {
 }, { threshold: 0.12 });
 ['franTab01', 'franTab04'].forEach(id => io.observe(document.getElementById(id)));
 
-AOS.init({ once: true, duration: 700, offset: 60, easing: 'ease-out-cubic' });
 </script>
+<script src="js/main-motion.js?v=m2"></script>
 </body>
 </html>

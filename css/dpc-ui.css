@@ -1,0 +1,108 @@
+/* ---------- 도프커피 이야기·가맹안내 공통 (메인과 같은 네이비 + 실버그레이 체계) ----------
+   main.ui 아래에서만 적용. 모션은 js/main-motion.js가 .in / --p / --x 를 붙여 준다 */
+#wrap{overflow:clip}
+html{scroll-behavior:smooth}
+.ui,.fab{--arrow:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14M13 6l6 6-6 6'/%3E%3C/svg%3E");
+  --navy:#0E1A30;--navy2:#16253F;--navy3:#22355A;--blue:#2E4B74;--silver:#B9C0C9;--silver2:#8E97A3;--mist:#EEF0F3;--line:#DDE1E6;--ink:#0E1A30;--mute:#5B6474;
+  --en:'Red Hat Display',Pretendard,sans-serif;--out:cubic-bezier(.2,.75,.2,1);--io:cubic-bezier(.7,0,.2,1);}
+.ui{padding-top:76px;color:var(--ink);letter-spacing:-.015em;background:#fff}
+.ui [id]{scroll-margin-top:76px}
+.ui .wrap{max-width:1280px;margin:0 auto;padding:0 40px}
+.ui .sec{padding:150px 0}
+.ui .mist{background:var(--mist)}
+.ui .silverbg{background:linear-gradient(180deg,#E6E9ED 0%,#D6DAE0 100%)}
+.ui .dark{background:var(--navy);color:#fff}
+
+/* 글자 */
+.ui .pill{display:inline-flex;align-items:center;gap:8px;height:30px;padding:0 16px;border-radius:100px;background:var(--navy);color:#fff;font-family:var(--en);font-size:12px;font-weight:700;letter-spacing:.14em;white-space:nowrap}
+.ui .pill b{font-weight:800;color:var(--silver)}
+.ui .dark .pill{background:#fff;color:var(--navy)}
+.ui .dark .pill b{color:var(--silver2)}
+.ui .h2{margin-top:24px;font-size:48px;font-weight:700;line-height:1.26;letter-spacing:-.05em;word-break:keep-all}
+.ui .sub{font-size:18px;font-weight:500;line-height:1.75;color:var(--mute);word-break:keep-all}
+.ui .dark .sub{color:var(--silver)}
+.ui .note{margin-top:24px;font-size:14px;font-weight:500;line-height:1.75;color:var(--silver2);word-break:keep-all}
+.ui .silver{background:linear-gradient(180deg,#FFFFFF 0%,#D5DAE0 50%,#8E97A3 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.ui .outline{color:transparent;-webkit-text-stroke:1px #A9B1BB;transition:color .45s,-webkit-text-stroke-color .45s}
+.ui .slot{display:inline-block;padding:0 2px;border-bottom:1px dashed #AEB5BF;color:#8E97A3;font-size:.9em;font-weight:500;line-height:1.5;white-space:nowrap}
+.ui .dark .slot{border-color:rgba(255,255,255,.35);color:rgba(255,255,255,.55)}
+.ui .head{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:24px 80px;align-items:end;margin-bottom:80px}
+.ui .head .sub{max-width:480px}
+.ui .head.solo{grid-template-columns:minmax(0,1fr)}
+.ui .head.center{display:block;max-width:780px;margin-left:auto;margin-right:auto;text-align:center}
+.ui .head.center .sub{margin-top:18px}
+.ui .word{font-family:var(--en);font-weight:800;line-height:1;letter-spacing:-.05em;white-space:nowrap;color:transparent;-webkit-text-stroke:1px rgba(14,26,48,.12);pointer-events:none}
+.ui .dark .word{-webkit-text-stroke-color:rgba(185,192,201,.16)}
+.ui .ph{display:flex;align-items:center;justify-content:center;padding:20px;text-align:center;color:var(--silver2);font-size:13px;font-weight:600;line-height:1.5;background:repeating-linear-gradient(135deg,#E9ECEF 0 10px,#E3E6EA 10px 20px)}
+.ui .img{position:relative;overflow:hidden;border-radius:6px;background:#dfe2e6}
+.ui .img img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--out)}
+
+/* 버튼: 메인과 같은 캡슐 + 원형 화살표 칩 */
+:is(.ui,.fab) .btn{--bg:#fff;--fg:var(--ink);--chip:var(--navy);--chipInk:#fff;--sh:0 0 0 1px rgba(14,26,48,.07),0 8px 22px -10px rgba(14,26,48,.28);--hbg:var(--bg);
+  display:inline-flex;align-items:center;justify-content:space-between;gap:16px;height:58px;padding:0 6px 0 28px;border-radius:100px;background:var(--bg);color:var(--fg);box-shadow:var(--sh);font-size:16px;font-weight:700;letter-spacing:-.01em;white-space:nowrap;cursor:pointer;transition:background .35s,color .35s,box-shadow .45s,transform .45s var(--out)}
+:is(.ui,.fab) .btn i{position:relative;flex-shrink:0;width:46px;height:46px;border-radius:50%;background:var(--chip);overflow:hidden}
+:is(.ui,.fab) .btn i::before,:is(.ui,.fab) .btn i::after{content:"";position:absolute;inset:0;background:var(--chipInk);-webkit-mask:var(--arrow) center/18px no-repeat;mask:var(--arrow) center/18px no-repeat;transition:transform .5s var(--io)}
+:is(.ui,.fab) .btn i::after{transform:translateX(-120%)}
+:is(.ui,.fab) .btn:hover{background:var(--hbg);transform:translateY(-2px);box-shadow:0 0 0 1px rgba(14,26,48,.05),0 16px 30px -12px rgba(14,26,48,.4)}
+:is(.ui,.fab) .btn:hover i::before{transform:translateX(120%)}
+:is(.ui,.fab) .btn:hover i::after{transform:none}
+:is(.ui,.fab) .btn.navy{--bg:var(--navy);--fg:#fff;--chip:#fff;--chipInk:var(--navy);--hbg:var(--navy3);--sh:0 8px 22px -10px rgba(14,26,48,.5)}
+:is(.ui,.fab) .btn.white{--fg:var(--navy);--hbg:#EEF0F3;--sh:0 8px 24px -10px rgba(0,0,0,.45)}
+:is(.ui,.fab) .btn.glass{--bg:rgba(255,255,255,.12);--fg:#fff;--chip:#fff;--chipInk:var(--navy);--hbg:rgba(255,255,255,.22);--sh:inset 0 0 0 1px rgba(255,255,255,.32);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+:is(.ui,.fab) .btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:40px}
+
+/* 나타남 */
+.ui .rv,.ui [data-rv]{opacity:0;transform:translateY(48px);transition:opacity 1s var(--out),transform 1.2s var(--out)}
+.ui .rv.in,.ui [data-rv].in{opacity:1;transform:none}
+.ui [data-lines] .ln{display:block;overflow:hidden;padding-bottom:.1em;margin-bottom:-.1em}
+.ui [data-lines] .ln>span{display:inline-block;transform:translateY(110%);transition:transform 1.15s var(--out) calc(var(--i) * .1s)}
+.ui [data-lines].in .ln>span{transform:none}
+.ui [data-letters] span{display:inline-block;transform:translateY(105%);transition:transform 1.3s var(--out) calc(.15s + var(--i) * .05s)}
+.ui [data-letters].in span{transform:none}
+.ui [data-clip]{clip-path:inset(100% 0 0 0);transition:clip-path 1.3s var(--io)}
+.ui [data-clip] img{transform:scale(1.25);transition:transform 1.9s var(--out)}
+.ui [data-clip].in{clip-path:inset(0)}
+.ui [data-clip].in img{transform:none}
+.ui [data-stagger]:not(.in)>*{opacity:0}
+.ui [data-stagger].in>*{animation:uiRise 1.1s var(--out) backwards;animation-delay:calc(var(--i) * .12s)}
+@keyframes uiRise{from{opacity:0;transform:translateY(64px)}}
+@keyframes uiSpin{to{transform:rotate(360deg)}}
+@keyframes uiPing{from{r:3.5;opacity:1}to{r:22;opacity:0}}
+
+/* 아이소 그래픽 공통 */
+.ui .iso{display:block;width:100%;height:auto;overflow:visible}
+.ui .iso .lab{opacity:0;transition:opacity .6s .9s}
+.ui .iso.in .lab{opacity:1}
+.ui .iso.in .lab .ping{animation:uiPing 1.6s ease-out 1.2s 2}
+
+/* 가로 스크롤 구간 */
+.ui [data-hscroll]{position:relative}
+.ui [data-hscroll] .stick{position:sticky;top:76px;height:calc(100vh - 76px);display:flex;flex-direction:column;justify-content:center;overflow:hidden}
+.ui [data-hscroll] .track{display:flex;gap:24px;width:max-content;padding:0 40px;transform:translateX(var(--x,0));will-change:transform}
+.ui [data-hscroll] .bar{height:2px;margin:40px 40px 0;max-width:calc(1280px - 80px);background:var(--line)}
+.ui [data-hscroll] .bar i{display:block;height:100%;background:var(--ink);transform-origin:left;transform:scaleX(var(--p,0))}
+
+@media (max-width:1280px){
+  .ui .h2{font-size:42px}
+}
+@media (max-width:1024px){
+  .ui{padding-top:52px}
+  .ui [id]{scroll-margin-top:52px}
+  .ui .wrap{padding:0 20px}
+  .ui .sec{padding:96px 0}
+  .ui .head{grid-template-columns:minmax(0,1fr);gap:16px;margin-bottom:44px}
+  .ui .h2{margin-top:18px;font-size:30px}
+  .ui .sub{font-size:15px}
+  :is(.ui,.fab) .btn{height:52px;gap:12px;padding:0 5px 0 22px;font-size:15px}
+  :is(.ui,.fab) .btn i{width:42px;height:42px}
+  :is(.ui,.fab) .btns{margin-top:28px}
+  .ui .iso .lab{display:none}
+  .ui [data-hscroll] .stick{position:static;height:auto;display:block}
+  .ui [data-hscroll] .track{overflow-x:auto;width:auto;padding:0 20px;gap:12px;scroll-snap-type:x mandatory;scrollbar-width:none;transform:none}
+  .ui [data-hscroll] .track::-webkit-scrollbar{display:none}
+  .ui [data-hscroll] .track>*{scroll-snap-align:start}
+  .ui [data-hscroll] .bar{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .ui *,.ui *::before,.ui *::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
