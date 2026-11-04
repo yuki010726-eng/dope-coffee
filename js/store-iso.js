@@ -26,6 +26,17 @@
     <linearGradient id="isoStone" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FAFAF8"/><stop offset="1" stop-color="#ECEAE6"/></linearGradient>
     <filter id="isoSoft" x="-30%" y="-60%" width="160%" height="220%"><feGaussianBlur stdDeviation="22"/></filter>
     <filter id="isoAO" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="3"/></filter>
+    <filter id="isoShadow" x="-30%" y="-60%" width="160%" height="220%"><feGaussianBlur stdDeviation="9"/></filter>
+    <linearGradient id="isoPipe" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8E97A3"/><stop offset=".3" stop-color="#F6F8FA"/><stop offset=".55" stop-color="#C9CFD6"/><stop offset="1" stop-color="#6F7884"/></linearGradient>
+    <linearGradient id="isoPipeD" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#2E343E"/><stop offset=".35" stop-color="#5A6270"/><stop offset="1" stop-color="#1B1F26"/></linearGradient>
+    <linearGradient id="isoDrum" x1="0" y1="0" x2=".5" y2="1"><stop offset="0" stop-color="#7C8590"/><stop offset=".22" stop-color="#F6F8FA"/><stop offset=".42" stop-color="#DCE1E6"/><stop offset=".78" stop-color="#A3ABB5"/><stop offset="1" stop-color="#6B7480"/></linearGradient>
+    <radialGradient id="isoDiscR" cx=".35" cy=".3" r=".85"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".45" stop-color="#D5DAE0"/><stop offset="1" stop-color="#8E97A3"/></radialGradient>
+    <linearGradient id="isoWarmF" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F3F1ED"/><stop offset="1" stop-color="#D9D5CE"/></linearGradient>
+    <linearGradient id="isoWarmR" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#D8D4CD"/><stop offset="1" stop-color="#B5B0A8"/></linearGradient>
+    <linearGradient id="isoNavyF" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2E4166"/><stop offset="1" stop-color="#111D34"/></linearGradient>
+    <linearGradient id="isoNavyRing" x1="0" y1="0" x2=".5" y2="1"><stop offset="0" stop-color="#4A6A9C"/><stop offset=".45" stop-color="#16253F"/><stop offset="1" stop-color="#0B1528"/></linearGradient>
+    <linearGradient id="isoSack" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#E6D8B6"/><stop offset=".5" stop-color="#CDB892"/><stop offset="1" stop-color="#9F8B65"/></linearGradient>
+    <radialGradient id="isoGlow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#3E5F92" stop-opacity=".5"/><stop offset="1" stop-color="#3E5F92" stop-opacity="0"/></radialGradient>
   </defs>`;
   const SHINE = 'stroke="rgba(255,255,255,.95)" stroke-width="1" stroke-linecap="round"';
 
@@ -304,9 +315,10 @@
     const { P, V, box, cyl, line, slats, panel, faceText, group, add, f } = s;
     const SL = ['#2E4B74', '#27426A'], SR = ['#223A5C', '#1D3352'];   // 슬랫 정면 / 옆면
 
-    // 바닥 그림자
-    const sc = P(4.6, 2.4, 0);
-    add(`<ellipse cx="${f(sc[0])}" cy="${f(sc[1] + 18)}" rx="${f(6.2 * U)}" ry="${f(1.5 * U)}" fill="rgba(14,26,48,.32)" filter="url(#isoSoft)"/>`);
+    // 바닥 그림자: L자 카운터 바닥 윤곽 그대로. 오른쪽 뒤로 번지는 그림자 + 바로 밑 접지 그림자
+    const foot = (g, dx, dy) => [[-g, -g], [9 + g, -g], [9 + g, 4.6 + g], [7.3 - g, 4.6 + g], [7.3 - g, 1.7 + g], [-g, 1.7 + g]].map(([x, y]) => P(x + dx, y + dy, 0));
+    s.poly(foot(.3, .55, -.2), 'rgba(14,26,48,.34)', 'filter="url(#isoShadow)"');
+    s.poly(foot(.06, 0, 0), 'rgba(14,26,48,.5)', 'filter="url(#isoAO)"');
 
     // 분해 상태 점선 가이드: 제자리 꼭짓점 → 떨어져 있는 꼭짓점
     const guides = [];

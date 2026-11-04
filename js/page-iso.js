@@ -40,6 +40,15 @@
     const p = s.P(x, y, z);
     s.add(`<text transform="matrix(${C.toFixed(4)} ${S} ${(-C).toFixed(4)} ${S} ${s.f(p[0])} ${s.f(p[1])})" text-anchor="middle" font-family="Red Hat Display, sans-serif" font-size="${size}" font-weight="${weight}" letter-spacing="2" fill="${fill}">${txt}</text>`);
   }
+  // 바닥 그림자: 바닥 윤곽(pts, x·y)을 오른쪽 뒤로 번지게 + 바로 밑 접지
+  function castShadow(s, pts, rgb = '14,26,48', k = 1) {
+    const { P, poly } = s;
+    const cx = pts.reduce((a, p) => a + p[0], 0) / pts.length, cy = pts.reduce((a, p) => a + p[1], 0) / pts.length;
+    const out = g => pts.map(([x, y]) => { const l = Math.hypot(x - cx, y - cy) || 1; return [x + (x - cx) / l * g, y + (y - cy) / l * g]; });
+    poly(out(.3).map(([x, y]) => P(x + .55, y - .2, 0)), `rgba(${rgb},${(.24 * k).toFixed(2)})`, 'filter="url(#isoShadow)"');
+    poly(out(.05).map(([x, y]) => P(x, y, 0)), `rgba(${rgb},${(.42 * k).toFixed(2)})`, 'filter="url(#isoAO)"');
+  }
+  const circlePts = (cx, cy, r) => Array.from({ length: 24 }, (_, i) => [cx + Math.cos(i / 24 * Math.PI * 2) * r, cy + Math.sin(i / 24 * Math.PI * 2) * r]);
   // 비어 있는 장비 자리
   function emptySlot(s, x, y, z, w, d, txt) {
     const { P, poly } = s;
@@ -62,51 +71,69 @@
     const U = 48, s = scene(svg, U);
     const { P, box, cyl, cone, disc, panel, faceText, line, poly, add, f } = s;
     s.ink = '#FFFFFF'; s.sub = '#B9C0C9';
-    const sc = P(1.2, 2.2, 0);
-    add(`<ellipse cx="${f(sc[0])}" cy="${f(sc[1] + 10)}" rx="${f(4.2 * U)}" ry="${f(1.2 * U)}" fill="rgba(0,0,0,.35)" filter="url(#isoSoft)"/>`);
+    const ell = (x, y, z, r, attrs) => { const p = P(x, y, z), k = r * U * Math.SQRT2; add(`<ellipse cx="${f(p[0])}" cy="${f(p[1])}" rx="${f(k * C)}" ry="${f(k * S)}" ${attrs}/>`); };
+    // 뒤에서 비추는 빛 + 바닥 그림자
+    const gl = P(1.4, 1.4, 1.4);
+    add(`<ellipse cx="${f(gl[0])}" cy="${f(gl[1])}" rx="${f(4.6 * U)}" ry="${f(3.2 * U)}" fill="url(#isoGlow)"/>`);
+    castShadow(s, [[0, 0], [3.35, 0], [3.35, 1.6], [0, 1.6]], '0,0,0', 1.4);
+    castShadow(s, circlePts(1.3, 2.95, 1.05), '0,0,0', 1.4);
+    castShadow(s, circlePts(-1.0, 2.6, .46), '0,0,0', 1.4);
     // 굴뚝 (뒤)
-    cyl(.4, .3, 1.2, .17, 2.7, 'url(#isoSteelL)', '#AEB6BF');
-    cyl(.4, .3, 3.9, .24, .12, '#2E343E', '#4A5260');
+    cyl(.4, .3, 1.2, .17, 2.7, 'url(#isoPipe)', '#AEB6BF');
+    cyl(.4, .3, 3.9, .24, .12, 'url(#isoPipeD)', '#5A6270');
     // 받침 캐비닛
-    box(0, 0, 0, 2.6, 1.6, 1.2, COL.warm);
+    box(0, 0, 0, 2.6, 1.6, 1.2, ['#FAF9F6', 'url(#isoWarmF)', 'url(#isoWarmR)']);
+    panel('y', 1.6, 0, 2.6, 0, .07, '#22272F');
     panel('y', 1.6, .08, 2.52, .95, 1.1, '#2E4B74');
-    panel('y', 1.6, .2, 1.25, .15, .82, 'rgba(14,26,48,.06)', 'stroke="rgba(14,26,48,.18)" stroke-width=".8"');
-    panel('y', 1.6, 1.35, 2.4, .15, .82, 'rgba(14,26,48,.06)', 'stroke="rgba(14,26,48,.18)" stroke-width=".8"');
-    for (let i = 0; i < 5; i++) line(P(2.6, .25, .3 + i * .1), P(2.6, 1.3, .3 + i * .1), 'stroke="rgba(14,26,48,.22)" stroke-width="1"');
+    panel('y', 1.6, .08, 2.52, 1.09, 1.1, 'rgba(255,255,255,.4)');
+    panel('y', 1.6, .2, 1.25, .15, .82, 'rgba(14,26,48,.05)', 'stroke="rgba(14,26,48,.2)" stroke-width=".8"');
+    panel('y', 1.6, 1.35, 2.4, .15, .82, 'rgba(14,26,48,.05)', 'stroke="rgba(14,26,48,.2)" stroke-width=".8"');
+    for (let i = 0; i < 5; i++) line(P(2.6, .25, .3 + i * .1), P(2.6, 1.3, .3 + i * .1), 'stroke="rgba(14,26,48,.25)" stroke-width="1"');
+    line(P(0, 1.6, 1.2), P(2.6, 1.6, 1.2), SHINE);
+    line(P(2.6, 0, 1.2), P(2.6, 1.6, 1.2), 'stroke="rgba(255,255,255,.7)" stroke-width="1"');
     // 드럼 + 앞판 + 문
-    tube(s, 'y', .1, 1.7, 1.3, 1.95, .68, 'url(#isoSteelL)', '#C3C9D0');
-    tube(s, 'y', 1.7, 1.86, 1.3, 1.95, .78, '#16253F', '#22355A');
-    disc('y', 1.861, 1.3, 1.95, .52, 'url(#isoSteelT)');
-    disc('y', 1.862, 1.3, 2.02, .2, '#4A2E22', 'stroke="#0E1A30" stroke-width="1.2"');
-    line(P(1.18, 1.862, 2.1), P(1.24, 1.862, 2.16), 'stroke="rgba(255,255,255,.6)" stroke-width="1.2" stroke-linecap="round"');
+    tube(s, 'y', .1, 1.7, 1.3, 1.95, .68, 'url(#isoDrum)', '#AEB6BF');
+    tube(s, 'y', 1.7, 1.86, 1.3, 1.95, .78, 'url(#isoNavyRing)', '#2A3B5C');
+    disc('y', 1.861, 1.3, 1.95, .76, 'none', 'stroke="rgba(255,255,255,.25)" stroke-width="1.2"');
+    disc('y', 1.861, 1.3, 1.95, .52, 'url(#isoDiscR)', 'stroke="rgba(14,26,48,.35)" stroke-width="1"');
+    disc('y', 1.862, 1.3, 1.95, .44, 'none', 'stroke="rgba(14,26,48,.16)" stroke-width="1"');
+    disc('y', 1.863, 1.3, 2.02, .2, '#4A2E22', 'stroke="#0E1A30" stroke-width="1.2"');
+    disc('y', 1.864, 1.24, 2.08, .07, 'rgba(255,255,255,.35)', 'stroke="none"');
     line(P(.95, 1.95, 1.68), P(1.65, 1.95, 1.68), 'stroke="#22272F" stroke-width="4" stroke-linecap="round"');
+    line(P(.97, 1.95, 1.7), P(1.63, 1.95, 1.7), 'stroke="rgba(255,255,255,.35)" stroke-width="1" stroke-linecap="round"');
     box(1.86, 1.86, 2.28, .3, .07, .07, COL.dark);
     // 호퍼 + 원두
-    cyl(1.3, .75, 2.58, .12, .22, '#3A414C', '#4A5260');
+    cyl(1.3, .75, 2.58, .12, .22, 'url(#isoPipeD)', '#4A5260');
     cone(1.3, .75, 2.8, .13, .36, .3, '#5A3A28', '#6E4A34');
     cone(1.3, .75, 2.8, .14, .52, .62, 'url(#isoGlass)', 'rgba(255,255,255,.12)', 'stroke="rgba(255,255,255,.85)" stroke-width="1"');
+    line(P(.9, .93, 3.34), P(1.17, .81, 2.86), 'stroke="rgba(255,255,255,.75)" stroke-width="2.2" stroke-linecap="round"');
     // 제어반
-    box(2.8, .25, 0, .55, 1.0, 2.35, COL.navy);
+    box(2.8, .25, 0, .55, 1.0, 2.35, ['#3A4C70', 'url(#isoNavyF)', '#0B1528']);
     panel('y', 1.25, 2.86, 3.29, 1.6, 2.05, '#0E1A30', 'stroke="rgba(255,255,255,.3)" stroke-width=".6"');
     faceText('y', 1.25, 3.07, 1.88, '205°C', U * .11, '#9FE3C1', 700);
     [2.95, 3.2].forEach(u => { disc('y', 1.251, u, 1.25, .1, '#F6F7F9', 'stroke="#0E1A30" stroke-width="1"'); line(P(u, 1.251, 1.25), P(u + .05, 1.251, 1.31), 'stroke="#C9473D" stroke-width="1.1"'); });
     line(P(2.8, 1.25, 2.35), P(3.35, 1.25, 2.35), SHINE);
+    line(P(3.35, 1.25, 0), P(3.35, 1.25, 2.35), 'stroke="rgba(255,255,255,.28)" stroke-width="1"');
     // 쿨링 트레이 + 원두 + 교반 막대
-    cyl(1.3, 2.95, 0, .26, .74, '#2E343E', '#4A5260');
-    cyl(1.3, 2.95, .74, 1.02, .26, 'url(#isoSteelL)', '#5A3A28');
+    cyl(1.3, 2.95, 0, .26, .74, 'url(#isoPipeD)', '#4A5260');
+    cyl(1.3, 2.95, .74, 1.02, .26, 'url(#isoPipe)', '#5A3A28');
     for (let i = 0; i < 150; i++) {
       const a = i * 2.39996, rr = Math.sqrt((i + .5) / 150) * .92, p = P(1.3 + Math.cos(a) * rr, 2.95 + Math.sin(a) * rr, 1.0);
       add(`<ellipse cx="${f(p[0])}" cy="${f(p[1])}" rx="2.4" ry="1.5" fill="${['#6E4630', '#7E5238', '#5E3A26'][i % 3]}"/>`);
+      if (i % 2 === 0) add(`<ellipse cx="${f(p[0] - .7)}" cy="${f(p[1] - .5)}" rx=".9" ry=".5" fill="rgba(255,236,210,.35)"/>`);
     }
+    ell(1.3, 2.95, 1.0, .96, 'fill="none" stroke="rgba(25,14,8,.55)" stroke-width="5"');
+    ell(1.3, 2.95, 1.0, 1.02, 'fill="none" stroke="rgba(255,255,255,.8)" stroke-width="1.6"');
     const hub = P(1.3, 2.95, 1.04);
     add(`<g class="arms"><line class="arm" x1="${f(hub[0])}" y1="${f(hub[1])}" x2="${f(hub[0])}" y2="${f(hub[1])}" stroke="#C3C9D0" stroke-width="3" stroke-linecap="round"/><line class="arm" x1="${f(hub[0])}" y1="${f(hub[1])}" x2="${f(hub[0])}" y2="${f(hub[1])}" stroke="#C3C9D0" stroke-width="3" stroke-linecap="round"/></g>`);
-    cyl(1.3, 2.95, 1.0, .08, .14, '#22272F', '#3A414C');
+    cyl(1.3, 2.95, 1.0, .08, .14, 'url(#isoPipeD)', '#3A414C');
     // 배출 슈트
     poly([P(1.12, 1.86, 1.42), P(1.48, 1.86, 1.42), P(1.6, 2.35, 1.08), P(1.0, 2.35, 1.08)], 'url(#isoSteelT)');
+    line(P(1.48, 1.86, 1.42), P(1.6, 2.35, 1.08), SHINE);
     // 생두 자루
-    s.shadow(-1.45, 2.15, 0, .9, .9);
-    cone(-1.0, 2.6, 0, .44, .38, .66, '#CDB892', '#BCA67E');
-    cone(-1.0, 2.6, .66, .32, .07, .22, '#C2AD86', null);
+    cone(-1.0, 2.6, 0, .44, .38, .66, 'url(#isoSack)', '#BCA67E');
+    cone(-1.0, 2.6, .66, .32, .07, .22, 'url(#isoSack)', null);
+    ell(-1.0, 2.6, .7, .24, 'fill="none" stroke="#7A6A4C" stroke-width="2"');
     [[-.3, 3.3], [-.15, 3.45], [-.4, 3.55], [-.05, 3.25]].forEach(([x, y]) => { const p = P(x, y, 0); add(`<ellipse cx="${f(p[0])}" cy="${f(p[1])}" rx="3" ry="1.8" fill="#9BA86A"/>`); });
     // 김
     const top = P(.4, .3, 4.1);
@@ -180,8 +207,7 @@
   function plan(svg) {
     const on = new Set(svg.dataset.plan.split(/\s+/)), U = 22, s = scene(svg, U), Z = 2.16;
     const { P } = s;
-    const sh = P(3.5, 1.4, 0);
-    s.add(`<ellipse cx="${s.f(sh[0])}" cy="${s.f(sh[1] + 8)}" rx="${s.f(4.6 * U)}" ry="${s.f(.9 * U)}" fill="rgba(14,26,48,.25)" filter="url(#isoSoft)"/>`);
+    castShadow(s, [[0, 0], [7.1, 0], [7.1, 1.6], [0, 1.6]]);
     counter(s, 0, 0, 7.1, 1.6, Z);
     s.group('class="eqs"', () => {
       if (on.has('DESSERT')) showcase(s, .25, .15, Z + .16); else emptySlot(s, .25, .15, Z + .16, 2.5, 1.25, 'DESSERT');
@@ -254,8 +280,7 @@
     const { P, box, cyl, cone, panel, faceText, line, group, add, f } = s;
     s.ink = '#FFFFFF'; s.sub = '#B9C0C9';
     const step = (d, draw) => group(`class="k" style="--d:${d}s"`, draw);
-    const sc = P(3.6, 2.8, 0);
-    add(`<ellipse cx="${f(sc[0])}" cy="${f(sc[1] + 14)}" rx="${f(5.4 * U)}" ry="${f(1.6 * U)}" fill="rgba(0,0,0,.4)" filter="url(#isoSoft)"/>`);
+    castShadow(s, [[0, 0], [7.2, 0], [7.2, 5.4], [0, 5.4]], '0,0,0', 1.5);
     step(0, () => {                                                                      // 바닥
       box(0, 0, 0, 7.2, 5.4, .16, ['#ECEAE6', '#D9D6D0', '#C9C5BE']);
       for (let i = .9; i < 7.2; i += .9) line(P(i, 0, .16), P(i, 5.4, .16), 'stroke="rgba(14,26,48,.07)"');
@@ -297,15 +322,7 @@
       const g = P(x, 1.3, 2.1);
       add(`<ellipse cx="${f(g[0])}" cy="${f(g[1])}" rx="7" ry="4" fill="#FFF3D6"/>`);
     }));
-    const modelBox = s.bounds();
-    label(s, [2.2, .16, 2.75], [-160, -150], 'Sign', '브랜드 사인 · 메뉴보드', 'class="lab"');
-    label(s, [3.0, 1.85, .7], [-200, 140], 'Slat Counter', '딥블루 슬랫 카운터', 'class="lab"');
-    label(s, [2.0, .9, 2.25], [130, -120], 'Machine Set', '에스프레소 · 그라인더 · 쇼케이스', 'class="lab"');
-    label(s, [5.9, 4.4, .95], [190, 80], 'Seating', '우드 좌석', 'class="lab"');
     s.finish(16);
-    const fullBox = svg.getAttribute('viewBox');
-    const fit = () => svg.setAttribute('viewBox', innerWidth <= 1024 ? s.viewBox(modelBox, 10) : fullBox);
-    fit(); addEventListener('resize', fit);
     onView(svg, () => svg.classList.add('in'), .2);
   }
 

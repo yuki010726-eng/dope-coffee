@@ -35,6 +35,7 @@
 .mw .slot{display:inline-block;padding:0 2px;border-bottom:1px dashed #AEB5BF;color:#8E97A3;font-size:.9em;font-weight:500;line-height:1.5;white-space:nowrap}
 .mw .head{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:24px 80px;align-items:end;margin-bottom:80px}
 .mw .head .sub{max-width:460px}
+.mw .head .end{justify-self:end}
 .mw .head.center{display:block;max-width:780px;margin-left:auto;margin-right:auto;text-align:center}
 .mw .head.center .sub{max-width:none;margin-top:18px}
 
@@ -69,20 +70,20 @@
 @keyframes rise{from{opacity:0;transform:translateY(64px)}}
 
 /* ---------- 01 첫 화면 ---------- */
-.mw .hero{position:relative;height:calc(100vh - 76px);min-height:640px;overflow:hidden;background:var(--navy);color:#fff}
+.mw .hero{position:relative;height:calc(100vh - 76px);min-height:680px;overflow:hidden;background:var(--navy);color:#fff}
 .mw .hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(calc(1.03 + var(--hp,0) * .16));will-change:transform}
-.mw .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,26,48,.5) 0%,rgba(14,26,48,.32) 30%,rgba(14,26,48,.5) 58%,rgba(14,26,48,.97) 100%)}
-.mw .hero .top{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;gap:40px;max-width:1280px;margin:0 auto;padding:29vh 40px 0;opacity:calc(1 - var(--hp,0) * 1.8);transform:translateY(calc(var(--hp,0) * -90px))}
-.mw .hero .k{font-family:var(--en);font-size:13px;font-weight:700;letter-spacing:.22em;color:var(--silver)}
-.mw .hero .tag{margin-top:16px;font-size:30px;font-weight:600;line-height:1.45;letter-spacing:-.05em}
-.mw .hero .btns{display:flex;gap:10px;margin-top:32px}
+.mw .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,26,48,.58) 0%,rgba(14,26,48,.4) 30%,rgba(14,26,48,.56) 60%,rgba(14,26,48,.97) 100%)}
+.mw .hero .top{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;text-align:center;max-width:1280px;margin:0 auto;padding:22vh 40px 0;opacity:calc(1 - var(--hp,0) * 1.8);transform:translateY(calc(var(--hp,0) * -90px))}
+.mw .hero .k{font-family:var(--en);font-size:13px;font-weight:700;letter-spacing:.32em;color:var(--silver)}
+.mw .hero .tag{margin-top:18px;font-size:42px;font-weight:600;line-height:1.38;letter-spacing:-.05em}
+.mw .hero .btns{display:flex;justify-content:center;gap:10px;margin-top:36px}
 .mw .hero .intro{animation:introUp 1.2s var(--out) .55s backwards}
 @keyframes introUp{from{opacity:0;transform:translateY(30px)}}
-.mw .badge{position:relative;flex-shrink:0;width:150px;height:150px;animation:introUp 1.2s var(--out) .9s backwards}
+.mw .badge{position:absolute;z-index:3;right:calc(14vw - 64px);bottom:calc(2.4vw + 12.4vw - 56px);width:140px;height:140px;opacity:calc(1 - var(--hp,0) * 2);animation:introUp 1.2s var(--out) .9s backwards}
 .mw .badge svg{width:100%;height:100%;animation:spin 24s linear infinite}
 .mw .badge img{position:absolute;left:50%;top:50%;width:54px;transform:translate(-50%,-50%)}
 @keyframes spin{to{transform:rotate(360deg)}}
-.mw .hero .giant{position:absolute;left:0;right:0;bottom:0;z-index:2;overflow:hidden;font-family:var(--en);font-size:15.6vw;font-weight:300;line-height:.9;letter-spacing:-.045em;text-align:center;white-space:nowrap;transform:translateY(calc(30% - var(--hp,0) * 55%))}
+.mw .hero .giant{position:absolute;left:0;right:0;bottom:2.4vw;z-index:2;overflow:hidden;padding-bottom:.04em;font-family:var(--en);font-size:13.2vw;font-weight:300;line-height:.95;letter-spacing:-.045em;text-align:center;white-space:nowrap;transform:translateY(calc(var(--hp,0) * -30%))}
 .mw .hero .giant span{display:inline-block;background:linear-gradient(180deg,#FFFFFF 0%,#D5DAE0 45%,#8E97A3 100%);-webkit-background-clip:text;background-clip:text;color:transparent;transform:translateY(105%);transition:transform 1.3s var(--out) calc(.15s + var(--i) * .05s)}
 .mw .hero .giant.in span{transform:none}
 
@@ -287,6 +288,7 @@
   .mw .wrap{padding:0 20px}
   .mw .sec{padding:96px 0}
   .mw .head{grid-template-columns:minmax(0,1fr);gap:16px;margin-bottom:44px}
+  .mw .head .end{justify-self:start}
   .mw .h2{margin-top:18px;font-size:30px}
   .mw .h2.en{font-size:44px}
   .mw .sub{font-size:15px}
@@ -294,11 +296,11 @@
   .mw .btn i{width:42px;height:42px}
   .mw .btn_wrap{margin-top:36px}
   .mw .hero{height:calc(100svh - 108px);min-height:540px}
-  .mw .hero .top{flex-direction:column;align-items:flex-start;padding:38vh 20px 0}
-  .mw .hero .tag{font-size:22px}
+  .mw .hero .top{padding:24vh 20px 0}
+  .mw .hero .tag{font-size:26px}
   .mw .hero .btns{margin-top:24px}
   .mw .badge{display:none}
-  .mw .hero .giant{font-size:17vw}
+  .mw .hero .giant{font-size:15vw;bottom:5vw}
   .mw .main02 .cap h3{font-size:21px}
   .mw .img_wrap.slide .swiper-pagination{display:flex;position:static;margin-top:24px;align-items:center;justify-content:center;gap:8px;height:6px}
   .mw .img_wrap.slide .swiper-pagination-bullet{width:6px;height:6px;margin:0;background:var(--ink);opacity:.2}
@@ -384,16 +386,16 @@
           <a class="btn glass" href="menu.html">메뉴 보기<i></i></a>
         </div>
       </div>
-      <div class="badge" aria-hidden="true">
-        <svg viewBox="0 0 160 160">
-          <defs><path id="badgeRing" d="M80,80 m-62,0 a62,62 0 1,1 124,0 a62,62 0 1,1 -124,0"/></defs>
-          <circle cx="80" cy="80" r="79" fill="none" stroke="rgba(255,255,255,.25)"/>
-          <text font-family="Red Hat Display, sans-serif" font-size="12" font-weight="700" fill="#D5DAE0"><textPath href="#badgeRing" textLength="384" lengthAdjust="spacing">DOPE COFFEE ROASTERS · SINCE 2016 ·</textPath></text>
-        </svg>
-        <img src="img/mark_white.png" alt="">
-      </div>
     </div>
     <h1 class="giant" data-letters aria-label="DOPE A MIND">DOPE A MIND</h1>
+    <div class="badge" aria-hidden="true">
+      <svg viewBox="0 0 160 160">
+        <defs><path id="badgeRing" d="M80,80 m-62,0 a62,62 0 1,1 124,0 a62,62 0 1,1 -124,0"/></defs>
+        <circle cx="80" cy="80" r="79" fill="none" stroke="rgba(255,255,255,.25)"/>
+        <text font-family="Red Hat Display, sans-serif" font-size="12" font-weight="700" fill="#D5DAE0"><textPath href="#badgeRing" textLength="384" lengthAdjust="spacing">DOPE COFFEE ROASTERS · SINCE 2016 ·</textPath></text>
+      </svg>
+      <img src="img/mark_white.png" alt="">
+    </div>
   </section>
 
 
@@ -528,7 +530,7 @@
           <span class="pill rv">BRAND STORY</span>
           <h2 class="h2" data-lines>도파민에서 온 이름.<br>2016년부터 직영으로 다듬은 브랜드.</h2>
         </div>
-        <div class="rv"><a class="btn light" href="brand.html">브랜드 스토리 보기<i></i></a></div>
+        <div class="rv end"><a class="btn light" href="brand.html">브랜드 스토리 보기<i></i></a></div>
       </div>
       <ul class="flist" data-stagger>
         <li><p class="num outline">01</p><div><h3>기대</h3><p>이번 주엔 뭐가 나왔을까</p></div></li>
@@ -657,7 +659,7 @@
 <script src="js/menu-data.js?v=menu5"></script>
 <script src="js/stores-data.js?v=brand1"></script>
 <script src="js/common.js?v=brand4"></script>
-<script src="js/store-iso.js?v=iso8"></script>
+<script src="js/store-iso.js?v=iso10"></script>
 <script>
 /* ---------- 설정: 자료가 생기면 여기만 채우면 됩니다 ---------- */
 const CONFIG = {

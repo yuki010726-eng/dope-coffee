@@ -78,8 +78,8 @@ html{scroll-behavior:smooth}
 /* 가로 스크롤 구간 */
 .ui [data-hscroll]{position:relative}
 .ui [data-hscroll] .stick{position:sticky;top:76px;height:calc(100vh - 76px);display:flex;flex-direction:column;justify-content:center;overflow:hidden}
-.ui [data-hscroll] .track{display:flex;gap:24px;width:max-content;padding:0 40px;transform:translateX(var(--x,0));will-change:transform}
-.ui [data-hscroll] .bar{height:2px;margin:40px 40px 0;max-width:calc(1280px - 80px);background:var(--line)}
+.ui [data-hscroll] .track{display:flex;gap:24px;width:max-content;padding:0 max(40px,calc((100vw - 1200px) / 2));transform:translateX(var(--x,0));will-change:transform}
+.ui [data-hscroll] .bar{height:2px;width:calc(100% - 80px);max-width:1200px;margin:40px auto 0;background:var(--line)}
 .ui [data-hscroll] .bar i{display:block;height:100%;background:var(--ink);transform-origin:left;transform:scaleX(var(--p,0))}
 
 @media (max-width:1280px){
